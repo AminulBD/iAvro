@@ -15,8 +15,20 @@ Installation
 Building
 --------
 
-Open `AvroKeyboard.xcworkspace` (not the `.xcodeproj`) in Xcode and build the
-`Avro Keyboard` scheme. Requires CocoaPods (`pod install`) and macOS 12.0+.
+Open `AvroKeyboard.xcodeproj` in Xcode and build the `Avro Keyboard` scheme, or
+from the command line:
+
+```
+xcodebuild -project AvroKeyboard.xcodeproj \
+  -scheme "Avro Keyboard" \
+  -configuration Release \
+  -derivedDataPath build
+```
+
+The app is written in Swift with no external dependencies (SQLite is used
+through the system `libsqlite3`) and requires Xcode 16+ and macOS 12.0+. The
+built app is at `build/Build/Products/Release/Avro Keyboard.app`; its bundle
+identifier is `app.aminul.inputmethod.AvroKeyboard`.
 
 Continuous Integration
 ----------------------

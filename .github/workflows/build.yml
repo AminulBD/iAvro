@@ -7,7 +7,7 @@ on:
 
 env:
   SCHEME: Avro Keyboard
-  WORKSPACE: AvroKeyboard.xcworkspace
+  PROJECT: AvroKeyboard.xcodeproj
   APP_NAME: Avro Keyboard
   PRODUCTS_DIR: build/Build/Products/Release
   # Signing/notarization only runs when the secrets are present (they are not
@@ -34,16 +34,6 @@ jobs:
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app && xcodebuild -version
-
-      - name: Cache CocoaPods
-        uses: actions/cache@v4
-        with:
-          path: Pods
-          key: pods-${{ runner.os }}-${{ hashFiles('Podfile.lock') }}
-          restore-keys: pods-${{ runner.os }}-
-
-      - name: Install pods
-        run: pod install
 
       - name: Import Developer ID certificate
         if: env.HAS_SIGNING == 'true'
@@ -75,7 +65,7 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           xcodebuild \
-            -workspace "$WORKSPACE" \
+            -project "$PROJECT" \
             -scheme "$SCHEME" \
             -configuration Release \
             -derivedDataPath build \
@@ -93,7 +83,7 @@ jobs:
         if: env.HAS_SIGNING != 'true'
         run: |
           xcodebuild \
-            -workspace "$WORKSPACE" \
+            -project "$PROJECT" \
             -scheme "$SCHEME" \
             -configuration Release \
             -derivedDataPath build \
