@@ -1,12 +1,16 @@
 Installation
 ------------
 
-1. Download the `tar.gz` file from [Releases Section](https://github.com/torifat/iAvro/releases)
-2. Extract the `tar.gz` & copy `Avro Keyboard.app` file
-3. Goto `Finder` & press `⌘⇧G`, paste `~/Library/Input Methods/` & `Go`
-4. Paste the `Avro Keyboard.app` file here
-5. Goto `System Preferences -> Language & Text -> Input Sources` & Check `Avro Keyboard` from the list
-6. Look Above :P
+1. Download `Avro-Keyboard-universal.dmg` from the
+   [Releases](https://github.com/AminulBD/iAvro/releases) page
+   (or the `apple-silicon` / `intel` build for your Mac)
+2. Open the DMG and drag `Avro Keyboard` onto the `Input Methods` folder
+   (installs for all users; to install only for yourself, drag it into
+   `~/Library/Input Methods` instead)
+3. Log out and back in
+4. Open `System Settings > Keyboard > Input Sources > Edit… > +`, choose
+   `Bangla > Avro Keyboard`, and click `Add`
+5. Switch to it from the input menu in the menu bar
 
 Building
 --------
@@ -19,7 +23,20 @@ Continuous Integration
 
 Every push to `master`, every tag starting with `v`, and every pull request
 builds Release binaries for Apple Silicon (`arm64`), Intel (`x86_64`) and a
-universal binary, and uploads each as a workflow artifact.
+universal binary, and uploads each as a workflow artifact (a `.dmg` installer
+and a `.zip` of the bare app).
+
+### Releases
+
+Push a tag starting with `v` to publish a release:
+
+```
+git tag v1.6.0
+git push fork v1.6.0
+```
+
+Once all three builds finish, a GitHub release is created for that tag with
+the DMGs and zips attached and auto-generated release notes.
 
 ### Signing & notarization
 
