@@ -87,6 +87,7 @@ jobs:
             CODE_SIGN_IDENTITY="Developer ID Application" \
             DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
             ENABLE_HARDENED_RUNTIME=YES \
+            CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO \
             OTHER_CODE_SIGN_FLAGS="--timestamp" \
             -quiet build
 
@@ -109,6 +110,7 @@ jobs:
           lipo -info "$APP/Contents/MacOS/$APP_NAME"
           codesign --verify --deep --strict --verbose=2 "$APP"
           codesign --display --verbose=2 "$APP" 2>&1 | grep -E "^(Authority|Identifier|TeamIdentifier|Timestamp|CodeDirectory)"
+          echo "Entitlements:"; codesign --display --entitlements - --xml "$APP" 2>/dev/null || true
 
       - name: Notarize
         if: env.HAS_SIGNING == 'true'
