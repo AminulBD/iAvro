@@ -6,17 +6,20 @@ PODS:
 
 DEPENDENCIES:
   - FMDB (~> 2.1)
-  - RegexKitLite (~> 4.0)
+  - RegexKitLite (from `Vendor/RegexKitLite`)
 
 SPEC REPOS:
   trunk:
     - FMDB
-    - RegexKitLite
+
+EXTERNAL SOURCES:
+  RegexKitLite:
+    :path: Vendor/RegexKitLite
 
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  RegexKitLite: 828a00048053fb9b190f5264ca0d6029b9f38b39
 
-PODFILE CHECKSUM: 8918caf279a16ccb3a4b06c01f67ec2bc8956229
+PODFILE CHECKSUM: a84ccffc42810c6ac0e2d88ea629fdfcc4dc6b90
 
 COCOAPODS: 1.17.0

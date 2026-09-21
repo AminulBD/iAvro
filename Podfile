@@ -2,7 +2,7 @@ source 'https://cdn.cocoapods.org/'
 platform :osx, '12.0'
 
 target 'Avro Keyboard'
-pod 'RegexKitLite', '~> 4.0'
+pod 'RegexKitLite', :path => 'Vendor/RegexKitLite'
 pod 'FMDB', '~> 2.1'
 
 post_install do |installer|
