@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avro Keyboard for macOS</title>
+<meta name="description" content="Avro Keyboard for macOS — a native Swift Bangla phonetic input method for Apple Silicon and Intel Macs. Free and open source.">
+<meta property="og:title" content="Avro Keyboard for macOS">
+<meta property="og:description" content="A native Bangla phonetic input method for your Mac. Free and open source.">
+<meta property="og:image" content="https://aminulbd.github.io/iAvro/icon.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-2: #f6f7f9;
+    --text: #111827;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --code-bg: #0f172a;
+    --code-fg: #e2e8f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0d12;
+      --bg-2: #141820;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --line: #262b36;
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+      --code-bg: #050710;
+      --code-fg: #d1d5db;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hover); text-decoration: underline; }
+  h1, h2, h3, p { margin: 0; }
+  h1 { font-size: clamp(2rem, 4.5vw, 2.75rem); line-height: 1.15; letter-spacing: -.02em; font-weight: 700; }
+  h2 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.01em; font-weight: 650; margin-bottom: .5rem; }
+  h3 { font-size: 1.05rem; font-weight: 600; }
+  p { margin-bottom: 1rem; }
+  .muted { color: var(--muted); }
+  .wrap { max-width: 960px; margin: 0 auto; padding-inline: 24px; }
+  section { padding-block: 3.5rem; border-top: 1px solid var(--line); }
+  .lead { color: var(--muted); max-width: 60ch; margin-bottom: 2rem; }
+
+  code, pre, kbd { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  code { font-size: .9em; background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: .05em .35em; }
+  kbd { font-size: .85em; background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: .05em .4em; }
+  pre { margin: 0; background: var(--code-bg); color: var(--code-fg); padding: 1rem 1.25rem; border-radius: 8px; overflow-x: auto; font-size: .875rem; line-height: 1.6; }
+  pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+  .bn { font-family: "Kohinoor Bangla", "Bangla Sangam MN", "Noto Sans Bengali", "Vrinda", sans-serif; }
+
+  /* nav */
+  nav { border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; height: 56px; gap: 1.5rem; }
+  .brand { display: flex; align-items: center; gap: .6rem; color: var(--text); font-weight: 600; }
+  .brand:hover { text-decoration: none; }
+  .brand img { width: 24px; height: 24px; border-radius: 6px; }
+  nav ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 1.25rem; font-size: .95rem; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+  @media (max-width: 640px) { nav ul li:not(:last-child) { display: none; } }
+
+  /* hero */
+  .hero { padding-block: 4.5rem 3.5rem; }
+  .hero img { width: 88px; height: 88px; border-radius: 20px; margin-bottom: 1.5rem; }
+  .hero .lead { font-size: 1.15rem; margin-bottom: 1.75rem; }
+  .cta { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; padding: .65rem 1.2rem; border-radius: 8px; font-weight: 600; border: 1px solid var(--line); color: var(--text); background: var(--bg); }
+  .btn:hover { text-decoration: none; background: var(--bg-2); color: var(--text); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+  .specs { margin-top: 1.25rem; font-size: .9rem; color: var(--muted); }
+  .example { margin-top: 2.5rem; padding: 1.25rem 1.5rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; max-width: 520px; }
+  .example .typed { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .9rem; color: var(--muted); }
+  .example .out { font-size: 1.75rem; line-height: 1.4; margin-top: .25rem; }
+
+  /* feature grid */
+  .grid { display: grid; gap: 2rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .grid h3 { margin-bottom: .25rem; }
+  .grid p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+  /* steps */
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; max-width: 720px; }
+  ol.steps li { counter-increment: s; position: relative; padding: 0 0 1.5rem 3rem; }
+  ol.steps li::before {
+    content: counter(s); position: absolute; left: 0; top: .1rem;
+    width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center;
+    border: 1px solid var(--line); background: var(--bg-2); font-weight: 600; font-size: .9rem;
+  }
+  ol.steps li > strong { display: block; margin-bottom: .15rem; }
+  ol.steps li > span { color: var(--muted); }
+  .note { max-width: 720px; padding: .9rem 1.1rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-size: .95rem; }
+  .note p { margin: 0; }
+
+  .two { display: grid; gap: 2rem 3rem; grid-template-columns: 1fr 1fr; align-items: start; }
+  @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+
+  /* docs list */
+  .links { list-style: none; padding: 0; margin: 0; max-width: 720px; }
+  .links li { display: grid; grid-template-columns: 180px 1fr; gap: 1rem; padding: .75rem 0; border-top: 1px solid var(--line); }
+  .links li:last-child { border-bottom: 1px solid var(--line); }
+  .links span { color: var(--muted); }
+  @media (max-width: 560px) { .links li { grid-template-columns: 1fr; gap: .1rem; } }
+
+  /* people */
+  .people { display: grid; gap: 2rem 3rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .person { display: flex; gap: 1.1rem; align-items: flex-start; }
+  .person img { width: 64px; height: 64px; border-radius: 50%; flex: none; border: 1px solid var(--line); }
+  .person .role { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .person h3 { margin: .1rem 0 .4rem; }
+  .person p { color: var(--muted); font-size: .95rem; margin-bottom: .5rem; }
+  .person .l { font-size: .9rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .thanks { margin-top: 2.5rem; max-width: 720px; }
+  .thanks ul { margin: .5rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding-block: 1.75rem; font-size: .9rem; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icon.png" alt="">Avro Keyboard</a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#install">Install</a></li>
+      <li><a href="#build">Build</a></li>
+      <li><a href="#docs">Docs</a></li>
+      <li><a href="#credits">Credits</a></li>
+      <li><a href="https://github.com/AminulBD/iAvro">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <img src="icon.png" alt="Avro Keyboard icon">
+    <h1>Avro Keyboard for macOS</h1>
+    <p class="lead">A native Bangla phonetic input method for your Mac. Type the way words sound in Latin letters and get Bengali script as you go.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/AminulBD/iAvro/releases/latest">Download for Mac</a>
+      <a class="btn" href="https://github.com/AminulBD/iAvro">View on GitHub</a>
+    </div>
+    <p class="specs">macOS 12 or later · Universal (Apple Silicon and Intel) · Free and open source</p>
+    <div class="example">
+      <div class="typed">ami banglay gan gai</div>
+      <div class="out bn">আমি বাংলায় গান গাই</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Features</h2>
+    <p class="lead">The Avro phonetic layout you know from Windows and Linux, as a proper macOS input source.</p>
+    <div class="grid">
+      <div><h3>Avro phonetic layout</h3><p>The same transliteration rules as the original Avro Keyboard, so your muscle memory carries over.</p></div>
+      <div><h3>Candidate window</h3><p>Alternate spellings appear as you type; pick one with the arrow keys. Horizontal or vertical panel.</p></div>
+      <div><h3>Dictionary suggestions</h3><p>Optional dictionary lookups show real words alongside the phonetic candidates.</p></div>
+      <div><h3>Auto-correct and auto-dictionary</h3><p>Corrections for common slips, plus a personal dictionary that remembers what you pick.</p></div>
+      <div><h3>Native Swift</h3><p>Rewritten on Apple's Input Method Kit. No CocoaPods, no bundled libraries; SQLite comes from the system.</p></div>
+      <div><h3>Universal builds</h3><p>CI produces Apple Silicon, Intel and universal binaries for every release, signed and notarized when certificates are configured.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install</h2>
+    <p class="lead">About two minutes, one log-out.</p>
+    <ol class="steps">
+      <li><strong>Download the DMG</strong><span>Get <code>Avro-Keyboard-universal.dmg</code> from the <a href="https://github.com/AminulBD/iAvro/releases/latest">latest release</a>. There are also <code>apple-silicon</code> and <code>intel</code> builds if you prefer a smaller one.</span></li>
+      <li><strong>Drag it into Input Methods</strong><span>Open the DMG and drag <strong>Avro Keyboard</strong> onto the <strong>Input Methods</strong> folder. That installs it for all users. To install only for yourself, drop it in <code>~/Library/Input Methods</code> instead.</span></li>
+      <li><strong>Log out and back in</strong><span>macOS picks up new input methods at login.</span></li>
+      <li><strong>Add the input source</strong><span>Open <strong>System Settings → Keyboard → Input Sources → Edit… → +</strong>, choose <strong>Bangla → Avro Keyboard</strong>, and click <strong>Add</strong>.</span></li>
+      <li><strong>Start typing</strong><span>Switch to it from the input menu in the menu bar, or with <kbd>⌃</kbd> <kbd>Space</kbd>.</span></li>
+    </ol>
+    <div class="note"><p><strong>Upgrading?</strong> Replace the app in <code>Input Methods</code> with the new one and log out and back in. Preferences and your personal dictionary are kept.</p></div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap two">
+    <div>
+      <h2>Build from source</h2>
+      <p class="muted">Requires Xcode 16 or later. No external dependencies.</p>
+      <p>Open <code>AvroKeyboard.xcodeproj</code> in Xcode and build the <strong>Avro Keyboard</strong> scheme, or use the command line. The built app is at <code>build/Build/Products/Release/Avro Keyboard.app</code>.</p>
+      <p class="muted" style="font-size:.9rem">Bundle identifier: <code>app.aminul.inputmethod.AvroKeyboard</code></p>
+    </div>
+    <pre><code>git clone https://github.com/AminulBD/iAvro.git
+cd iAvro
+
+xcodebuild -project AvroKeyboard.xcodeproj \
+  -scheme "Avro Keyboard" \
+  -configuration Release \
+  -derivedDataPath build</code></pre>
+  </div>
+</section>
+
+<section id="docs">
+  <div class="wrap">
+    <h2>Documentation</h2>
+    <p class="lead">Everything lives in the repository. These are the useful entry points.</p>
+    <ul class="links">
+      <li><a href="https://github.com/AminulBD/iAvro#readme">README</a><span>Installation, building, and the full CI and release guide.</span></li>
+      <li><a href="https://github.com/AminulBD/iAvro/releases">Releases</a><span>DMG installers and zipped apps for every tagged version, with release notes.</span></li>
+      <li><a href="https://github.com/AminulBD/iAvro#signing--notarization">Signing &amp; notarization</a><span>Which repository secrets make CI produce Developer ID-signed, notarized builds.</span></li>
+      <li><a href="https://github.com/AminulBD/iAvro/actions">CI builds</a><span>Run the <em>Build</em> workflow by hand to get artifacts for any commit.</span></li>
+      <li><a href="https://github.com/AminulBD/iAvro/issues">Issues</a><span>Bugs, wrong transliterations, feature requests.</span></li>
+      <li><a href="https://github.com/torifat/iAvro">Upstream project</a><span>The original iAvro repository by Rifat Nabi that this fork builds on.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="credits">
+  <div class="wrap">
+    <h2>Credits</h2>
+    <p class="lead">Avro Keyboard on the Mac exists because of a lot of people. This fork stands on their work.</p>
+    <div class="people">
+      <div class="person">
+        <img src="https://github.com/torifat.png?size=128" alt="">
+        <div>
+          <div class="role">Original author</div>
+          <h3>Rifat Nabi</h3>
+          <p>Created iAvro in 2012, the original Avro Keyboard port for OS X, and maintained it for years across Yosemite, Sierra and beyond.</p>
+          <div class="l"><a href="https://github.com/torifat">github.com/torifat</a><a href="https://github.com/torifat/iAvro">torifat/iAvro</a></div>
+        </div>
+      </div>
+      <div class="person">
+        <img src="https://github.com/AminulBD.png?size=128" alt="">
+        <div>
+          <div class="role">Fork maintainer</div>
+          <h3>Aminul Islam</h3>
+          <p>Rewrote the app in Swift, dropped CocoaPods, added universal Apple Silicon and Intel builds with DMG packaging, and set up signed and notarized releases via GitHub Actions.</p>
+          <div class="l"><a href="https://github.com/AminulBD">github.com/AminulBD</a><a href="https://github.com/AminulBD/iAvro">AminulBD/iAvro</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="thanks">
+      <h3>Also thanks to</h3>
+      <ul>
+        <li><a href="https://www.omicronlab.com/">OmicronLab</a> and Mehdi Hasan Khan, creators of the Avro phonetic layout and engine.</li>
+        <li>Sarim Khan and Muhammad Mominul Huque, iAvro contributors.</li>
+        <li>Everyone who filed issues and tested builds over the years.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>A fork of <a href="https://github.com/torifat/iAvro">torifat/iAvro</a>. Avro phonetic engine © OmicronLab.</span>
+    <span><a href="https://github.com/AminulBD/iAvro">Source</a> · <a href="https://github.com/AminulBD/iAvro/releases">Releases</a> · <a href="https://github.com/AminulBD/iAvro/issues">Issues</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
