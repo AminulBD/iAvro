@@ -7,6 +7,12 @@ on:
   pull_request:
   workflow_dispatch:
 
+# A newer push to the same branch supersedes a running build; tag builds are
+# never cancelled since they publish releases.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
 env:
   SCHEME: Avro Keyboard
   WORKSPACE: AvroKeyboard.xcworkspace
