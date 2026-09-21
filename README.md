@@ -21,8 +21,8 @@ Open `AvroKeyboard.xcworkspace` (not the `.xcodeproj`) in Xcode and build the
 Continuous Integration
 ----------------------
 
-Every push to `master`, every tag starting with `v`, and every pull request
-builds Release binaries for Apple Silicon (`arm64`), Intel (`x86_64`) and a
+Pushing a tag starting with `v`, or running the **Build** workflow manually
+from the Actions tab, builds Release binaries for Apple Silicon (`arm64`), Intel (`x86_64`) and a
 universal binary, and uploads each as a workflow artifact (a `.dmg` installer
 and a `.zip` of the bare app).
 
