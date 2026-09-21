@@ -104,6 +104,10 @@
   }
   ol.steps li > strong { display: block; margin-bottom: .15rem; }
   ol.steps li > span { color: var(--muted); }
+  .brew { max-width: 720px; margin-bottom: 2.5rem; }
+  .brew pre { margin: .75rem 0; }
+  .brew p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .brew h3 { margin-bottom: .25rem; }
   .note { max-width: 720px; padding: .9rem 1.1rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-size: .95rem; }
   .note p { margin: 0; }
 
@@ -185,7 +189,13 @@
 <section id="install">
   <div class="wrap">
     <h2>Install</h2>
-    <p class="lead">About two minutes, one log-out.</p>
+    <p class="lead">About two minutes, one log-out. Use Homebrew, or download the DMG.</p>
+    <div class="brew">
+      <h3>With Homebrew</h3>
+      <pre><code>brew install --cask aminulbd/tap/avro</code></pre>
+      <p>Installs the app into <code>~/Library/Input Methods</code>. Update later with <code>brew upgrade --cask avro</code>, remove with <code>brew uninstall --cask avro</code>. Then continue from step 3 below.</p>
+    </div>
+    <h3 style="margin-bottom:1rem">Manually</h3>
     <ol class="steps">
       <li><strong>Download the DMG</strong><span>Get <code>Avro-Keyboard-universal.dmg</code> from the <a href="https://github.com/AminulBD/iAvro/releases/latest">latest release</a>. There are also <code>apple-silicon</code> and <code>intel</code> builds if you prefer a smaller one.</span></li>
       <li><strong>Drag it into Input Methods</strong><span>Open the DMG and drag <strong>Avro Keyboard</strong> onto the <strong>Input Methods</strong> folder. That installs it for all users. To install only for yourself, drop it in <code>~/Library/Input Methods</code> instead.</span></li>

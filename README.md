@@ -1,6 +1,18 @@
 Installation
 ------------
 
+### Homebrew
+
+```
+brew install --cask aminulbd/tap/avro
+```
+
+This installs `Avro Keyboard.app` into `~/Library/Input Methods`. Upgrade with
+`brew upgrade --cask avro` and remove with `brew uninstall --cask avro`. After
+installing, continue from step 3 below to enable the input source.
+
+### Manual
+
 1. Download `Avro-Keyboard-universal.dmg` from the
    [Releases](https://github.com/AminulBD/iAvro/releases) page
    (or the `apple-silicon` / `intel` build for your Mac)
