@@ -30,7 +30,7 @@ jobs:
             archs: arm64 x86_64
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app && xcodebuild -version
@@ -138,7 +138,7 @@ jobs:
           ditto -c -k --keepParent "$APP_NAME.app" "Avro-Keyboard-${{ matrix.name }}.zip"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Avro-Keyboard-${{ matrix.name }}
           path: |
@@ -160,7 +160,7 @@ jobs:
       contents: write
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           path: dist
           pattern: Avro-Keyboard-*
