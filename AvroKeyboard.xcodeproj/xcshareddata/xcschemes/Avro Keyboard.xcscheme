@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D1107260486CEB800E47090"
+               BlueprintIdentifier = "A10000010000000000000040"
                BuildableName = "Avro Keyboard.app"
                BlueprintName = "Avro Keyboard"
                ReferencedContainer = "container:AvroKeyboard.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BlueprintIdentifier = "A10000010000000000000040"
             BuildableName = "Avro Keyboard.app"
             BlueprintName = "Avro Keyboard"
             ReferencedContainer = "container:AvroKeyboard.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BlueprintIdentifier = "A10000010000000000000040"
             BuildableName = "Avro Keyboard.app"
             BlueprintName = "Avro Keyboard"
             ReferencedContainer = "container:AvroKeyboard.xcodeproj">
