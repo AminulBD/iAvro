@@ -1,0 +1,72 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+env:
+  SCHEME: Avro Keyboard
+  WORKSPACE: AvroKeyboard.xcworkspace
+
+jobs:
+  build:
+    name: Build (${{ matrix.name }})
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: apple-silicon
+            archs: arm64
+          - name: intel
+            archs: x86_64
+          - name: universal
+            archs: arm64 x86_64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app && xcodebuild -version
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: Pods
+          key: pods-${{ runner.os }}-${{ hashFiles('Podfile.lock') }}
+          restore-keys: pods-${{ runner.os }}-
+
+      - name: Install pods
+        run: pod install
+
+      - name: Build
+        run: |
+          xcodebuild \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -derivedDataPath build \
+            ARCHS="${{ matrix.archs }}" \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_IDENTITY=- \
+            CODE_SIGNING_ALLOWED=YES \
+            -quiet build
+
+      - name: Verify architectures
+        run: lipo -info "build/Build/Products/Release/Avro Keyboard.app/Contents/MacOS/Avro Keyboard"
+
+      - name: Package
+        run: |
+          cd build/Build/Products/Release
+          ditto -c -k --keepParent "Avro Keyboard.app" "Avro-Keyboard-${{ matrix.name }}.zip"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Avro-Keyboard-${{ matrix.name }}
+          path: build/Build/Products/Release/Avro-Keyboard-${{ matrix.name }}.zip
+          if-no-files-found: error
+          retention-days: 90
