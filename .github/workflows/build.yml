@@ -112,37 +112,37 @@ jobs:
           codesign --display --verbose=2 "$APP" 2>&1 | grep -E "^(Authority|Identifier|TeamIdentifier|Timestamp|CodeDirectory)"
           echo "Entitlements:"; codesign --display --entitlements - --xml "$APP" 2>/dev/null || true
 
-      - name: Notarize
+      - name: Notarize app
         if: env.HAS_SIGNING == 'true'
         env:
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_API_KEY_P8: ${{ secrets.APP_STORE_CONNECT_API_KEY_P8 }}
         run: |
+          echo "$APP_STORE_CONNECT_API_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
           APP="$PRODUCTS_DIR/$APP_NAME.app"
-          KEY="$RUNNER_TEMP/AuthKey.p8"
-          echo "$APP_STORE_CONNECT_API_KEY_P8" > "$KEY"
-
-          ditto -c -k --keepParent "$APP" "$RUNNER_TEMP/notarize.zip"
-          xcrun notarytool submit "$RUNNER_TEMP/notarize.zip" \
-            --key "$KEY" \
-            --key-id "$APP_STORE_CONNECT_KEY_ID" \
-            --issuer "$APP_STORE_CONNECT_ISSUER_ID" \
-            --wait --timeout 30m \
-            --output-format json | tee "$RUNNER_TEMP/notarize.json"
-
-          STATUS="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["status"])' < "$RUNNER_TEMP/notarize.json")"
-          if [ "$STATUS" != "Accepted" ]; then
-            SUBMISSION_ID="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])' < "$RUNNER_TEMP/notarize.json")"
-            xcrun notarytool log "$SUBMISSION_ID" \
-              --key "$KEY" --key-id "$APP_STORE_CONNECT_KEY_ID" --issuer "$APP_STORE_CONNECT_ISSUER_ID"
-            exit 1
-          fi
-
+          ditto -c -k --keepParent "$APP" "$RUNNER_TEMP/notarize-app.zip"
+          scripts/notarize.sh "$RUNNER_TEMP/notarize-app.zip"
           xcrun stapler staple "$APP"
           xcrun stapler validate "$APP"
           spctl --assess --type execute --verbose=2 "$APP"
-          rm -f "$KEY"
+
+      - name: Create DMG
+        run: scripts/make-dmg.sh "$PRODUCTS_DIR/$APP_NAME.app" "$PRODUCTS_DIR/Avro-Keyboard-${{ matrix.name }}.dmg"
+
+      - name: Sign and notarize DMG
+        if: env.HAS_SIGNING == 'true'
+        env:
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+        run: |
+          DMG="$PRODUCTS_DIR/Avro-Keyboard-${{ matrix.name }}.dmg"
+          codesign --sign "Developer ID Application" --timestamp --verbose=2 "$DMG"
+          scripts/notarize.sh "$DMG"
+          xcrun stapler staple "$DMG"
+          xcrun stapler validate "$DMG"
+          spctl --assess --type open --context context:primary-signature --verbose=2 "$DMG"
+          rm -f "$RUNNER_TEMP/AuthKey.p8"
 
       - name: Package
         run: |
@@ -153,7 +153,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Avro-Keyboard-${{ matrix.name }}
-          path: ${{ env.PRODUCTS_DIR }}/Avro-Keyboard-${{ matrix.name }}.zip
+          path: |
+            ${{ env.PRODUCTS_DIR }}/Avro-Keyboard-${{ matrix.name }}.zip
+            ${{ env.PRODUCTS_DIR }}/Avro-Keyboard-${{ matrix.name }}.dmg
           if-no-files-found: error
           retention-days: 90
 
@@ -182,7 +184,7 @@ jobs:
           TAG: ${{ github.ref_name }}
         run: |
           ls -la dist
-          gh release create "$TAG" dist/*.zip \
+          gh release create "$TAG" dist/*.dmg dist/*.zip \
             --repo "$GITHUB_REPOSITORY" \
             --title "$TAG" \
             --generate-notes \
