@@ -10,6 +10,11 @@ on:
 env:
   SCHEME: Avro Keyboard
   WORKSPACE: AvroKeyboard.xcworkspace
+  APP_NAME: Avro Keyboard
+  PRODUCTS_DIR: build/Build/Products/Release
+  # Signing/notarization only runs when the secrets are present (they are not
+  # exposed to pull requests from forks); otherwise the app is ad-hoc signed.
+  HAS_SIGNING: ${{ secrets.MACOS_CERTIFICATE_P12 != '' }}
 
 jobs:
   build:
@@ -42,7 +47,51 @@ jobs:
       - name: Install pods
         run: pod install
 
-      - name: Build
+      - name: Import Developer ID certificate
+        if: env.HAS_SIGNING == 'true'
+        env:
+          MACOS_CERTIFICATE_P12: ${{ secrets.MACOS_CERTIFICATE_P12 }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+        run: |
+          KEYCHAIN="$RUNNER_TEMP/signing.keychain-db"
+          KEYCHAIN_PASSWORD="$(openssl rand -base64 24)"
+          CERT="$RUNNER_TEMP/certificate.p12"
+          echo "$MACOS_CERTIFICATE_P12" | base64 --decode > "$CERT"
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security import "$CERT" -P "$MACOS_CERTIFICATE_PASSWORD" -A \
+            -t cert -f pkcs12 -k "$KEYCHAIN"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: \
+            -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security list-keychain -d user -s "$KEYCHAIN" login.keychain-db
+          rm -f "$CERT"
+
+          security find-identity -v -p codesigning "$KEYCHAIN"
+          echo "KEYCHAIN=$KEYCHAIN" >> "$GITHUB_ENV"
+
+      - name: Build (Developer ID)
+        if: env.HAS_SIGNING == 'true'
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          xcodebuild \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -derivedDataPath build \
+            ARCHS="${{ matrix.archs }}" \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Developer ID Application" \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+            ENABLE_HARDENED_RUNTIME=YES \
+            OTHER_CODE_SIGN_FLAGS="--timestamp" \
+            -quiet build
+
+      - name: Build (ad-hoc)
+        if: env.HAS_SIGNING != 'true'
         run: |
           xcodebuild \
             -workspace "$WORKSPACE" \
@@ -52,21 +101,60 @@ jobs:
             ARCHS="${{ matrix.archs }}" \
             ONLY_ACTIVE_ARCH=NO \
             CODE_SIGN_IDENTITY=- \
-            CODE_SIGNING_ALLOWED=YES \
             -quiet build
 
-      - name: Verify architectures
-        run: lipo -info "build/Build/Products/Release/Avro Keyboard.app/Contents/MacOS/Avro Keyboard"
+      - name: Verify build
+        run: |
+          APP="$PRODUCTS_DIR/$APP_NAME.app"
+          lipo -info "$APP/Contents/MacOS/$APP_NAME"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          codesign --display --verbose=2 "$APP" 2>&1 | grep -E "^(Authority|Identifier|TeamIdentifier|Timestamp|CodeDirectory)"
+
+      - name: Notarize
+        if: env.HAS_SIGNING == 'true'
+        env:
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_P8: ${{ secrets.APP_STORE_CONNECT_API_KEY_P8 }}
+        run: |
+          APP="$PRODUCTS_DIR/$APP_NAME.app"
+          KEY="$RUNNER_TEMP/AuthKey.p8"
+          echo "$APP_STORE_CONNECT_API_KEY_P8" > "$KEY"
+
+          ditto -c -k --keepParent "$APP" "$RUNNER_TEMP/notarize.zip"
+          xcrun notarytool submit "$RUNNER_TEMP/notarize.zip" \
+            --key "$KEY" \
+            --key-id "$APP_STORE_CONNECT_KEY_ID" \
+            --issuer "$APP_STORE_CONNECT_ISSUER_ID" \
+            --wait --timeout 30m \
+            --output-format json | tee "$RUNNER_TEMP/notarize.json"
+
+          STATUS="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["status"])' < "$RUNNER_TEMP/notarize.json")"
+          if [ "$STATUS" != "Accepted" ]; then
+            SUBMISSION_ID="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])' < "$RUNNER_TEMP/notarize.json")"
+            xcrun notarytool log "$SUBMISSION_ID" \
+              --key "$KEY" --key-id "$APP_STORE_CONNECT_KEY_ID" --issuer "$APP_STORE_CONNECT_ISSUER_ID"
+            exit 1
+          fi
+
+          xcrun stapler staple "$APP"
+          xcrun stapler validate "$APP"
+          spctl --assess --type execute --verbose=2 "$APP"
+          rm -f "$KEY"
 
       - name: Package
         run: |
-          cd build/Build/Products/Release
-          ditto -c -k --keepParent "Avro Keyboard.app" "Avro-Keyboard-${{ matrix.name }}.zip"
+          cd "$PRODUCTS_DIR"
+          ditto -c -k --keepParent "$APP_NAME.app" "Avro-Keyboard-${{ matrix.name }}.zip"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Avro-Keyboard-${{ matrix.name }}
-          path: build/Build/Products/Release/Avro-Keyboard-${{ matrix.name }}.zip
+          path: ${{ env.PRODUCTS_DIR }}/Avro-Keyboard-${{ matrix.name }}.zip
           if-no-files-found: error
           retention-days: 90
+
+      - name: Remove signing keychain
+        if: always() && env.KEYCHAIN != ''
+        run: security delete-keychain "$KEYCHAIN"
