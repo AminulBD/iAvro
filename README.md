@@ -81,3 +81,8 @@ will block it on other Macs.
 To create the API key: App Store Connect → Users and Access → Integrations →
 App Store Connect API → **Team Keys** → `+`, role **Developer** (or higher).
 The `.p8` can only be downloaded once.
+
+## License
+
+Avro Keyboard for Mac is licensed under the [Mozilla Public License 1.1](LICENSE).
+Copyright © 2026 OmicronLab. All rights reserved.
