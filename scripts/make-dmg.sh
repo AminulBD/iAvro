@@ -33,6 +33,11 @@ Bangla > Avro Keyboard, and click Add.
 To install for all users instead, copy the app into /Library/Input Methods
 by hand (in Finder, press Cmd+Shift+G and paste that path) and log out and
 back in.
+
+Had the old iAvro installed? Remove it first, or two "Avro Keyboard" entries
+show up in the input menu: remove it from System Settings > Keyboard >
+Input Sources > Edit..., delete "Avro Keyboard.app" from ~/Library/Input
+Methods or /Library/Input Methods, and log out and back in.
 TXT
 
 rm -f "$OUT"

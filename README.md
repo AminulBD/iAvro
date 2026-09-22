@@ -26,6 +26,28 @@ If it does not appear in the input menu, log out and back in, then open
 `System Settings > Keyboard > Input Sources > Edit… > +`, choose
 `Bangla > Avro Keyboard`, and click `Add`.
 
+### Removing the old version
+
+If you had the original iAvro (bundle identifier
+`com.omicronlab.inputmethod.AvroKeyboard`) installed, remove it first, otherwise
+two `Avro Keyboard` entries show up in the input menu and macOS may keep
+loading the old one:
+
+1. Open `System Settings > Keyboard > Input Sources > Edit…` and remove
+   `Avro Keyboard` from the list
+2. Delete the old app. It lives in one of these folders (in Finder press
+   `⌘⇧G` and paste the path):
+
+   ```
+   rm -rf ~/Library/Input\ Methods/Avro\ Keyboard.app
+   sudo rm -rf /Library/Input\ Methods/Avro\ Keyboard.app
+   ```
+
+3. Log out and back in, then install the new version as described above
+
+Your personal dictionary and preferences from the old version are not carried
+over; they were stored under the old bundle identifier.
+
 Building
 --------
 
