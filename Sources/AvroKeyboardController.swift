@@ -73,8 +73,21 @@ final class AvroKeyboardController: IMKInputController {
 
     // MARK: - Composition
 
-    override func composedString(_ sender: Any!) -> Any! {
-        NSAttributedString(string: composition.buffer)
+    /// Mirrors the buffer into the client as marked text.
+    ///
+    /// This deliberately does not go through `updateComposition()`, which asks for the
+    /// text back via `composedString(_:)`. On macOS 12 InputMethodKit invokes that
+    /// selector without setting up its `sender` argument, so the register holds a stale
+    /// pointer; Swift's @objc thunk retains every `id` argument before the body runs, and
+    /// that retain faults. An Objective-C input method never notices because it simply
+    /// ignores the unused argument. Writing the marked text straight to the client keeps
+    /// `sender` out of Swift's hands and leaves `composedString(_:)` to IMK's own
+    /// implementation.
+    private func updateMarkedText() {
+        let text = composition.buffer
+        client()?.setMarkedText(NSAttributedString(string: text),
+                                selectionRange: NSRange(location: text.utf16.count, length: 0),
+                                replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
     }
 
     override func commitComposition(_ sender: Any!) {
@@ -84,7 +97,7 @@ final class AvroKeyboardController: IMKInputController {
     }
 
     private func compositionDidChange() {
-        updateComposition()
+        updateMarkedText()
         updateCandidatesPanel()
     }
 
