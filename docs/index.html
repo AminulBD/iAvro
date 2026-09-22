@@ -189,21 +189,20 @@
 <section id="install">
   <div class="wrap">
     <h2>Install</h2>
-    <p class="lead">About two minutes, one log-out. Use Homebrew, or download the DMG.</p>
+    <p class="lead">About a minute. Use Homebrew, or download the DMG.</p>
     <div class="brew">
       <h3>With Homebrew</h3>
       <pre><code>brew install --cask aminulbd/tap/avro</code></pre>
-      <p>Installs the app into <code>~/Library/Input Methods</code>. Update later with <code>brew upgrade --cask avro</code>, remove with <code>brew uninstall --cask avro</code>. Then continue from step 3 below.</p>
+      <p>Installs the app into <code>~/Library/Input Methods</code>. Update later with <code>brew upgrade --cask avro</code>, remove with <code>brew uninstall --cask avro</code>. Then switch to it from the input menu in the menu bar.</p>
     </div>
     <h3 style="margin-bottom:1rem">Manually</h3>
     <ol class="steps">
       <li><strong>Download the DMG</strong><span>Get <code>Avro-Keyboard-universal.dmg</code> from the <a href="https://github.com/AminulBD/iAvro/releases/latest">latest release</a>. There are also <code>apple-silicon</code> and <code>intel</code> builds if you prefer a smaller one.</span></li>
-      <li><strong>Drag it into Input Methods</strong><span>Open the DMG and drag <strong>Avro Keyboard</strong> onto the <strong>Input Methods</strong> folder. That installs it for all users. To install only for yourself, drop it in <code>~/Library/Input Methods</code> instead.</span></li>
-      <li><strong>Log out and back in</strong><span>macOS picks up new input methods at login.</span></li>
-      <li><strong>Add the input source</strong><span>Open <strong>System Settings → Keyboard → Input Sources → Edit… → +</strong>, choose <strong>Bangla → Avro Keyboard</strong>, and click <strong>Add</strong>.</span></li>
+      <li><strong>Open it and click Install</strong><span>Open the DMG and double-click <strong>Avro Keyboard</strong>. It copies itself into <code>~/Library/Input Methods</code> (for your user only) and adds itself to your input sources. To install for all users instead, copy it into <code>/Library/Input Methods</code> by hand and log out and back in.</span></li>
       <li><strong>Start typing</strong><span>Switch to it from the input menu in the menu bar, or with <kbd>⌃</kbd> <kbd>Space</kbd>.</span></li>
     </ol>
-    <div class="note"><p><strong>Upgrading?</strong> Replace the app in <code>Input Methods</code> with the new one and log out and back in. Preferences and your personal dictionary are kept.</p></div>
+    <div class="note"><p><strong>Not in the input menu?</strong> Log out and back in, then open <strong>System Settings → Keyboard → Input Sources → Edit… → +</strong>, choose <strong>Bangla → Avro Keyboard</strong>, and click <strong>Add</strong>.</p></div>
+    <div class="note"><p><strong>Upgrading?</strong> Open the new DMG and double-click the app again; it replaces the installed copy. Log out and back in afterwards. Preferences and your personal dictionary are kept.</p></div>
   </div>
 </section>
 

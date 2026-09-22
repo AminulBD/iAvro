@@ -1,10 +1,11 @@
 #!/bin/bash
-# Build a drag-and-drop installer DMG for Avro Keyboard.
+# Build the installer DMG for Avro Keyboard.
 #
 #   scripts/make-dmg.sh "path/to/Avro Keyboard.app" "output.dmg"
 #
-# The image contains the app and a symlink to /Library/Input Methods so the
-# user can drag one onto the other. The DMG is not signed or notarized here.
+# The image contains the app and a short readme. Opening the app from the image
+# offers to copy it into ~/Library/Input Methods (see Sources/Installer.swift).
+# The DMG is not signed or notarized here.
 set -euo pipefail
 
 APP="${1:?usage: make-dmg.sh <app bundle> <output dmg>}"
@@ -15,24 +16,23 @@ STAGING="$(mktemp -d)"
 trap 'rm -rf "$STAGING"' EXIT
 
 ditto "$APP" "$STAGING/$(basename "$APP")"
-ln -s "/Library/Input Methods" "$STAGING/Input Methods"
 cat > "$STAGING/How to install.txt" <<'TXT'
 Avro Keyboard for macOS
 =======================
 
-1. Drag "Avro Keyboard" onto the "Input Methods" folder next to it.
-   (macOS will ask for your password, since this installs for all users.)
+1. Double-click "Avro Keyboard" and click Install. It is copied into
+   ~/Library/Input Methods (for your user only) and added to your input
+   sources.
 
-2. Log out and back in, or restart, so macOS picks up the new input method.
+2. Switch to it from the input menu in the menu bar.
 
-3. Open System Settings > Keyboard > Input Sources > Edit... > "+",
-   choose Bangla > Avro Keyboard, and click Add.
+If it does not show up in the input menu, log out and back in, then open
+System Settings > Keyboard > Input Sources > Edit... > "+", choose
+Bangla > Avro Keyboard, and click Add.
 
-4. Switch to it from the input menu in the menu bar.
-
-To install only for your own user, drag the app into
-~/Library/Input Methods instead (in Finder, press Cmd+Shift+G and paste
-that path).
+To install for all users instead, copy the app into /Library/Input Methods
+by hand (in Finder, press Cmd+Shift+G and paste that path) and log out and
+back in.
 TXT
 
 rm -f "$OUT"

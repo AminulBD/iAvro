@@ -9,20 +9,22 @@ brew install --cask aminulbd/tap/avro
 
 This installs `Avro Keyboard.app` into `~/Library/Input Methods`. Upgrade with
 `brew upgrade --cask avro` and remove with `brew uninstall --cask avro`. After
-installing, continue from step 3 below to enable the input source.
+installing, switch to it from the input menu in the menu bar.
 
 ### Manual
 
 1. Download `Avro-Keyboard-universal.dmg` from the
    [Releases](https://github.com/AminulBD/iAvro/releases) page
    (or the `apple-silicon` / `intel` build for your Mac)
-2. Open the DMG and drag `Avro Keyboard` onto the `Input Methods` folder
-   (installs for all users; to install only for yourself, drag it into
-   `~/Library/Input Methods` instead)
-3. Log out and back in
-4. Open `System Settings > Keyboard > Input Sources > Edit… > +`, choose
-   `Bangla > Avro Keyboard`, and click `Add`
-5. Switch to it from the input menu in the menu bar
+2. Open the DMG, double-click `Avro Keyboard` and click `Install`. It is
+   copied into `~/Library/Input Methods` and added to your input sources
+   (to install for all users instead, copy it into `/Library/Input Methods`
+   by hand and log out and back in)
+3. Switch to it from the input menu in the menu bar
+
+If it does not appear in the input menu, log out and back in, then open
+`System Settings > Keyboard > Input Sources > Edit… > +`, choose
+`Bangla > Avro Keyboard`, and click `Add`.
 
 Building
 --------
