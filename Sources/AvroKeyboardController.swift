@@ -30,6 +30,7 @@ final class AvroKeyboardController: IMKInputController {
 
         panel.update()
         panel.show(kIMKLocateCandidatesBelowHint)
+        Candidates.raiseAboveOverlayPanels()
 
         // `selectCandidate(_:)` is unreliable, so step to the remembered choice instead.
         if composition.rememberedIndex > 0 {
