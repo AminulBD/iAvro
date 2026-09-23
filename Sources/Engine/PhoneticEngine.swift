@@ -11,7 +11,7 @@ import Foundation
 /// Patterns map a chunk of romanised input (`find`) to Bengali output (`replace`).
 /// A pattern may carry context-sensitive `rules`; the first rule whose every `match`
 /// condition holds wins, otherwise the pattern's default `replace` is used.
-struct PhoneticRules: Decodable {
+struct PhoneticRules: Decodable, Sendable {
     struct Match: Decodable {
         enum Position: String, Decodable { case prefix, suffix }
         enum Scope: String, Decodable { case punctuation, vowel, consonant, number, exact }
@@ -66,7 +66,7 @@ struct PhoneticRules: Decodable {
 ///
 /// This is the algorithm shared by `AvroParser` (produces Bengali text) and
 /// `RegexParser` (produces a regular expression matching dictionary entries).
-final class PhoneticEngine {
+final class PhoneticEngine: Sendable {
     /// What to do with characters that are *not* in the rule set's `casesensitive` list.
     enum CaseSensitivePolicy {
         /// Keep them (lower-cased); case-sensitive ones are kept verbatim.

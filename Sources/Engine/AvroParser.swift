@@ -7,7 +7,7 @@
 import Foundation
 
 /// Converts romanised (Avro Phonetic) input into Bengali text using `data.json`.
-final class AvroParser {
+final class AvroParser: Sendable {
     static let shared = AvroParser()
 
     private let engine = PhoneticEngine(rules: .load(resource: "data"))

@@ -11,6 +11,7 @@ import Foundation
 /// With dictionary suggestions enabled the list is: auto-correct entry, dictionary
 /// matches (closest spelling first), words synthesised from a known base + suffix,
 /// and finally the plain phonetic transliteration. Otherwise it is just the transliteration.
+@MainActor
 final class Suggestion {
     static let shared = Suggestion()
 

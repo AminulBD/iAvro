@@ -8,7 +8,7 @@ import Foundation
 
 /// Converts romanised input into a regular expression that matches every Bengali
 /// spelling the input could stand for, using `regex.json`. Used for dictionary lookup.
-final class RegexParser {
+final class RegexParser: Sendable {
     static let shared = RegexParser()
 
     /// Allows an optional য-ফলা/ব-ফলা/ম-ফলা, hasanta, and visarga/chandrabindu after each unit.

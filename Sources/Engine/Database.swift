@@ -11,7 +11,7 @@ import SQLite3
 ///
 /// Words are grouped into tables by their leading sound (e.g. `KH`, `NGA`); a lookup
 /// scans only the tables that could start with the typed letter.
-final class Database {
+final class Database: Sendable {
     static let shared = Database()
 
     private static let wordTables = [
@@ -52,8 +52,9 @@ final class Database {
 
     /// Words keyed by lower-cased table name. Stored as `NSString` so that
     /// `NSRegularExpression` can scan them without re-bridging on every keystroke.
-    private var words: [String: [NSString]] = [:]
-    private var suffixes: [String: String] = [:]
+    /// `NSString` is not `Sendable`, but these are immutable and never change after `init`.
+    private nonisolated(unsafe) let words: [String: [NSString]]
+    private let suffixes: [String: String]
 
     private init() {
         guard let path = Bundle.main.path(forResource: "database", ofType: "db3") else {
@@ -65,15 +66,19 @@ final class Database {
         }
         defer { sqlite3_close(db) }
 
+        var words: [String: [NSString]] = [:]
         for table in Self.wordTables {
-            words[table.lowercased()] = query(db, "SELECT Words FROM \(table)").map { $0[0] as NSString }
+            words[table.lowercased()] = Self.query(db, "SELECT Words FROM \(table)").map { $0[0] as NSString }
         }
-        for row in query(db, "SELECT English, Bangla FROM Suffix") {
+        var suffixes: [String: String] = [:]
+        for row in Self.query(db, "SELECT English, Bangla FROM Suffix") {
             suffixes[row[0]] = row[1]
         }
+        self.words = words
+        self.suffixes = suffixes
     }
 
-    private func query(_ db: OpaquePointer, _ sql: String) -> [[String]] {
+    private static func query(_ db: OpaquePointer, _ sql: String) -> [[String]] {
         var statement: OpaquePointer?
         guard sqlite3_prepare_v2(db, sql, -1, &statement, nil) == SQLITE_OK, let statement else {
             fatalError("Bad query '\(sql)': \(String(cString: sqlite3_errmsg(db)))")

@@ -7,7 +7,7 @@
 import Foundation
 
 /// Fixed spellings and emoticons from `autodict.plist`, keyed by romanised input.
-final class AutoCorrect {
+final class AutoCorrect: Sendable {
     static let shared = AutoCorrect()
 
     let entries: [String: String]

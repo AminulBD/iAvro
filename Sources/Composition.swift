@@ -11,6 +11,7 @@ import Foundation
 /// The buffer holds raw romanised text. Leading and trailing punctuation are transliterated
 /// directly (`prefix`/`suffix`); the middle (`term`) goes through the suggestion engine and
 /// each suggestion is re-wrapped in the prefix and suffix.
+@MainActor
 final class Composition {
     /// Splits a buffer into (leading punctuation, term, trailing punctuation). A run of two or
     /// more commas inside the term is kept with the term so `,,` (hasanta) keeps working.

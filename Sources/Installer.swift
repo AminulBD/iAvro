@@ -10,6 +10,7 @@ import Carbon.HIToolbox
 /// Offers to copy the app into `~/Library/Input Methods` when it is launched from
 /// somewhere else (the DMG, Downloads, ...). This is how a user "installs" from the
 /// disk image: double-click the app and accept the prompt.
+@MainActor
 enum Installer {
     private static let folderName = "Input Methods"
 

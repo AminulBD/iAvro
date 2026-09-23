@@ -11,8 +11,16 @@ import InputMethodKit
 /// into the client as marked text, and drives the shared candidate window.
 ///
 /// Space or Enter commits the highlighted candidate; arrow keys move through candidates.
+///
+/// `IMKInputController` carries no actor annotation, so its overrides are `nonisolated`.
+/// InputMethodKit always calls them on the main thread, and each one enters the main actor
+/// with `MainActor.assumeIsolated`, which traps if that ever stops being true.
+///
+/// All of its own state is main-actor isolated, so sharing the reference is safe; it is
+/// `@unchecked` only because the superclass is not `Sendable`.
 @objc(AvroKeyboardController)
-final class AvroKeyboardController: IMKInputController {
+@MainActor
+final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
     private let composition = Composition()
     private var usedArrowKeys = false
     /// Text of a fixed layout's dead key, shown as marked text until the next key decides it.
@@ -52,17 +60,21 @@ final class AvroKeyboardController: IMKInputController {
         }
     }
 
-    override func candidates(_ sender: Any!) -> [Any]! {
-        composition.candidates
+    nonisolated override func candidates(_ sender: Any!) -> [Any]! {
+        MainActor.assumeIsolated { composition.candidates }
     }
 
-    override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
+    nonisolated override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
         guard let candidate = candidateString?.string else { return }
-        composition.selectionChanged(to: candidate)
+        MainActor.assumeIsolated { composition.selectionChanged(to: candidate) }
     }
 
-    override func candidateSelected(_ candidateString: NSAttributedString!) {
+    nonisolated override func candidateSelected(_ candidateString: NSAttributedString!) {
         let text = candidateString?.string ?? ""
+        MainActor.assumeIsolated { commit(text) }
+    }
+
+    private func commit(_ text: String) {
         client()?.insertText(Preferences.outputAsANSI ? Bijoy.convert(text) : text, replacementRange: NSRange(location: NSNotFound, length: 0))
 
         composition.clear()
@@ -78,7 +90,7 @@ final class AvroKeyboardController: IMKInputController {
 
     private func commitSelectedCandidate() {
         guard let candidate = composition.selectedCandidate else { return }
-        candidateSelected(NSAttributedString(string: candidate))
+        commit(candidate)
     }
 
     // MARK: - Composition
@@ -104,7 +116,11 @@ final class AvroKeyboardController: IMKInputController {
                                 replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
     }
 
-    override func commitComposition(_ sender: Any!) {
+    nonisolated override func commitComposition(_ sender: Any!) {
+        MainActor.assumeIsolated { commitComposition() }
+    }
+
+    private func commitComposition() {
         lastFixedText = nil
         if heldDeadKey != nil || !ansiWord.isEmpty {
             releaseDeadKey()
@@ -123,9 +139,12 @@ final class AvroKeyboardController: IMKInputController {
 
     // MARK: - Input
 
-    override func inputText(_ string: String!, client sender: Any!) -> Bool {
+    nonisolated override func inputText(_ string: String!, client sender: Any!) -> Bool {
         guard let string else { return false }
+        return MainActor.assumeIsolated { input(string) }
+    }
 
+    private func input(_ string: String) -> Bool {
         if let layout = Preferences.keyboardLayout.fixedLayout {
             return inputFixed(string, layout: layout)
         }
@@ -145,7 +164,11 @@ final class AvroKeyboardController: IMKInputController {
         return true
     }
 
-    override func didCommand(by aSelector: Selector!, client sender: Any!) -> Bool {
+    nonisolated override func didCommand(by aSelector: Selector!, client sender: Any!) -> Bool {
+        MainActor.assumeIsolated { handle(aSelector) }
+    }
+
+    private func handle(_ aSelector: Selector?) -> Bool {
         let lastFixedText = lastFixedText
         self.lastFixedText = nil
         if heldDeadKey != nil || !ansiWord.isEmpty {
@@ -289,11 +312,14 @@ final class AvroKeyboardController: IMKInputController {
 
     // MARK: - Input menu
 
-    override func menu() -> NSMenu! {
-        AppDelegate.shared.menu
+    nonisolated override func menu() -> NSMenu! {
+        // `NSMenu` is not `Sendable`, but it goes straight back to IMK on the main thread.
+        nonisolated(unsafe) var menu: NSMenu?
+        MainActor.assumeIsolated { menu = AppDelegate.shared.menu }
+        return menu
     }
 
-    override func showPreferences(_ sender: Any!) {
-        AppDelegate.shared.showPreferences()
+    nonisolated override func showPreferences(_ sender: Any!) {
+        MainActor.assumeIsolated { AppDelegate.shared.showPreferences() }
     }
 }

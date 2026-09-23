@@ -260,7 +260,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Input Methods";
 				PRODUCT_BUNDLE_IDENTIFIER = app.aminul.inputmethod.AvroKeyboard;
 				PRODUCT_NAME = "Avro Keyboard";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -277,7 +277,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Input Methods";
 				PRODUCT_BUNDLE_IDENTIFIER = app.aminul.inputmethod.AvroKeyboard;
 				PRODUCT_NAME = "Avro Keyboard";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};

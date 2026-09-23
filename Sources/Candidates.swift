@@ -11,6 +11,7 @@ import InputMethodKit
 ///
 /// `IMKCandidates` fixes its panel type at creation (changing it later has no effect
 /// since Mojave), so switching orientation in Preferences requires rebuilding the window.
+@MainActor
 enum Candidates {
     private static var server: IMKServer?
     private(set) static var shared: IMKCandidates?

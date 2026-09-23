@@ -6,6 +6,7 @@
 
 import Cocoa
 
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     static let shared = AppDelegate()
 

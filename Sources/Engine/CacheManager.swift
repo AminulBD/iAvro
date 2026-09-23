@@ -13,6 +13,7 @@ import Foundation
 /// - **phonetic**: the full suggestion list for a term, so it is computed once per session.
 /// - **base**: for suffix-synthesised words, which (base term, base word) they came from,
 ///   so picking one also teaches the weight cache about the base.
+@MainActor
 final class CacheManager {
     static let shared = CacheManager()
 
