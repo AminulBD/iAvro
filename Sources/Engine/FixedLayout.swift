@@ -23,6 +23,9 @@ struct FixedLayout {
     /// What a key types right after `deadKey`, replacing the dead key's own text.
     let afterDeadKey: [String: String]
 
+    /// What a key types right after the text of the previous key, replacing its own text.
+    let afterText: [String: [String: String]]
+
     /// Probhat, as shipped with Avro Keyboard for Windows (without the AltGr layer).
     static let probhat = FixedLayout(
         keys: [
@@ -67,13 +70,17 @@ struct FixedLayout {
             "/": "্",
         ],
         deadKey: nil,
-        afterDeadKey: [:]
+        afterDeadKey: [:],
+        afterText: [:]
     )
 
     /// Unijoy, following the m17n `bn-unijoy` table (without the Option layer).
     ///
     /// `g` is the hasanta (virama). Typed before a vowel-sign key it forms the independent
     /// vowel instead, so `g` `f` gives আ; `g` `g` gives a visible hasanta.
+    ///
+    /// `Z` (ya-phala) after র gives র‍্য, as in র‍্যাব; a reph is typed with `A`, so `A` `w`
+    /// still gives র্য.
     static let unijoy = FixedLayout(
         keys: [
             "`": "‘", "~": "“",
@@ -122,6 +129,9 @@ struct FixedLayout {
             "x": "ও", "X": "ঔ",
             "g": "্\u{200C}",
             "G": "॥",
+        ],
+        afterText: [
+            "র": ["Z": "\u{200D}্য"],
         ]
     )
 }

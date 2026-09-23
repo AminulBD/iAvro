@@ -17,6 +17,8 @@ final class AvroKeyboardController: IMKInputController {
     private var usedArrowKeys = false
     /// Text of a fixed layout's dead key, shown as marked text until the next key decides it.
     private var heldDeadKey: String?
+    /// What the last key of a fixed layout typed, while typing goes on uninterrupted.
+    private var lastFixedText: String?
     /// What each key of the current word typed, when a fixed layout outputs ANSI. Bijoy
     /// draws some vowel signs before their consonant, so the word is held as marked text
     /// and converted as a whole when it ends.
@@ -103,6 +105,7 @@ final class AvroKeyboardController: IMKInputController {
     }
 
     override func commitComposition(_ sender: Any!) {
+        lastFixedText = nil
         if heldDeadKey != nil || !ansiWord.isEmpty {
             releaseDeadKey()
             commitANSIWord()
@@ -129,6 +132,7 @@ final class AvroKeyboardController: IMKInputController {
         // The layout may have been switched back to phonetic mid-word.
         releaseDeadKey()
         commitANSIWord()
+        lastFixedText = nil
 
         if string == " " {
             // Commit the highlighted candidate and let the space through to the client.
@@ -142,12 +146,16 @@ final class AvroKeyboardController: IMKInputController {
     }
 
     override func didCommand(by aSelector: Selector!, client sender: Any!) -> Bool {
+        let lastFixedText = lastFixedText
+        self.lastFixedText = nil
         if heldDeadKey != nil || !ansiWord.isEmpty {
             if aSelector == #selector(NSResponder.deleteBackward(_:)) {
                 if heldDeadKey != nil {
                     heldDeadKey = nil
+                    self.lastFixedText = lastFixedText
                 } else {
                     ansiWord.removeLast()
+                    self.lastFixedText = ansiWord.last
                 }
                 updateFixedMarkedText()
                 return true
@@ -227,9 +235,13 @@ final class AvroKeyboardController: IMKInputController {
             updateFixedMarkedText()
             return true
         }
-        guard let text = layout.keys[string] else {
+        guard var text = layout.keys[string] else {
+            lastFixedText = nil
             commitANSIWord()
             return false
+        }
+        if let previous = lastFixedText, let replacement = layout.afterText[previous]?[string] {
+            text = replacement
         }
         insert(text)
         return true
@@ -244,6 +256,7 @@ final class AvroKeyboardController: IMKInputController {
 
     /// Types `text` into the client, or adds it to the ANSI word.
     private func insert(_ text: String) {
+        lastFixedText = text
         if Preferences.outputAsANSI {
             ansiWord.append(text)
             updateFixedMarkedText()
