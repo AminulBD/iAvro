@@ -14,6 +14,12 @@
   <a href="https://github.com/AminulBD/iAvro/issues">Report an issue</a>
 </p>
 
+<p align="center"><sub>
+  The Avro Keyboard name and logo are © <a href="https://www.omicronlab.com">OmicronLab</a>, all rights reserved.
+  This is an independent, community-maintained fork. With heartfelt gratitude to Mehdi Hasan Khan
+  and the OmicronLab team, whose work made Bangla typing free and accessible to millions.
+</sub></p>
+
 ---
 
 - [Screenshots](#screenshots)
