@@ -11,6 +11,7 @@ import InputMethodKit
 enum Preferences {
     enum Key {
         static let keyboardLayout = "KeyboardLayout"
+        static let outputAsANSI = "OutputAsANSI"
         static let candidatePanelType = "CandidatePanelType"
         static let includeDictionary = "IncludeDictionary"
         static let commitNewLineOnEnter = "CommitNewLineOnEnter"
@@ -52,6 +53,12 @@ enum Preferences {
 
     static var keyboardLayout: KeyboardLayout {
         KeyboardLayout(rawValue: UserDefaults.standard.integer(forKey: Key.keyboardLayout)) ?? .phonetic
+    }
+
+    /// Whether typed text is committed in Bijoy ANSI encoding (for SutonnyMJ and other
+    /// Bijoy fonts) instead of Unicode, with every layout.
+    static var outputAsANSI: Bool {
+        UserDefaults.standard.bool(forKey: Key.outputAsANSI)
     }
 
     /// Orientation of the candidate window. Defaults to `kIMKSingleRowSteppingCandidatePanel`

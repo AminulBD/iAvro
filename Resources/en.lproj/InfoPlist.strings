@@ -4,5 +4,5 @@ NSHumanReadableCopyright = "© OmicronLab, 2026";
 
 CFBundleName = "Avro Keyboard";
 CFBundleDisplayName = "Avro Keyboard";
-CFBundleShortVersionString = "v1.5.4";
-CFBundleGetInfoString = "Avro Keyboard v1.5.4, Copyright 2026, OmicronLab";
+CFBundleShortVersionString = "v1.5.5";
+CFBundleGetInfoString = "Avro Keyboard v1.5.5, Copyright 2026, OmicronLab";

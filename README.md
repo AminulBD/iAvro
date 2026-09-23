@@ -65,6 +65,21 @@ With Probhat and Unijoy:
 - The suggestion list, dictionary and Enter options in Preferences apply only to
   Avro Phonetic, and are greyed out while a fixed layout is selected.
 
+### ANSI (Bijoy) output
+
+Turn on **Preferences… › Output as ANSI (Bijoy fonts)** to type in the legacy
+Bijoy encoding used by SutonnyMJ and other Bijoy fonts, instead of Unicode. It
+works with all three layouts, and the conversion is the same as in Avro Keyboard
+for Windows. Set a Bijoy font in the document, or the text will show as Latin
+letters.
+
+- With Avro Phonetic, the word you pick from the candidate bar is converted as
+  it is committed.
+- With Probhat and Unijoy, the word you are typing stays underlined, already
+  shown in Bijoy, until you press space, Return or another key outside the
+  layout. Bijoy puts some vowel signs before their consonant, so a word can only
+  be converted as a whole. <kbd>Delete</kbd> removes the last key you typed.
+
 ## Installation
 
 ### Homebrew

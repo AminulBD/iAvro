@@ -17,7 +17,7 @@ final class PreferencesWindowController: NSWindowController {
         var identifier: NSToolbarItem.Identifier { NSToolbarItem.Identifier(rawValue) }
         var size: NSSize {
             switch self {
-            case .general: return NSSize(width: 450, height: 153)
+            case .general: return NSSize(width: 450, height: 179)
             case .autoCorrect: return NSSize(width: 450, height: 331)
             case .credits: return NSSize(width: 450, height: 450)
             }
@@ -113,6 +113,9 @@ final class PreferencesWindowController: NSWindowController {
         }
         layout.bind(.selectedTag, to: defaults, withKeyPath: "values.\(Preferences.Key.keyboardLayout)")
 
+        let outputAsANSI = NSButton(checkboxWithTitle: "Output as ANSI (Bijoy fonts)", target: nil, action: nil)
+        outputAsANSI.bind(.value, to: defaults, withKeyPath: "values.\(Preferences.Key.outputAsANSI)")
+
         let orientation = NSPopUpButton(frame: .zero, pullsDown: false)
         for (title, tag) in [("Horizontal", kIMKSingleRowSteppingCandidatePanel), ("Vertical", kIMKSingleColumnScrollingCandidatePanel)] {
             orientation.addItem(withTitle: title)
@@ -138,6 +141,7 @@ final class PreferencesWindowController: NSWindowController {
 
         let grid = NSGridView(views: [
             [layoutLabel, layout],
+            [NSGridCell.emptyContentView, outputAsANSI],
             [label, orientation],
             [NSGridCell.emptyContentView, includeDictionary],
             [NSGridCell.emptyContentView, commitNewline],
@@ -146,8 +150,8 @@ final class PreferencesWindowController: NSWindowController {
         grid.columnSpacing = 8
         grid.column(at: 0).xPlacement = .trailing
         grid.row(at: 0).yPlacement = .center
-        grid.row(at: 1).yPlacement = .center
-        grid.row(at: 0).bottomPadding = 8
+        grid.row(at: 2).yPlacement = .center
+        grid.row(at: 1).bottomPadding = 8
 
         let container = NSView()
         grid.translatesAutoresizingMaskIntoConstraints = false

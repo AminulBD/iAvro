@@ -10,5 +10,7 @@
 	<true/>
 	<key>KeyboardLayout</key>
 	<integer>0</integer>
+	<key>OutputAsANSI</key>
+	<false/>
 </dict>
 </plist>
