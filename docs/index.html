@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avro Keyboard for macOS</title>
-<meta name="description" content="Avro Keyboard for macOS — a native Swift Bangla phonetic input method for Apple Silicon and Intel Macs. Free and open source.">
+<meta name="description" content="Avro Keyboard for macOS — a native Swift Bangla input method with Avro Phonetic, Probhat and Unijoy layouts, for Apple Silicon and Intel Macs. Free and open source.">
 <meta property="og:title" content="Avro Keyboard for macOS">
 <meta property="og:description" content="A native Bangla phonetic input method for your Mac. Free and open source.">
 <meta property="og:image" content="https://aminulbd.github.io/iAvro/icon.png">
@@ -291,6 +291,15 @@
   }
   .feat:hover::after { transform: scaleX(1); }
 
+  /* keyboard layouts */
+  .layouts-head { margin: 3.5rem 0 1.4rem; max-width: 64ch; }
+  .layouts-head h3 { font-size: 1.35rem; letter-spacing: -.02em; }
+  .layouts-head p { color: var(--muted); margin-top: .5rem; }
+  .layouts .feat p + p { margin-top: .7rem; }
+  .kp { white-space: nowrap; }
+  .layouts-note { border: 1px solid var(--line); border-top: 0; padding: 1.15rem 1.4rem; font-size: .93rem; color: var(--muted); }
+  .layouts-note strong { color: var(--text); font-weight: 650; }
+
   /* ---------- screenshots ---------- */
   .shot { margin: 0; display: flex; flex-direction: column; }
   .shot .frame {
@@ -490,6 +499,17 @@
       <div class="feat"><span class="idx">05</span><h3>Native Swift</h3><p>Rewritten on Apple's Input Method Kit. No CocoaPods, no bundled libraries; SQLite comes from the system.</p></div>
       <div class="feat"><span class="idx">06</span><h3>Universal builds</h3><p>CI produces Apple Silicon, Intel and universal binaries for every release, signed and notarized when certificates are configured.</p></div>
     </div>
+
+    <div class="layouts-head">
+      <h3>Three keyboard layouts</h3>
+      <p>Type phonetically, or use the fixed layout you already know. Switch any time under <strong style="color:var(--text)">Preferences… → Keyboard Layout</strong>.</p>
+    </div>
+    <div class="cells c3 layouts">
+      <div class="feat"><span class="idx">PHONETIC</span><h3>Avro Phonetic</h3><p>Write Bangla in Latin letters the way it sounds: <code>ami</code> becomes <span class="bn">আমি</span>.</p><p>The default. Candidates, dictionary suggestions and auto-correct work with this layout.</p></div>
+      <div class="feat"><span class="idx">FIXED</span><h3>Probhat</h3><p>Every key types a Bengali letter directly: <span class="kp"><kbd>k</kbd> <span class="bn">ক</span></span>, <span class="kp"><kbd>v</kbd> <span class="bn">আ</span></span>, <span class="kp"><kbd>/</kbd> hasanta</span>.</p><p>The same key map as Probhat in Avro Keyboard for Windows.</p></div>
+      <div class="feat"><span class="idx">FIXED</span><h3>Unijoy</h3><p>The Bijoy-style layout: <span class="kp"><kbd>j</kbd> <span class="bn">ক</span></span>, <span class="kp"><kbd>f</kbd> <span class="bn">া</span></span>, <span class="kp"><kbd>g</kbd> hasanta</span>.</p><p><kbd>g</kbd> before a vowel sign makes the full vowel: <span class="kp"><kbd>g</kbd> <kbd>f</kbd> → <span class="bn">আ</span></span>. Press <kbd>g</kbd> twice for a visible hasanta.</p></div>
+    </div>
+    <div class="layouts-note"><strong>With the fixed layouts,</strong> type in Unicode order, with a vowel sign after its consonant (<span class="bn">কি</span> is <span class="bn">ক</span> then <span class="bn">ি</span>). Key positions follow a US keyboard, and the Option-key layer isn't included yet.</div>
   </div>
 </section>
 
