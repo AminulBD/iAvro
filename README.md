@@ -1,3 +1,18 @@
+Screenshots
+-----------
+
+<p align="center">
+  <img src="docs/assets/screenshots/avro-phonetic-typing.png" width="560" alt="Typing “tumi” in Notes, with the candidate bar showing তুমি and other spellings">
+</p>
+
+<p align="center">
+  <img src="docs/assets/screenshots/avro-switching-between-layouts.png" width="49%" alt="The Preferences window with the Keyboard Layout pop-up listing Avro Phonetic, Probhat and Unijoy">
+  <img src="docs/assets/screenshots/avro-preferences.png" width="49%" alt="The input menu with Avro Keyboard selected and its Preferences item">
+</p>
+
+Type phonetically and pick a spelling from the candidate bar, or switch to the
+Probhat or Unijoy layout under `Preferences… > Keyboard Layout`.
+
 Installation
 ------------
 
@@ -25,6 +40,13 @@ installing, switch to it from the input menu in the menu bar.
 If it does not appear in the input menu, log out and back in, then open
 `System Settings > Keyboard > Input Sources > Edit… > +`, choose
 `Bangla > Avro Keyboard`, and click `Add`.
+
+<p align="center">
+  <img src="docs/assets/screenshots/input-method-macos.png" width="49%" alt="Avro Keyboard under Input Sources in System Settings on macOS 13 and later">
+  <img src="docs/assets/screenshots/input-method-legacy-macos.png" width="49%" alt="Avro Keyboard under Input Sources in System Preferences on macOS 12">
+</p>
+
+On macOS 12 the same list is under `System Preferences > Keyboard > Input Sources`.
 
 ### Removing the old version
 

@@ -291,6 +291,25 @@
   }
   .feat:hover::after { transform: scaleX(1); }
 
+  /* ---------- screenshots ---------- */
+  .shot { margin: 0; display: flex; flex-direction: column; }
+  .shot .frame {
+    background: var(--bg-2);
+    padding: 1.4rem;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
+  }
+  .shot img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; }
+  .shot figcaption { padding: 1.05rem 1.3rem 1.3rem; border-top: 1px solid var(--line); font-size: .92rem; color: var(--muted); flex: 1; }
+  .shot figcaption strong { display: block; color: var(--text); font-weight: 650; margin-bottom: .15rem; }
+  .shots-install { border-top: 0; }
+  @media (max-width: 600px) { .shot .frame { padding: 1rem; } }
+
   /* ---------- install ---------- */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .split > * { background: var(--bg); padding: 2.1rem 1.9rem; }
@@ -406,6 +425,7 @@
     <a class="brand" href="#"><img src="icon.png" alt="">Avro Keyboard</a>
     <ul>
       <li><a href="#features">Features</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#install">Install</a></li>
       <li><a href="#build">Build</a></li>
       <li><a href="#docs">Docs</a></li>
@@ -463,7 +483,7 @@
       <p class="lead">The Avro phonetic layout from Windows and Linux, as a proper macOS input source.</p>
     </div>
     <div class="cells c3">
-      <div class="feat"><span class="idx">01</span><h3>Avro phonetic layout</h3><p>The same transliteration rules as the original Avro Keyboard, so your muscle memory carries over.</p></div>
+      <div class="feat"><span class="idx">01</span><h3>Avro phonetic layout</h3><p>The same transliteration rules as the original Avro Keyboard, so your muscle memory carries over. Probhat and Unijoy are built in too.</p></div>
       <div class="feat"><span class="idx">02</span><h3>Candidate window</h3><p>Alternate spellings appear as you type; pick one with the arrow keys. Horizontal or vertical panel.</p></div>
       <div class="feat"><span class="idx">03</span><h3>Dictionary suggestions</h3><p>Optional dictionary lookups show real words alongside the phonetic candidates.</p></div>
       <div class="feat"><span class="idx">04</span><h3>Auto-correct and auto-dictionary</h3><p>Corrections for common slips, plus a personal dictionary that remembers what you pick.</p></div>
@@ -473,10 +493,34 @@
   </div>
 </section>
 
+<section id="screenshots" class="band">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <div class="eyebrow">02 — Screenshots</div>
+      <h2>Right where macOS expects it.</h2>
+      <p class="lead">A standard input source: it lives in the input menu, and suggestions appear under the text you are typing.</p>
+    </div>
+    <div class="cells c3">
+      <figure class="shot">
+        <a class="frame" href="assets/screenshots/avro-phonetic-typing.png"><img src="assets/screenshots/avro-phonetic-typing.png" width="749" height="703" loading="lazy" alt="Typing “tumi” in Notes, with the candidate bar showing তুমি and other spellings below the text"></a>
+        <figcaption><strong>Phonetic typing</strong>Type <code>tumi</code> and pick তুমি, or another spelling, from the candidate bar.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="frame" href="assets/screenshots/avro-switching-between-layouts.png"><img src="assets/screenshots/avro-switching-between-layouts.png" width="565" height="434" loading="lazy" alt="The Preferences window with the Keyboard Layout pop-up open, listing Avro Phonetic, Probhat and Unijoy"></a>
+        <figcaption><strong>Three layouts</strong>Switch between Avro Phonetic, Probhat and Unijoy under Preferences → Keyboard Layout.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="frame" href="assets/screenshots/avro-preferences.png"><img src="assets/screenshots/avro-preferences.png" width="463" height="404" loading="lazy" alt="The input menu in the menu bar with Avro Keyboard selected and its Preferences item"></a>
+        <figcaption><strong>Input menu</strong>Switch to it from the menu bar; Preferences… is right underneath.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section id="install" class="band">
   <div class="wrap pad">
     <div class="sec-head">
-      <div class="eyebrow">02 — Install</div>
+      <div class="eyebrow">03 — Install</div>
       <h2>About a minute, either way.</h2>
       <p class="lead">Use Homebrew, or download the DMG and double-click.</p>
     </div>
@@ -505,13 +549,24 @@
       <div class="note"><strong>Had the old iAvro installed?</strong> Remove it first, or two <strong>Avro Keyboard</strong> entries appear in the input menu. Remove it from <strong>System Settings → Keyboard → Input Sources → Edit…</strong>, delete <code>Avro Keyboard.app</code> from <code>~/Library/Input Methods</code> or <code>/Library/Input Methods</code> (in Finder press <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>G</kbd> and paste the path), then log out and back in before installing.</div>
       <div class="note"><strong>Upgrading?</strong> Open the new DMG and double-click the app again; it replaces the installed copy. Log out and back in afterwards. Preferences and your personal dictionary are kept.</div>
     </div>
+
+    <div class="cells c2 shots-install">
+      <figure class="shot">
+        <a class="frame" href="assets/screenshots/input-method-macos.png"><img src="assets/screenshots/input-method-macos.png" width="890" height="765" loading="lazy" alt="System Settings on macOS 13 or later, with Avro Keyboard listed under Input Sources"></a>
+        <figcaption><strong>macOS 13 and later</strong>System Settings → Keyboard → Input Sources → Edit…</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="frame" href="assets/screenshots/input-method-legacy-macos.png"><img src="assets/screenshots/input-method-legacy-macos.png" width="682" height="599" loading="lazy" alt="System Preferences on macOS 12, with Avro Keyboard listed under Input Sources"></a>
+        <figcaption><strong>macOS 12</strong>System Preferences → Keyboard → Input Sources</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
 <section id="build" class="band">
   <div class="wrap pad">
     <div class="sec-head">
-      <div class="eyebrow">03 — Build</div>
+      <div class="eyebrow">04 — Build</div>
       <h2>Build from source.</h2>
       <p class="lead">Requires Xcode 16 or later. No external dependencies.</p>
     </div>
@@ -540,7 +595,7 @@
 <section id="docs" class="band">
   <div class="wrap pad">
     <div class="sec-head">
-      <div class="eyebrow">04 — Documentation</div>
+      <div class="eyebrow">05 — Documentation</div>
       <h2>Everything lives in the repository.</h2>
       <p class="lead">These are the useful entry points.</p>
     </div>
@@ -558,7 +613,7 @@
 <section id="credits" class="band">
   <div class="wrap pad">
     <div class="sec-head">
-      <div class="eyebrow">05 — Credits</div>
+      <div class="eyebrow">06 — Credits</div>
       <h2>Built on a lot of people's work.</h2>
       <p class="lead">Avro Keyboard on the Mac exists because of them. This fork stands on their work.</p>
     </div>
