@@ -10,6 +10,7 @@ import InputMethodKit
 /// Typed access to the user defaults declared in `preferences.plist`.
 enum Preferences {
     enum Key {
+        static let keyboardLayout = "KeyboardLayout"
         static let candidatePanelType = "CandidatePanelType"
         static let includeDictionary = "IncludeDictionary"
         static let commitNewLineOnEnter = "CommitNewLineOnEnter"
@@ -22,6 +23,35 @@ enum Preferences {
               let defaults = NSDictionary(contentsOf: url) as? [String: Any] else { return }
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
+    }
+
+    /// How keystrokes become Bengali text. Stored as the raw value so the Preferences
+    /// pop-up can bind to it by tag.
+    enum KeyboardLayout: Int, CaseIterable {
+        case phonetic = 0
+        case probhat = 1
+        case unijoy = 2
+
+        var title: String {
+            switch self {
+            case .phonetic: return "Avro Phonetic"
+            case .probhat: return "Probhat"
+            case .unijoy: return "Unijoy"
+            }
+        }
+
+        /// The key map for a fixed layout, or nil for phonetic typing.
+        var fixedLayout: FixedLayout? {
+            switch self {
+            case .phonetic: return nil
+            case .probhat: return .probhat
+            case .unijoy: return .unijoy
+            }
+        }
+    }
+
+    static var keyboardLayout: KeyboardLayout {
+        KeyboardLayout(rawValue: UserDefaults.standard.integer(forKey: Key.keyboardLayout)) ?? .phonetic
     }
 
     /// Orientation of the candidate window. Defaults to `kIMKSingleRowSteppingCandidatePanel`

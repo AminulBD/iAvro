@@ -8,5 +8,7 @@
 	<false/>
 	<key>IncludeDictionary</key>
 	<true/>
+	<key>KeyboardLayout</key>
+	<integer>0</integer>
 </dict>
 </plist>

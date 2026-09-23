@@ -17,7 +17,7 @@ final class PreferencesWindowController: NSWindowController {
         var identifier: NSToolbarItem.Identifier { NSToolbarItem.Identifier(rawValue) }
         var size: NSSize {
             switch self {
-            case .general: return NSSize(width: 450, height: 115)
+            case .general: return NSSize(width: 450, height: 153)
             case .autoCorrect: return NSSize(width: 450, height: 331)
             case .credits: return NSSize(width: 450, height: 450)
             }
@@ -106,6 +106,13 @@ final class PreferencesWindowController: NSWindowController {
     private func makeGeneralView() -> NSView {
         let defaults = NSUserDefaultsController.shared
 
+        let layout = NSPopUpButton(frame: .zero, pullsDown: false)
+        for keyboardLayout in Preferences.KeyboardLayout.allCases {
+            layout.addItem(withTitle: keyboardLayout.title)
+            layout.lastItem?.tag = keyboardLayout.rawValue
+        }
+        layout.bind(.selectedTag, to: defaults, withKeyPath: "values.\(Preferences.Key.keyboardLayout)")
+
         let orientation = NSPopUpButton(frame: .zero, pullsDown: false)
         for (title, tag) in [("Horizontal", kIMKSingleRowSteppingCandidatePanel), ("Vertical", kIMKSingleColumnScrollingCandidatePanel)] {
             orientation.addItem(withTitle: title)
@@ -119,10 +126,18 @@ final class PreferencesWindowController: NSWindowController {
         let commitNewline = NSButton(checkboxWithTitle: "Commit new line on Enter/Return", target: nil, action: nil)
         commitNewline.bind(.value, to: defaults, withKeyPath: "values.\(Preferences.Key.commitNewLineOnEnter)")
 
+        // The remaining options only apply to phonetic typing (layout 0).
+        for control in [orientation, includeDictionary, commitNewline] {
+            control.bind(.enabled, to: defaults, withKeyPath: "values.\(Preferences.Key.keyboardLayout)",
+                         options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        }
+
+        let layoutLabel = NSTextField(labelWithString: "Keyboard Layout:")
         let label = NSTextField(labelWithString: "Suggestion List Orientation:")
         label.alignment = .right
 
         let grid = NSGridView(views: [
+            [layoutLabel, layout],
             [label, orientation],
             [NSGridCell.emptyContentView, includeDictionary],
             [NSGridCell.emptyContentView, commitNewline],
@@ -131,6 +146,8 @@ final class PreferencesWindowController: NSWindowController {
         grid.columnSpacing = 8
         grid.column(at: 0).xPlacement = .trailing
         grid.row(at: 0).yPlacement = .center
+        grid.row(at: 1).yPlacement = .center
+        grid.row(at: 0).bottomPadding = 8
 
         let container = NSView()
         grid.translatesAutoresizingMaskIntoConstraints = false
@@ -140,6 +157,7 @@ final class PreferencesWindowController: NSWindowController {
             grid.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15),
             grid.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -15),
             orientation.widthAnchor.constraint(equalToConstant: 236),
+            layout.widthAnchor.constraint(equalTo: orientation.widthAnchor),
         ])
         return container
     }

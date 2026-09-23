@@ -15,6 +15,8 @@ import InputMethodKit
 final class AvroKeyboardController: IMKInputController {
     private let composition = Composition()
     private var usedArrowKeys = false
+    /// Text of a fixed layout's dead key, shown as marked text until the next key decides it.
+    private var heldDeadKey: String?
 
     // MARK: - Candidate window
 
@@ -75,6 +77,11 @@ final class AvroKeyboardController: IMKInputController {
     // MARK: - Composition
 
     /// Mirrors the buffer into the client as marked text.
+    private func updateMarkedText() {
+        setMarkedText(composition.buffer)
+    }
+
+    /// Shows `text` in the client as marked text.
     ///
     /// This deliberately does not go through `updateComposition()`, which asks for the
     /// text back via `composedString(_:)`. On macOS 12 InputMethodKit invokes that
@@ -84,14 +91,17 @@ final class AvroKeyboardController: IMKInputController {
     /// ignores the unused argument. Writing the marked text straight to the client keeps
     /// `sender` out of Swift's hands and leaves `composedString(_:)` to IMK's own
     /// implementation.
-    private func updateMarkedText() {
-        let text = composition.buffer
+    private func setMarkedText(_ text: String) {
         client()?.setMarkedText(NSAttributedString(string: text),
                                 selectionRange: NSRange(location: text.utf16.count, length: 0),
                                 replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
     }
 
     override func commitComposition(_ sender: Any!) {
+        if heldDeadKey != nil {
+            releaseDeadKey()
+            return
+        }
         client()?.insertText(composition.buffer, replacementRange: NSRange(location: NSNotFound, length: 0))
         composition.clear()
         updateCandidatesPanel()
@@ -107,6 +117,12 @@ final class AvroKeyboardController: IMKInputController {
     override func inputText(_ string: String!, client sender: Any!) -> Bool {
         guard let string else { return false }
 
+        if let layout = Preferences.keyboardLayout.fixedLayout {
+            return inputFixed(string, layout: layout)
+        }
+        // The layout may have been switched back to phonetic with a dead key held.
+        releaseDeadKey()
+
         if string == " " {
             // Commit the highlighted candidate and let the space through to the client.
             commitSelectedCandidate()
@@ -119,6 +135,17 @@ final class AvroKeyboardController: IMKInputController {
     }
 
     override func didCommand(by aSelector: Selector!, client sender: Any!) -> Bool {
+        if heldDeadKey != nil {
+            if aSelector == #selector(NSResponder.deleteBackward(_:)) {
+                heldDeadKey = nil
+                setMarkedText("")
+                return true
+            }
+            // Any other command types the dead key as is, then goes to the client.
+            releaseDeadKey()
+            return false
+        }
+
         // Only intercept editing commands while something is being composed;
         // otherwise let the client application handle the key.
         guard !composition.isEmpty, let aSelector else { return false }
@@ -159,6 +186,44 @@ final class AvroKeyboardController: IMKInputController {
         }
         commitSelectedCandidate()
         client()?.insertText(string, replacementRange: NSRange(location: NSNotFound, length: 0))
+    }
+
+    // MARK: - Fixed layouts
+
+    /// Types `string` straight into the client using a fixed layout. Keys the layout does
+    /// not map (space, for one) are left for the client.
+    private func inputFixed(_ string: String, layout: FixedLayout) -> Bool {
+        // The layout may have been switched away from phonetic mid-word.
+        if !composition.isEmpty {
+            commitSelectedCandidate()
+        }
+
+        if heldDeadKey != nil, let text = layout.afterDeadKey[string] {
+            heldDeadKey = nil
+            insert(text)
+            return true
+        }
+        releaseDeadKey()
+
+        if let deadKey = layout.deadKey, string == deadKey.key {
+            heldDeadKey = deadKey.text
+            setMarkedText(deadKey.text)
+            return true
+        }
+        guard let text = layout.keys[string] else { return false }
+        insert(text)
+        return true
+    }
+
+    /// Types the held dead key as it is.
+    private func releaseDeadKey() {
+        guard let text = heldDeadKey else { return }
+        heldDeadKey = nil
+        insert(text)
+    }
+
+    private func insert(_ text: String) {
+        client()?.insertText(text, replacementRange: NSRange(location: NSNotFound, length: 0))
     }
 
     // MARK: - Input menu
