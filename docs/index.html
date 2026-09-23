@@ -9,131 +9,394 @@
 <meta property="og:description" content="A native Bangla phonetic input method for your Mac. Free and open source.">
 <meta property="og:image" content="https://aminulbd.github.io/iAvro/icon.png">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0b0b0d">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <style>
   :root {
     --bg: #ffffff;
-    --bg-2: #f6f7f9;
-    --text: #111827;
-    --muted: #6b7280;
-    --line: #e5e7eb;
-    --accent: #2563eb;
-    --accent-hover: #1d4ed8;
-    --code-bg: #0f172a;
-    --code-fg: #e2e8f0;
+    --bg-2: #f7f7f8;
+    --text: #0b0b0d;
+    --muted: #6a6a73;
+    --line: #e3e3e6;
+    --line-strong: #c9c9ce;
+    --accent: #f6821f;
+    --accent-ink: #b45309;
+    --ink: #0b0b0d;
+    --ink-2: #16161a;
+    --ink-line: #2a2a31;
+    --ink-text: #f4f4f5;
+    --ink-muted: #a1a1aa;
+    --max: 1160px;
+    --pad: 28px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0b0d12;
-      --bg-2: #141820;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --line: #262b36;
-      --accent: #60a5fa;
-      --accent-hover: #93c5fd;
-      --code-bg: #050710;
-      --code-fg: #d1d5db;
+      --bg: #0b0b0d;
+      --bg-2: #121216;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --line: #26262c;
+      --line-strong: #3a3a43;
+      --accent: #f6821f;
+      --accent-ink: #fbbf24;
     }
   }
 
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { color: var(--accent-hover); text-decoration: underline; }
-  h1, h2, h3, p { margin: 0; }
-  h1 { font-size: clamp(2rem, 4.5vw, 2.75rem); line-height: 1.15; letter-spacing: -.02em; font-weight: 700; }
-  h2 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.01em; font-weight: 650; margin-bottom: .5rem; }
-  h3 { font-size: 1.05rem; font-weight: 600; }
-  p { margin-bottom: 1rem; }
-  .muted { color: var(--muted); }
-  .wrap { max-width: 960px; margin: 0 auto; padding-inline: 24px; }
-  section { padding-block: 3.5rem; border-top: 1px solid var(--line); }
-  .lead { color: var(--muted); max-width: 60ch; margin-bottom: 2rem; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4, p, ul, ol { margin: 0; }
+  img { max-width: 100%; }
 
-  code, pre, kbd { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
-  code { font-size: .9em; background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: .05em .35em; }
-  kbd { font-size: .85em; background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: .05em .4em; }
-  pre { margin: 0; background: var(--code-bg); color: var(--code-fg); padding: 1rem 1.25rem; border-radius: 8px; overflow-x: auto; font-size: .875rem; line-height: 1.6; }
-  pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
-  .bn { font-family: "Kohinoor Bangla", "Bangla Sangam MN", "Noto Sans Bengali", "Vrinda", sans-serif; }
+  /* grid children must be free to shrink, or long tokens widen the page */
+  .cells > *, .split > *, .hero-grid > *, ol.steps li > *, .links a > * { min-width: 0; }
 
-  /* nav */
-  nav { border-bottom: 1px solid var(--line); }
-  nav .wrap { display: flex; align-items: center; height: 56px; gap: 1.5rem; }
-  .brand { display: flex; align-items: center; gap: .6rem; color: var(--text); font-weight: 600; }
-  .brand:hover { text-decoration: none; }
-  .brand img { width: 24px; height: 24px; border-radius: 6px; }
-  nav ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 1.25rem; font-size: .95rem; }
+  /* ---------- shared square-grid shell ---------- */
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-inline: var(--pad);
+    border-inline: 1px solid var(--line);
+  }
+  .band { border-top: 1px solid var(--line); }
+  .band:first-child { border-top: 0; }
+  .pad { padding-block: 72px; }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: 1.1rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--accent);
+    flex: none;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 6vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -.035em;
+    font-weight: 800;
+  }
+  h2 {
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    line-height: 1.08;
+    letter-spacing: -.028em;
+    font-weight: 750;
+  }
+  h3 { font-size: 1.05rem; font-weight: 650; letter-spacing: -.012em; }
+  .lead { color: var(--muted); max-width: 62ch; font-size: 1.02rem; }
+  .sec-head { max-width: 64ch; margin-bottom: 2.75rem; }
+  .sec-head .lead { margin-top: .9rem; }
+
+  code, pre, kbd, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  code {
+    font-size: .875em;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: .1em .38em;
+    overflow-wrap: anywhere;
+  }
+  kbd {
+    font-size: .8em;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    border-bottom-width: 2px;
+    padding: .12em .42em;
+  }
+  .bn { font-family: "Kohinoor Bangla", "Bangla Sangam MN", "Noto Sans Bengali", Vrinda, sans-serif; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .82rem 1.4rem;
+    font-size: .925rem;
+    font-weight: 650;
+    letter-spacing: -.01em;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    background: var(--bg);
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
+  .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; color: #1a0d00; }
+  .btn .arw { font-size: 1.05em; line-height: 1; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; height: 60px; gap: 1.75rem; }
+  .brand { display: flex; align-items: center; gap: .65rem; font-weight: 700; letter-spacing: -.02em; }
+  .brand img { width: 26px; height: 26px; flex: none; }
+  nav ul { list-style: none; padding: 0; margin-left: auto; display: flex; gap: 1.5rem; font-size: .9rem; }
   nav ul a { color: var(--muted); }
-  nav ul a:hover { color: var(--text); text-decoration: none; }
-  @media (max-width: 640px) { nav ul li:not(:last-child) { display: none; } }
+  nav ul a:hover { color: var(--text); }
+  @media (max-width: 860px) { nav ul { display: none; } }
 
-  /* hero */
-  .hero { padding-block: 4.5rem 3.5rem; }
-  .hero img { width: 88px; height: 88px; border-radius: 20px; margin-bottom: 1.5rem; }
-  .hero .lead { font-size: 1.15rem; margin-bottom: 1.75rem; }
-  .cta { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
-  .btn { display: inline-block; padding: .65rem 1.2rem; border-radius: 8px; font-weight: 600; border: 1px solid var(--line); color: var(--text); background: var(--bg); }
-  .btn:hover { text-decoration: none; background: var(--bg-2); color: var(--text); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
-  .specs { margin-top: 1.25rem; font-size: .9rem; color: var(--muted); }
-  .example { margin-top: 2.5rem; padding: 1.25rem 1.5rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; max-width: 520px; }
-  .example .typed { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .9rem; color: var(--muted); }
-  .example .out { font-size: 1.75rem; line-height: 1.4; margin-top: .25rem; }
-
-  /* feature grid */
-  .grid { display: grid; gap: 2rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .grid h3 { margin-bottom: .25rem; }
-  .grid p { margin: 0; color: var(--muted); font-size: .95rem; }
-
-  /* steps */
-  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; max-width: 720px; }
-  ol.steps li { counter-increment: s; position: relative; padding: 0 0 1.5rem 3rem; }
-  ol.steps li::before {
-    content: counter(s); position: absolute; left: 0; top: .1rem;
-    width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center;
-    border: 1px solid var(--line); background: var(--bg-2); font-weight: 600; font-size: .9rem;
+  /* ---------- hero ---------- */
+  .hero {
+    background: var(--ink);
+    color: var(--ink-text);
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
-  ol.steps li > strong { display: block; margin-bottom: .15rem; }
-  ol.steps li > span { color: var(--muted); }
-  .brew { max-width: 720px; margin-bottom: 2.5rem; }
-  .brew pre { margin: .75rem 0; }
-  .brew p { margin: 0; color: var(--muted); font-size: .95rem; }
-  .brew h3 { margin-bottom: .25rem; }
-  .note { max-width: 720px; padding: .9rem 1.1rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-size: .95rem; }
-  .note p { margin: 0; }
+  .hero .wrap { border-color: var(--ink-line); position: relative; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 0;
+  }
+  .hero-copy { padding: 84px 44px 84px 0; }
+  .hero-side {
+    border-left: 1px solid var(--ink-line);
+    padding: 84px 0 84px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero h1 { margin-bottom: 1.35rem; }
+  .hero .lead { color: var(--ink-muted); font-size: 1.12rem; max-width: 46ch; }
+  .cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2.1rem; }
+  .hero .btn { background: transparent; color: var(--ink-text); border-color: #40404a; }
+  .hero .btn:hover { background: var(--ink-text); color: var(--ink); border-color: var(--ink-text); }
+  .hero .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
+  .hero .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; }
+  .specs {
+    margin-top: 1.9rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .76rem;
+    letter-spacing: .04em;
+    color: #7d7d8a;
+  }
 
-  .two { display: grid; gap: 2rem 3rem; grid-template-columns: 1fr 1fr; align-items: start; }
-  @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+  /* demo panel */
+  .demo { border: 1px solid var(--ink-line); background: rgba(255,255,255,.02); }
+  .demo-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .6rem .9rem;
+    border-bottom: 1px solid var(--ink-line);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #7d7d8a;
+  }
+  .demo-bar .dot { width: 7px; height: 7px; background: var(--accent); display: inline-block; }
+  .demo-body { padding: 1.4rem 1.25rem 1.6rem; }
+  .demo .typed {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .9rem;
+    color: #8c8c99;
+  }
+  .demo .typed::before { content: "> "; color: var(--accent); }
+  .demo .caret {
+    display: inline-block; width: .55em; height: 1.05em;
+    background: var(--accent); vertical-align: -.18em; margin-left: .1em;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .demo .caret { animation: none; } }
+  .demo .rule { height: 1px; background: var(--ink-line); margin: 1.1rem 0; }
+  .demo .out { font-size: 1.85rem; line-height: 1.45; color: #fff; }
 
-  /* docs list */
-  .links { list-style: none; padding: 0; margin: 0; max-width: 720px; }
-  .links li { display: grid; grid-template-columns: 180px 1fr; gap: 1rem; padding: .75rem 0; border-top: 1px solid var(--line); }
-  .links li:last-child { border-bottom: 1px solid var(--line); }
-  .links span { color: var(--muted); }
-  @media (max-width: 560px) { .links li { grid-template-columns: 1fr; gap: .1rem; } }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy { padding: 60px 0 44px; }
+    .hero-side { border-left: 0; border-top: 1px solid var(--ink-line); padding: 44px 0 64px; }
+  }
 
-  /* people */
-  .people { display: grid; gap: 2rem 3rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-  .person { display: flex; gap: 1.1rem; align-items: flex-start; }
-  .person img { width: 64px; height: 64px; border-radius: 50%; flex: none; border: 1px solid var(--line); }
-  .person .role { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
-  .person h3 { margin: .1rem 0 .4rem; }
-  .person p { color: var(--muted); font-size: .95rem; margin-bottom: .5rem; }
-  .person .l { font-size: .9rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-  .thanks { margin-top: 2.5rem; max-width: 720px; }
-  .thanks ul { margin: .5rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+  /* ---------- hairline cell grid ---------- */
+  .cells {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .cells > * { background: var(--bg); }
+  .c2 { grid-template-columns: repeat(2, 1fr); }
+  .c3 { grid-template-columns: repeat(3, 1fr); }
+  .c4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 900px) { .c3, .c4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .c2 { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .c3, .c4 { grid-template-columns: 1fr; } }
 
-  footer { border-top: 1px solid var(--line); padding-block: 1.75rem; font-size: .9rem; color: var(--muted); }
-  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1.5rem; }
+  /* stats strip */
+  .stats { border: 0; }
+  .stats .stat:first-child { padding-left: var(--pad); }
+  .stat { padding: 1.9rem 1.6rem; }
+  .stat b {
+    display: block;
+    font-size: 1.45rem;
+    font-weight: 750;
+    letter-spacing: -.03em;
+    margin-bottom: .2rem;
+  }
+  .stat span {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* feature cells */
+  .feat { padding: 2.1rem 1.8rem 2.3rem; position: relative; }
+  .feat .idx {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .7rem;
+    letter-spacing: .14em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .feat h3 { margin-bottom: .5rem; }
+  .feat p { color: var(--muted); font-size: .935rem; }
+  .feat::after {
+    content: "";
+    position: absolute; inset: auto 0 0 0; height: 2px;
+    background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .feat:hover::after { transform: scaleX(1); }
+
+  /* ---------- install ---------- */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .split > * { background: var(--bg); padding: 2.1rem 1.9rem; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+
+  .term { border: 1px solid var(--line); background: #0b0b0d; margin-top: 1.1rem; }
+  .term-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .55rem .85rem; border-bottom: 1px solid #2a2a31;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: #7d7d8a;
+  }
+  pre {
+    margin: 0; padding: 1.05rem .95rem; overflow-x: auto;
+    font-size: .84rem; line-height: 1.65; color: #e4e4e7;
+  }
+  pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+  .term .p { color: var(--accent); }
+
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 2.6rem 1fr; gap: 1.1rem; padding: 1.4rem 0; border-top: 1px solid var(--line); }
+  ol.steps li:first-child { border-top: 0; padding-top: 0; }
+  ol.steps li::before {
+    content: counter(s, decimal-leading-zero);
+    width: 2.6rem; height: 2.6rem;
+    display: grid; place-items: center;
+    border: 1px solid var(--line-strong);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .8rem; font-weight: 600; color: var(--accent);
+  }
+  ol.steps strong { display: block; margin-bottom: .25rem; font-weight: 650; }
+  ol.steps span { color: var(--muted); font-size: .94rem; }
+
+  .notes { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-top: 0; }
+  .note { background: var(--bg); padding: 1.15rem 1.4rem; font-size: .93rem; color: var(--muted); }
+  .note strong { color: var(--text); font-weight: 650; }
+
+  .kv { color: var(--muted); font-size: .94rem; }
+  .kv p + p { margin-top: .8rem; }
+
+  /* ---------- docs links ---------- */
+  .links { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .links li { border-bottom: 1px solid var(--line); }
+  .links a {
+    display: grid;
+    grid-template-columns: 220px 1fr auto;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 1.15rem .4rem;
+    transition: background .15s, padding .15s;
+  }
+  .links a:hover { background: var(--bg-2); padding-inline: .9rem .4rem; }
+  .links a:hover strong { color: var(--accent); }
+  .links strong { font-weight: 650; letter-spacing: -.01em; transition: color .15s; }
+  .links span { color: var(--muted); font-size: .94rem; }
+  .links .arw { color: var(--muted); font-size: .95rem; }
+  @media (max-width: 720px) { .links a { grid-template-columns: 1fr auto; } .links span { grid-column: 1 / -1; } }
+
+  /* ---------- credits ---------- */
+  .person { padding: 2rem 1.9rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+  .person img { width: 64px; height: 64px; flex: none; border: 1px solid var(--line); filter: grayscale(1); transition: filter .2s; }
+  .person > div { min-width: 0; }
+  .person:hover img { filter: none; }
+  .person .role {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+  }
+  .person h3 { margin: .35rem 0 .45rem; }
+  .person p { color: var(--muted); font-size: .93rem; margin-bottom: .7rem; }
+  .person .l { display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: .87rem; }
+  .person .l a { color: var(--muted); border-bottom: 1px solid var(--line-strong); }
+  .person .l a:hover { color: var(--accent); border-color: var(--accent); }
+  .thanks { border: 1px solid var(--line); border-top: 0; padding: 1.7rem 1.9rem; }
+  .thanks h3 { margin-bottom: .7rem; }
+  .thanks ul { list-style: none; padding: 0; color: var(--muted); font-size: .94rem; }
+  .thanks li { padding: .35rem 0 .35rem 1.15rem; position: relative; }
+  .thanks li::before { content: ""; position: absolute; left: 0; top: .82em; width: 5px; height: 5px; background: var(--accent); }
+  .thanks a { border-bottom: 1px solid var(--line-strong); }
+  .thanks a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------- closing CTA ---------- */
+  .close { background: var(--ink); color: var(--ink-text); }
+  .close .wrap { border-color: var(--ink-line); padding-block: 78px; text-align: center; }
+  .close h2 { margin-bottom: 1rem; }
+  .close .lead { color: var(--ink-muted); margin: 0 auto; }
+  .close .cta { justify-content: center; }
+  .close .btn { background: transparent; color: var(--ink-text); border-color: #40404a; }
+  .close .btn:hover { background: var(--ink-text); color: var(--ink); border-color: var(--ink-text); }
+  .close .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
+  .close .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--ink); color: var(--ink-muted); border-top: 1px solid var(--ink-line); font-size: .87rem; }
+  footer .wrap { border-color: var(--ink-line); padding-block: 1.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .6rem 1.75rem; }
+  footer a { color: var(--ink-muted); border-bottom: 1px solid #2a2a31; }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+  footer .r { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+
+  @media (max-width: 600px) {
+    :root { --pad: 20px; }
+    /* wrap commands rather than hiding them behind a scrollbar */
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .pad { padding-block: 56px; }
+    .feat, .split > *, .person, .thanks { padding: 1.6rem 1.35rem; }
+    .stat { padding: 1.4rem 1.35rem; }
+  }
 </style>
 </head>
 <body>
@@ -154,97 +417,152 @@
 
 <header class="hero">
   <div class="wrap">
-    <img src="icon.png" alt="Avro Keyboard icon">
-    <h1>Avro Keyboard for macOS</h1>
-    <p class="lead">A native Bangla phonetic input method for your Mac. Type the way words sound in Latin letters and get Bengali script as you go.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://github.com/AminulBD/iAvro/releases/latest">Download for Mac</a>
-      <a class="btn" href="https://github.com/AminulBD/iAvro">View on GitHub</a>
-    </div>
-    <p class="specs">macOS 12 or later · Universal (Apple Silicon and Intel) · Free and open source</p>
-    <div class="example">
-      <div class="typed">ami banglay gan gai</div>
-      <div class="out bn">আমি বাংলায় গান গাই</div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Bangla input method · macOS</div>
+        <h1>Type Bangla<br>the way it sounds.</h1>
+        <p class="lead">A native Bangla phonetic input method for your Mac. Type words in Latin letters and get Bengali script as you go.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/AminulBD/iAvro/releases/latest">Download for Mac <span class="arw">↓</span></a>
+          <a class="btn" href="https://github.com/AminulBD/iAvro">View on GitHub <span class="arw">↗</span></a>
+        </div>
+        <p class="specs">macOS 12+ &nbsp;/&nbsp; Universal binary &nbsp;/&nbsp; Free and open source</p>
+      </div>
+      <div class="hero-side">
+        <div class="demo">
+          <div class="demo-bar"><span>Live preview</span><span class="dot"></span></div>
+          <div class="demo-body">
+            <div class="typed">ami banglay gan gai<span class="caret"></span></div>
+            <div class="rule"></div>
+            <div class="out bn">আমি বাংলায় গান গাই</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
+<div class="band">
+  <div class="wrap" style="padding-inline:0">
+   <div class="cells c4 stats">
+    <div class="stat"><b>macOS 12+</b><span>Monterey and later</span></div>
+    <div class="stat"><b>Universal</b><span>Apple Silicon · Intel</span></div>
+    <div class="stat"><b>Zero</b><span>External dependencies</span></div>
+    <div class="stat"><b>MPL 1.1</b><span>Open source</span></div>
+   </div>
+  </div>
+</div>
+
 <main>
 
-<section id="features">
-  <div class="wrap">
-    <h2>Features</h2>
-    <p class="lead">The Avro phonetic layout you know from Windows and Linux, as a proper macOS input source.</p>
-    <div class="grid">
-      <div><h3>Avro phonetic layout</h3><p>The same transliteration rules as the original Avro Keyboard, so your muscle memory carries over.</p></div>
-      <div><h3>Candidate window</h3><p>Alternate spellings appear as you type; pick one with the arrow keys. Horizontal or vertical panel.</p></div>
-      <div><h3>Dictionary suggestions</h3><p>Optional dictionary lookups show real words alongside the phonetic candidates.</p></div>
-      <div><h3>Auto-correct and auto-dictionary</h3><p>Corrections for common slips, plus a personal dictionary that remembers what you pick.</p></div>
-      <div><h3>Native Swift</h3><p>Rewritten on Apple's Input Method Kit. No CocoaPods, no bundled libraries; SQLite comes from the system.</p></div>
-      <div><h3>Universal builds</h3><p>CI produces Apple Silicon, Intel and universal binaries for every release, signed and notarized when certificates are configured.</p></div>
+<section id="features" class="band">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <div class="eyebrow">01 — Features</div>
+      <h2>The layout you know, built for the Mac.</h2>
+      <p class="lead">The Avro phonetic layout from Windows and Linux, as a proper macOS input source.</p>
+    </div>
+    <div class="cells c3">
+      <div class="feat"><span class="idx">01</span><h3>Avro phonetic layout</h3><p>The same transliteration rules as the original Avro Keyboard, so your muscle memory carries over.</p></div>
+      <div class="feat"><span class="idx">02</span><h3>Candidate window</h3><p>Alternate spellings appear as you type; pick one with the arrow keys. Horizontal or vertical panel.</p></div>
+      <div class="feat"><span class="idx">03</span><h3>Dictionary suggestions</h3><p>Optional dictionary lookups show real words alongside the phonetic candidates.</p></div>
+      <div class="feat"><span class="idx">04</span><h3>Auto-correct and auto-dictionary</h3><p>Corrections for common slips, plus a personal dictionary that remembers what you pick.</p></div>
+      <div class="feat"><span class="idx">05</span><h3>Native Swift</h3><p>Rewritten on Apple's Input Method Kit. No CocoaPods, no bundled libraries; SQLite comes from the system.</p></div>
+      <div class="feat"><span class="idx">06</span><h3>Universal builds</h3><p>CI produces Apple Silicon, Intel and universal binaries for every release, signed and notarized when certificates are configured.</p></div>
     </div>
   </div>
 </section>
 
-<section id="install">
-  <div class="wrap">
-    <h2>Install</h2>
-    <p class="lead">About a minute. Use Homebrew, or download the DMG.</p>
-    <div class="brew">
-      <h3>With Homebrew</h3>
-      <pre><code>brew install --cask aminulbd/tap/avro</code></pre>
-      <p>Installs the app into <code>~/Library/Input Methods</code>. Update later with <code>brew upgrade --cask avro</code>, remove with <code>brew uninstall --cask avro</code>. Then switch to it from the input menu in the menu bar.</p>
+<section id="install" class="band">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <div class="eyebrow">02 — Install</div>
+      <h2>About a minute, either way.</h2>
+      <p class="lead">Use Homebrew, or download the DMG and double-click.</p>
     </div>
-    <h3 style="margin-bottom:1rem">Manually</h3>
-    <ol class="steps">
-      <li><strong>Download the DMG</strong><span>Get <code>Avro-Keyboard-universal.dmg</code> from the <a href="https://github.com/AminulBD/iAvro/releases/latest">latest release</a>. There are also <code>apple-silicon</code> and <code>intel</code> builds if you prefer a smaller one.</span></li>
-      <li><strong>Open it and click Install</strong><span>Open the DMG and double-click <strong>Avro Keyboard</strong>. It copies itself into <code>~/Library/Input Methods</code> (for your user only) and adds itself to your input sources. To install for all users instead, copy it into <code>/Library/Input Methods</code> by hand and log out and back in.</span></li>
-      <li><strong>Start typing</strong><span>Switch to it from the input menu in the menu bar, or with <kbd>⌃</kbd> <kbd>Space</kbd>.</span></li>
-    </ol>
-    <div class="note"><p><strong>Not in the input menu?</strong> Log out and back in, then open <strong>System Settings → Keyboard → Input Sources → Edit… → +</strong>, choose <strong>Bangla → Avro Keyboard</strong>, and click <strong>Add</strong>.</p></div>
-    <div class="note"><p><strong>Had the old iAvro installed?</strong> Remove it first, or two <strong>Avro Keyboard</strong> entries appear in the input menu. Remove it from <strong>System Settings → Keyboard → Input Sources → Edit…</strong>, delete <code>Avro Keyboard.app</code> from <code>~/Library/Input Methods</code> or <code>/Library/Input Methods</code> (in Finder press <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>G</kbd> and paste the path), then log out and back in before installing.</p></div>
-    <div class="note"><p><strong>Upgrading?</strong> Open the new DMG and double-click the app again; it replaces the installed copy. Log out and back in afterwards. Preferences and your personal dictionary are kept.</p></div>
+
+    <div class="split">
+      <div>
+        <h3>With Homebrew</h3>
+        <div class="term">
+          <div class="term-bar"><span>Terminal</span><span>zsh</span></div>
+          <pre><code><span class="p">$</span> brew install --cask aminulbd/tap/avro</code></pre>
+        </div>
+        <p class="kv" style="margin-top:1.1rem">Installs the app into <code>~/Library/Input Methods</code>. Update later with <code>brew upgrade --cask avro</code>, remove with <code>brew uninstall --cask avro</code>. Then switch to it from the input menu in the menu bar.</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom:1.3rem">Manually</h3>
+        <ol class="steps">
+          <li><div><strong>Download the DMG</strong><span>Get <code>Avro-Keyboard-universal.dmg</code> from the <a href="https://github.com/AminulBD/iAvro/releases/latest" style="border-bottom:1px solid var(--accent);color:var(--accent)">latest release</a>. There are also <code>apple-silicon</code> and <code>intel</code> builds if you prefer a smaller one.</span></div></li>
+          <li><div><strong>Open it and click Install</strong><span>Open the DMG and double-click <strong style="display:inline">Avro Keyboard</strong>. It copies itself into <code>~/Library/Input Methods</code> (for your user only) and adds itself to your input sources.</span></div></li>
+          <li><div><strong>Start typing</strong><span>Switch to it from the input menu in the menu bar, or with <kbd>⌃</kbd> <kbd>Space</kbd>.</span></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note"><strong>Not in the input menu?</strong> Log out and back in, then open <strong>System Settings → Keyboard → Input Sources → Edit… → +</strong>, choose <strong>Bangla → Avro Keyboard</strong>, and click <strong>Add</strong>.</div>
+      <div class="note"><strong>Had the old iAvro installed?</strong> Remove it first, or two <strong>Avro Keyboard</strong> entries appear in the input menu. Remove it from <strong>System Settings → Keyboard → Input Sources → Edit…</strong>, delete <code>Avro Keyboard.app</code> from <code>~/Library/Input Methods</code> or <code>/Library/Input Methods</code> (in Finder press <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>G</kbd> and paste the path), then log out and back in before installing.</div>
+      <div class="note"><strong>Upgrading?</strong> Open the new DMG and double-click the app again; it replaces the installed copy. Log out and back in afterwards. Preferences and your personal dictionary are kept.</div>
+    </div>
   </div>
 </section>
 
-<section id="build">
-  <div class="wrap two">
-    <div>
-      <h2>Build from source</h2>
-      <p class="muted">Requires Xcode 16 or later. No external dependencies.</p>
-      <p>Open <code>AvroKeyboard.xcodeproj</code> in Xcode and build the <strong>Avro Keyboard</strong> scheme, or use the command line. The built app is at <code>build/Build/Products/Release/Avro Keyboard.app</code>.</p>
-      <p class="muted" style="font-size:.9rem">Bundle identifier: <code>app.aminul.inputmethod.AvroKeyboard</code></p>
+<section id="build" class="band">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <div class="eyebrow">03 — Build</div>
+      <h2>Build from source.</h2>
+      <p class="lead">Requires Xcode 16 or later. No external dependencies.</p>
     </div>
-    <pre><code>git clone https://github.com/AminulBD/iAvro.git
-cd iAvro
+    <div class="split">
+      <div class="kv">
+        <p>Open <code>AvroKeyboard.xcodeproj</code> in Xcode and build the <strong style="color:var(--text)">Avro Keyboard</strong> scheme, or use the command line.</p>
+        <p>The built app lands at <code>build/Build/Products/Release/Avro Keyboard.app</code>.</p>
+        <p>Bundle identifier: <code>app.aminul.inputmethod.AvroKeyboard</code></p>
+      </div>
+      <div style="padding:0;background:var(--bg)">
+        <div class="term" style="border:0;margin:0;height:100%">
+          <div class="term-bar"><span>Terminal</span><span>xcodebuild</span></div>
+<pre><code><span class="p">$</span> git clone https://github.com/AminulBD/iAvro.git
+<span class="p">$</span> cd iAvro
 
-xcodebuild -project AvroKeyboard.xcodeproj \
-  -scheme "Avro Keyboard" \
-  -configuration Release \
-  -derivedDataPath build</code></pre>
+<span class="p">$</span> xcodebuild -project AvroKeyboard.xcodeproj \
+    -scheme "Avro Keyboard" \
+    -configuration Release \
+    -derivedDataPath build</code></pre>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="docs">
-  <div class="wrap">
-    <h2>Documentation</h2>
-    <p class="lead">Everything lives in the repository. These are the useful entry points.</p>
+<section id="docs" class="band">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <div class="eyebrow">04 — Documentation</div>
+      <h2>Everything lives in the repository.</h2>
+      <p class="lead">These are the useful entry points.</p>
+    </div>
     <ul class="links">
-      <li><a href="https://github.com/AminulBD/iAvro#readme">README</a><span>Installation, building, and the full CI and release guide.</span></li>
-      <li><a href="https://github.com/AminulBD/iAvro/releases">Releases</a><span>DMG installers and zipped apps for every tagged version, with release notes.</span></li>
-      <li><a href="https://github.com/AminulBD/iAvro#signing--notarization">Signing &amp; notarization</a><span>Which repository secrets make CI produce Developer ID-signed, notarized builds.</span></li>
-      <li><a href="https://github.com/AminulBD/iAvro/actions">CI builds</a><span>Run the <em>Build</em> workflow by hand to get artifacts for any commit.</span></li>
-      <li><a href="https://github.com/AminulBD/iAvro/issues">Issues</a><span>Bugs, wrong transliterations, feature requests.</span></li>
-      <li><a href="https://github.com/torifat/iAvro">Upstream project</a><span>The original iAvro repository by Rifat Nabi that this fork builds on.</span></li>
+      <li><a href="https://github.com/AminulBD/iAvro#readme"><strong>README</strong><span>Installation, building, and the full CI and release guide.</span><span class="arw">↗</span></a></li>
+      <li><a href="https://github.com/AminulBD/iAvro/releases"><strong>Releases</strong><span>DMG installers and zipped apps for every tagged version, with release notes.</span><span class="arw">↗</span></a></li>
+      <li><a href="https://github.com/AminulBD/iAvro#signing--notarization"><strong>Signing &amp; notarization</strong><span>Which repository secrets make CI produce Developer ID-signed, notarized builds.</span><span class="arw">↗</span></a></li>
+      <li><a href="https://github.com/AminulBD/iAvro/actions"><strong>CI builds</strong><span>Run the Build workflow by hand to get artifacts for any commit.</span><span class="arw">↗</span></a></li>
+      <li><a href="https://github.com/AminulBD/iAvro/issues"><strong>Issues</strong><span>Bugs, wrong transliterations, feature requests.</span><span class="arw">↗</span></a></li>
+      <li><a href="https://github.com/torifat/iAvro"><strong>Upstream project</strong><span>The original iAvro repository by Rifat Nabi that this fork builds on.</span><span class="arw">↗</span></a></li>
     </ul>
   </div>
 </section>
 
-<section id="credits">
-  <div class="wrap">
-    <h2>Credits</h2>
-    <p class="lead">Avro Keyboard on the Mac exists because of a lot of people. This fork stands on their work.</p>
-    <div class="people">
+<section id="credits" class="band">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <div class="eyebrow">05 — Credits</div>
+      <h2>Built on a lot of people's work.</h2>
+      <p class="lead">Avro Keyboard on the Mac exists because of them. This fork stands on their work.</p>
+    </div>
+    <div class="cells c2">
       <div class="person">
         <img src="https://github.com/torifat.png?size=128" alt="">
         <div>
@@ -275,12 +593,27 @@ xcodebuild -project AvroKeyboard.xcodeproj \
   </div>
 </section>
 
+<section class="close">
+  <div class="wrap">
+    <h2>Get typing in Bangla.</h2>
+    <p class="lead">Free, open source, and universal. Install it in about a minute.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/AminulBD/iAvro/releases/latest">Download for Mac <span class="arw">↓</span></a>
+      <a class="btn" href="https://github.com/AminulBD/iAvro">View on GitHub <span class="arw">↗</span></a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
   <div class="wrap">
     <span>A fork of <a href="https://github.com/torifat/iAvro">torifat/iAvro</a>. Avro phonetic engine © OmicronLab.</span>
-    <span><a href="https://github.com/AminulBD/iAvro">Source</a> · <a href="https://github.com/AminulBD/iAvro/releases">Releases</a> · <a href="https://github.com/AminulBD/iAvro/issues">Issues</a></span>
+    <span class="r">
+      <a href="https://github.com/AminulBD/iAvro">Source</a>
+      <a href="https://github.com/AminulBD/iAvro/releases">Releases</a>
+      <a href="https://github.com/AminulBD/iAvro/issues">Issues</a>
+    </span>
   </div>
 </footer>
 
