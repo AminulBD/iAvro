@@ -5,7 +5,8 @@
 <h1 align="center">Avro Keyboard for macOS</h1>
 
 <p align="center">
-  A native Bangla input method for the Mac, with Avro Phonetic, Probhat and Unijoy layouts.
+  A native Bangla input method for the Mac, with Avro Phonetic, Probhat and Unijoy layouts,
+  and Unicode or ANSI (Bijoy) output.
 </p>
 
 <p align="center">
@@ -22,12 +23,23 @@
 
 ---
 
+> [!IMPORTANT]
+> **Had the original iAvro installed?** Remove it before installing this
+> version, or two **Avro Keyboard** entries show up in the input menu and macOS
+> may keep loading the old one. See [Removing the old version](#removing-the-old-version).
+
+> [!TIP]
+> **New: ANSI (Bijoy) output.** Avro can now type in the legacy Bijoy encoding
+> for SutonnyMJ and other Bijoy fonts, with all three layouts. See
+> [ANSI (Bijoy) output](#ansi-bijoy-output).
+
 - [Screenshots](#screenshots)
 - [Keyboard layouts](#keyboard-layouts)
+- [ANSI (Bijoy) output](#ansi-bijoy-output)
 - [Installation](#installation)
+  - [Removing the old version](#removing-the-old-version)
   - [Homebrew](#homebrew)
   - [Manual](#manual)
-  - [Removing the old version](#removing-the-old-version)
 - [Building](#building)
 - [Continuous integration](#continuous-integration)
   - [Releases](#releases)
@@ -71,13 +83,17 @@ With Probhat and Unijoy:
 - The suggestion list, dictionary and Enter options in Preferences apply only to
   Avro Phonetic, and are greyed out while a fixed layout is selected.
 
-### ANSI (Bijoy) output
+## ANSI (Bijoy) output
 
 Turn on **Preferences… › Output as ANSI (Bijoy fonts)** to type in the legacy
 Bijoy encoding used by SutonnyMJ and other Bijoy fonts, instead of Unicode. It
 works with all three layouts, and the conversion is the same as in Avro Keyboard
 for Windows. Set a Bijoy font in the document, or the text will show as Latin
 letters.
+
+<p align="center">
+  <img src="docs/assets/screenshots/output-as-ansi.png" width="560" alt="The Preferences window with the Output as ANSI (Bijoy fonts) checkbox under Keyboard Layout">
+</p>
 
 - With Avro Phonetic, the word you pick from the candidate bar is converted as
   it is committed.
@@ -87,6 +103,30 @@ letters.
   be converted as a whole. <kbd>Delete</kbd> removes the last key you typed.
 
 ## Installation
+
+### Removing the old version
+
+> [!IMPORTANT]
+> If you had the original iAvro (bundle identifier
+> `com.omicronlab.inputmethod.AvroKeyboard`) installed, remove it first.
+> Otherwise two **Avro Keyboard** entries show up in the input menu and macOS
+> may keep loading the old one.
+
+1. Open **System Settings › Keyboard › Input Sources › Edit…** and remove
+   **Avro Keyboard** from the list.
+2. Delete the old app. It lives in one of these folders (in Finder press
+   <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>G</kbd> and paste the path):
+
+   ```sh
+   rm -rf ~/Library/Input\ Methods/Avro\ Keyboard.app
+   sudo rm -rf /Library/Input\ Methods/Avro\ Keyboard.app
+   ```
+
+3. Log out and back in, then install the new version as described below.
+
+> [!NOTE]
+> Your personal dictionary and preferences from the old version are not carried
+> over; they were stored under the old bundle identifier.
 
 ### Homebrew
 
@@ -125,30 +165,6 @@ If it does not appear in the input menu, log out and back in, then open
   <img src="docs/assets/screenshots/input-method-legacy-macos.png" width="49%" alt="Avro Keyboard under Input Sources in System Preferences on macOS 12">
 </p>
 <p align="center"><sub>Input Sources on macOS 13 and later (left) and macOS 12 (right)</sub></p>
-
-### Removing the old version
-
-> [!IMPORTANT]
-> If you had the original iAvro (bundle identifier
-> `com.omicronlab.inputmethod.AvroKeyboard`) installed, remove it first.
-> Otherwise two **Avro Keyboard** entries show up in the input menu and macOS
-> may keep loading the old one.
-
-1. Open **System Settings › Keyboard › Input Sources › Edit…** and remove
-   **Avro Keyboard** from the list.
-2. Delete the old app. It lives in one of these folders (in Finder press
-   <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>G</kbd> and paste the path):
-
-   ```sh
-   rm -rf ~/Library/Input\ Methods/Avro\ Keyboard.app
-   sudo rm -rf /Library/Input\ Methods/Avro\ Keyboard.app
-   ```
-
-3. Log out and back in, then install the new version as described above.
-
-> [!NOTE]
-> Your personal dictionary and preferences from the old version are not carried
-> over; they were stored under the old bundle identifier.
 
 ## Building
 

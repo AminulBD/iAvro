@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avro Keyboard for macOS</title>
-<meta name="description" content="Avro Keyboard for macOS — a native Swift Bangla input method with Avro Phonetic, Probhat and Unijoy layouts, for Apple Silicon and Intel Macs. Free and open source.">
+<meta name="description" content="Avro Keyboard for macOS — a native Swift Bangla input method with Avro Phonetic, Probhat and Unijoy layouts and Unicode or ANSI (Bijoy) output, for Apple Silicon and Intel Macs. Free and open source.">
 <meta property="og:title" content="Avro Keyboard for macOS">
 <meta property="og:description" content="A native Bangla phonetic input method for your Mac. Free and open source.">
 <meta property="og:image" content="https://aminulbd.github.io/iAvro/icon.png">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0b0b0d">
+<meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <style>
@@ -22,11 +23,15 @@
     --line-strong: #c9c9ce;
     --accent: #f6821f;
     --accent-ink: #b45309;
-    --ink: #0b0b0d;
-    --ink-2: #16161a;
-    --ink-line: #2a2a31;
-    --ink-text: #f4f4f5;
-    --ink-muted: #a1a1aa;
+    /* hero, closing banner and footer */
+    --ink: #f7f7f8;
+    --ink-line: #e3e3e6;
+    --ink-text: #0b0b0d;
+    --ink-muted: #6a6a73;
+    --ink-dim: #85858f;
+    --ink-btn-line: #c9c9ce;
+    --ink-grid: rgba(0,0,0,.05);
+    --ink-panel: rgba(255,255,255,.7);
     --max: 1160px;
     --pad: 28px;
   }
@@ -40,6 +45,14 @@
       --line-strong: #3a3a43;
       --accent: #f6821f;
       --accent-ink: #fbbf24;
+      --ink: #0b0b0d;
+      --ink-line: #2a2a31;
+      --ink-text: #f4f4f5;
+      --ink-muted: #a1a1aa;
+      --ink-dim: #7d7d8a;
+      --ink-btn-line: #40404a;
+      --ink-grid: rgba(255,255,255,.045);
+      --ink-panel: rgba(255,255,255,.02);
     }
   }
 
@@ -165,8 +178,8 @@
     background: var(--ink);
     color: var(--ink-text);
     background-image:
-      linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
+      linear-gradient(to right, var(--ink-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--ink-grid) 1px, transparent 1px);
     background-size: 64px 64px;
   }
   .hero .wrap { border-color: var(--ink-line); position: relative; }
@@ -186,7 +199,7 @@
   .hero h1 { margin-bottom: 1.35rem; }
   .hero .lead { color: var(--ink-muted); font-size: 1.12rem; max-width: 46ch; }
   .cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2.1rem; }
-  .hero .btn { background: transparent; color: var(--ink-text); border-color: #40404a; }
+  .hero .btn { background: transparent; color: var(--ink-text); border-color: var(--ink-btn-line); }
   .hero .btn:hover { background: var(--ink-text); color: var(--ink); border-color: var(--ink-text); }
   .hero .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
   .hero .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; }
@@ -195,11 +208,11 @@
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
     font-size: .76rem;
     letter-spacing: .04em;
-    color: #7d7d8a;
+    color: var(--ink-dim);
   }
 
   /* demo panel */
-  .demo { border: 1px solid var(--ink-line); background: rgba(255,255,255,.02); }
+  .demo { border: 1px solid var(--ink-line); background: var(--ink-panel); }
   .demo-bar {
     display: flex;
     align-items: center;
@@ -210,14 +223,14 @@
     font-size: .68rem;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: #7d7d8a;
+    color: var(--ink-dim);
   }
   .demo-bar .dot { width: 7px; height: 7px; background: var(--accent); display: inline-block; }
   .demo-body { padding: 1.4rem 1.25rem 1.6rem; }
   .demo .typed {
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
     font-size: .9rem;
-    color: #8c8c99;
+    color: var(--ink-dim);
   }
   .demo .typed::before { content: "> "; color: var(--accent); }
   .demo .caret {
@@ -228,7 +241,7 @@
   @keyframes blink { 50% { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .demo .caret { animation: none; } }
   .demo .rule { height: 1px; background: var(--ink-line); margin: 1.1rem 0; }
-  .demo .out { font-size: 1.85rem; line-height: 1.45; color: #fff; }
+  .demo .out { font-size: 1.85rem; line-height: 1.45; color: var(--ink-text); }
 
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; }
@@ -300,6 +313,25 @@
   .layouts-note { border: 1px solid var(--line); border-top: 0; padding: 1.15rem 1.4rem; font-size: .93rem; color: var(--muted); }
   .layouts-note strong { color: var(--text); font-weight: 650; }
 
+  /* ANSI highlight */
+  .ansi { scroll-margin-top: 80px; margin-top: 3.5rem; border: 1px solid var(--accent); display: grid; grid-template-columns: 1.1fr .9fr; }
+  .ansi > * { padding: 2.1rem 1.9rem; }
+  .ansi h3 { font-size: 1.35rem; letter-spacing: -.02em; margin-bottom: .6rem; }
+  .ansi p { color: var(--muted); font-size: .95rem; }
+  .ansi p + p { margin-top: .7rem; }
+  .ansi strong { color: var(--text); font-weight: 650; }
+  .ansi ul { list-style: none; margin: 1.3rem 0 0; padding: 1.1rem 0 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .93rem; }
+  .ansi li { padding: .35rem 0 .35rem 1.15rem; position: relative; }
+  .ansi li + li { margin-top: .4rem; }
+  .ansi .shot { border-left: 1px solid var(--line); padding: 0; }
+  .ansi .shot .frame { flex: 1; aspect-ratio: auto; }
+  .ansi li::before { content: ""; position: absolute; left: 0; top: .82em; width: 5px; height: 5px; background: var(--accent); }
+  @media (max-width: 860px) {
+    .ansi { grid-template-columns: 1fr; }
+    .ansi .shot { border-left: 0; border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 600px) { .ansi > * { padding: 1.6rem 1.35rem; } }
+
   /* ---------- screenshots ---------- */
   .shot { margin: 0; display: flex; flex-direction: column; }
   .shot .frame {
@@ -318,6 +350,30 @@
   .shot figcaption strong { display: block; color: var(--text); font-weight: 650; margin-bottom: .15rem; }
   .shots-install { border-top: 0; }
   @media (max-width: 600px) { .shot .frame { padding: 1rem; } }
+
+  /* ---------- notices ---------- */
+  .notice-strip { background: color-mix(in srgb, var(--accent) 14%, var(--bg)); border-bottom: 1px solid var(--line); font-size: .9rem; }
+  .notice-strip .wrap { padding-block: .7rem; display: flex; gap: .4rem 1rem; flex-wrap: wrap; align-items: baseline; }
+  .notice-strip strong { font-weight: 650; }
+  .notice-strip a { color: var(--accent-ink); border-bottom: 1px solid currentColor; font-weight: 600; }
+  .hero-new {
+    display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.4rem;
+    padding: .38rem .8rem .38rem .38rem; border: 1px solid var(--ink-btn-line);
+    font-size: .85rem; color: var(--ink-text); transition: border-color .15s;
+  }
+  .hero-new:hover { border-color: var(--accent); }
+  .hero-new b {
+    background: var(--accent); color: #1a0d00; padding: .1rem .45rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .68rem; letter-spacing: .12em;
+  }
+
+  .callout { border: 1px solid var(--accent); border-left-width: 4px; padding: 1.6rem 1.8rem; margin-bottom: 2rem; scroll-margin-top: 80px; }
+  .callout h3 { margin-bottom: .5rem; }
+  .callout > p { color: var(--muted); font-size: .95rem; max-width: 72ch; }
+  .callout ol { margin: 1rem 0 0; padding-left: 1.3rem; color: var(--muted); font-size: .94rem; }
+  .callout li + li { margin-top: .45rem; }
+  .callout strong { color: var(--text); font-weight: 650; }
+  @media (max-width: 600px) { .callout { padding: 1.4rem 1.2rem; } }
 
   /* ---------- install ---------- */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
@@ -405,7 +461,7 @@
   .close h2 { margin-bottom: 1rem; }
   .close .lead { color: var(--ink-muted); margin: 0 auto; }
   .close .cta { justify-content: center; }
-  .close .btn { background: transparent; color: var(--ink-text); border-color: #40404a; }
+  .close .btn { background: transparent; color: var(--ink-text); border-color: var(--ink-btn-line); }
   .close .btn:hover { background: var(--ink-text); color: var(--ink); border-color: var(--ink-text); }
   .close .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
   .close .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; }
@@ -413,7 +469,7 @@
   /* ---------- footer ---------- */
   footer { background: var(--ink); color: var(--ink-muted); border-top: 1px solid var(--ink-line); font-size: .87rem; }
   footer .wrap { border-color: var(--ink-line); padding-block: 1.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .6rem 1.75rem; }
-  footer a { color: var(--ink-muted); border-bottom: 1px solid #2a2a31; }
+  footer a { color: var(--ink-muted); border-bottom: 1px solid var(--ink-line); }
   footer a:hover { color: var(--accent); border-color: var(--accent); }
   footer .r { display: flex; gap: 1.25rem; flex-wrap: wrap; }
   footer .credit { flex-basis: 100%; margin: 0; text-align: center; font-size: .8rem; opacity: .8; }
@@ -445,13 +501,21 @@
   </div>
 </nav>
 
+<div class="notice-strip">
+  <div class="wrap">
+    <span><strong>Had the original iAvro installed?</strong> Remove it before installing this version, or macOS may keep loading the old one.</span>
+    <a href="#remove-old">How to remove it →</a>
+  </div>
+</div>
+
 <header class="hero">
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
+        <a class="hero-new" href="#ansi"><b>NEW</b>ANSI (Bijoy) output for SutonnyMJ and other Bijoy fonts →</a>
         <div class="eyebrow">Bangla input method · macOS</div>
         <h1>Type Bangla<br>the way it sounds.</h1>
-        <p class="lead">A native Bangla phonetic input method for your Mac. Type words in Latin letters and get Bengali script as you go.</p>
+        <p class="lead">A native Bangla phonetic input method for your Mac. Type words in Latin letters and get Bengali script as you go, in Unicode or ANSI (Bijoy).</p>
         <div class="cta">
           <a class="btn primary" href="https://github.com/AminulBD/iAvro/releases/latest">Download for Mac <span class="arw">↓</span></a>
           <a class="btn" href="https://github.com/AminulBD/iAvro">View on GitHub <span class="arw">↗</span></a>
@@ -511,6 +575,23 @@
       <div class="feat"><span class="idx">FIXED</span><h3>Unijoy</h3><p>The Bijoy-style layout: <span class="kp"><kbd>j</kbd> <span class="bn">ক</span></span>, <span class="kp"><kbd>f</kbd> <span class="bn">া</span></span>, <span class="kp"><kbd>g</kbd> hasanta</span>.</p><p><kbd>g</kbd> before a vowel sign makes the full vowel: <span class="kp"><kbd>g</kbd> <kbd>f</kbd> → <span class="bn">আ</span></span>. Press <kbd>g</kbd> twice for a visible hasanta.</p></div>
     </div>
     <div class="layouts-note"><strong>With the fixed layouts,</strong> type in Unicode order, with a vowel sign after its consonant (<span class="bn">কি</span> is <span class="bn">ক</span> then <span class="bn">ি</span>). Key positions follow a US keyboard, and the Option-key layer isn't included yet.</div>
+
+    <div class="ansi" id="ansi">
+      <div>
+        <span class="eyebrow">New</span>
+        <h3>ANSI (Bijoy) output</h3>
+        <p>Type in the legacy Bijoy encoding used by SutonnyMJ and other Bijoy fonts, instead of Unicode. Turn on <strong>Preferences… → Output as ANSI (Bijoy fonts)</strong>.</p>
+        <p>Works with all three layouts, with the same conversion as Avro Keyboard for Windows. Set a Bijoy font in your document, or the text shows as Latin letters.</p>
+        <ul>
+          <li><strong>Avro Phonetic:</strong> the word you pick from the candidate bar is converted as it is committed.</li>
+          <li><strong>Probhat and Unijoy:</strong> the word you are typing stays underlined, already shown in Bijoy, until you press space, Return or another key outside the layout.</li>
+          <li><kbd>Delete</kbd> removes the last key you typed while a word is underlined.</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <a class="frame" href="assets/screenshots/output-as-ansi.png"><img src="assets/screenshots/output-as-ansi.png" width="810" height="536" loading="lazy" alt="The Preferences window with the Output as ANSI (Bijoy fonts) checkbox under Keyboard Layout"></a>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -546,6 +627,17 @@
       <p class="lead">Use Homebrew, or download the DMG and double-click.</p>
     </div>
 
+    <div class="callout" id="remove-old">
+      <div class="eyebrow">Before you install</div>
+      <h3>Remove the original iAvro first</h3>
+      <p>If you had the original iAvro (<code>com.omicronlab.inputmethod.AvroKeyboard</code>) installed, remove it, or two <strong>Avro Keyboard</strong> entries appear in the input menu and macOS may keep loading the old one.</p>
+      <ol>
+        <li>Remove <strong>Avro Keyboard</strong> from <strong>System Settings → Keyboard → Input Sources → Edit…</strong></li>
+        <li>Delete <code>Avro Keyboard.app</code> from <code>~/Library/Input Methods</code> or <code>/Library/Input Methods</code> (in Finder press <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>G</kbd> and paste the path).</li>
+        <li>Log out and back in, then install below. The old personal dictionary and preferences are not carried over.</li>
+      </ol>
+    </div>
+
     <div class="split">
       <div>
         <h3>With Homebrew</h3>
@@ -567,7 +659,6 @@
 
     <div class="notes">
       <div class="note"><strong>Not in the input menu?</strong> Log out and back in, then open <strong>System Settings → Keyboard → Input Sources → Edit… → +</strong>, choose <strong>Bangla → Avro Keyboard</strong>, and click <strong>Add</strong>.</div>
-      <div class="note"><strong>Had the old iAvro installed?</strong> Remove it first, or two <strong>Avro Keyboard</strong> entries appear in the input menu. Remove it from <strong>System Settings → Keyboard → Input Sources → Edit…</strong>, delete <code>Avro Keyboard.app</code> from <code>~/Library/Input Methods</code> or <code>/Library/Input Methods</code> (in Finder press <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>G</kbd> and paste the path), then log out and back in before installing.</div>
       <div class="note"><strong>Upgrading?</strong> Open the new DMG and double-click the app again; it replaces the installed copy. Log out and back in afterwards. Preferences and your personal dictionary are kept.</div>
     </div>
 
