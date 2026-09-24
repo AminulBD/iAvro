@@ -111,15 +111,15 @@ build.
 
 | macOS | Name | Apple silicon | Intel |
 | --- | --- | --- | --- |
-| macOS 27 | | ✅ | — |
+| macOS 27 | Golden Gate | ✅ | — |
 | macOS 26 | Tahoe | ✅ | ✅ |
 | macOS 15 | Sequoia | ✅ | ✅ |
 | macOS 14 | Sonoma | ✅ | ✅ |
 | macOS 13 | Ventura | ✅ | ✅ |
 | macOS 12 | Monterey | ✅ | ✅ |
 
-macOS 27 no longer runs on Intel Macs; on an Intel Mac, Avro Keyboard works up
-to macOS 26 Tahoe. macOS 11 Big Sur and earlier are not supported.
+macOS 27 Golden Gate no longer runs on Intel Macs; on an Intel Mac, Avro
+Keyboard works up to macOS 26 Tahoe. macOS 11 Big Sur and earlier are not supported.
 
 ## Installation
 
