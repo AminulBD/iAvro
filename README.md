@@ -36,6 +36,7 @@
 - [Screenshots](#screenshots)
 - [Keyboard layouts](#keyboard-layouts)
 - [ANSI (Bijoy) output](#ansi-bijoy-output)
+- [Supported macOS versions](#supported-macos-versions)
 - [Installation](#installation)
   - [Removing the old version](#removing-the-old-version)
   - [Homebrew](#homebrew)
@@ -101,6 +102,24 @@ letters.
   shown in Bijoy, until you press space, Return or another key outside the
   layout. Bijoy puts some vowel signs before their consonant, so a word can only
   be converted as a whole. <kbd>Delete</kbd> removes the last key you typed.
+
+## Supported macOS versions
+
+Avro Keyboard runs on macOS 12 Monterey and every later release, on Apple
+silicon (M1, M2, M3, M4 and later) and Intel Macs, from a single universal
+build.
+
+| macOS | Name | Apple silicon | Intel |
+| --- | --- | --- | --- |
+| macOS 27 | | ✅ | — |
+| macOS 26 | Tahoe | ✅ | ✅ |
+| macOS 15 | Sequoia | ✅ | ✅ |
+| macOS 14 | Sonoma | ✅ | ✅ |
+| macOS 13 | Ventura | ✅ | ✅ |
+| macOS 12 | Monterey | ✅ | ✅ |
+
+macOS 27 no longer runs on Intel Macs; on an Intel Mac, Avro Keyboard works up
+to macOS 26 Tahoe. macOS 11 Big Sur and earlier are not supported.
 
 ## Installation
 
