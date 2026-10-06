@@ -110,7 +110,7 @@ letters.
 ## Supported macOS versions
 
 Avro Keyboard runs on macOS 12 Monterey and every later release, on Apple
-silicon (M1, M2, M3, M4 and later) and Intel Macs, from a single universal
+silicon (M1 through M6 and later) and Intel Macs, from a single universal
 build.
 
 | macOS | Name | Apple silicon | Intel |
