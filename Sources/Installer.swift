@@ -66,9 +66,9 @@ enum Installer {
         let done = NSAlert()
         done.messageText = replacing ? "Avro Keyboard was updated" : "Avro Keyboard was installed"
         done.informativeText = replacing
-            ? "Log out and back in so macOS starts using the new version."
+            ? "The new version is ready to use; no need to log out."
             : "It has been added to your input sources. Switch to it from the input menu in the menu bar.\n\n"
-              + "If it is missing there, log out and back in, then add it under System Settings > Keyboard > Input Sources."
+              + "If it is missing there, add it under System Settings > Keyboard > Input Sources (log out and back in if it still does not appear)."
         done.runModal()
         exit(0)
         #endif
@@ -94,20 +94,39 @@ enum Installer {
             ])
         }
 
-        // Tell Text Input Sources about the new bundle right away, so it shows up
-        // without logging out, and enable it for the current user.
-        guard TISRegisterInputSource(destination as CFURL) == noErr else {
-            NSLog("TISRegisterInputSource failed for \(destination.path); it will be picked up at next login")
-            return
-        }
+        // An older copy may still be running as the input method; stop it so macOS
+        // launches the new one on demand instead of needing a logout.
         let bundleIdentifier = Bundle.main.bundleIdentifier ?? ""
-        let filter = [kTISPropertyInputSourceID as String: bundleIdentifier] as CFDictionary
-        if let sources = TISCreateInputSourceList(filter, true)?.takeRetainedValue() as? [TISInputSource],
-           let source = sources.first {
-            let status = TISEnableInputSource(source)
-            if status != noErr {
-                NSLog("TISEnableInputSource failed (\(status)); add it manually under Input Sources")
+        let myPID = ProcessInfo.processInfo.processIdentifier
+        for running in NSRunningApplication.runningApplications(withBundleIdentifier: bundleIdentifier)
+        where running.processIdentifier != myPID {
+            if !running.forceTerminate() {
+                NSLog("Could not terminate running Avro Keyboard (pid \(running.processIdentifier))")
             }
         }
+
+        // Tell Text Input Sources about the new bundle right away, so it shows up
+        // without logging out, then enable and select it for the current user.
+        let registered = TISRegisterInputSource(destination as CFURL)
+        if registered != noErr {
+            NSLog("TISRegisterInputSource failed (\(registered)); it will be picked up at next login")
+            return
+        }
+        let filter = [kTISPropertyInputSourceID as String: bundleIdentifier] as CFDictionary
+        // The input source list can lag behind registration, so retry briefly.
+        for _ in 0..<20 {
+            if let sources = TISCreateInputSourceList(filter, true)?.takeRetainedValue() as? [TISInputSource],
+               let source = sources.first {
+                let enabled = TISEnableInputSource(source)
+                if enabled != noErr {
+                    NSLog("TISEnableInputSource failed (\(enabled)); add it manually under Input Sources")
+                } else {
+                    TISSelectInputSource(source)
+                }
+                return
+            }
+            Thread.sleep(forTimeInterval: 0.1)
+        }
+        NSLog("Avro Keyboard input source not found after registering; add it manually under Input Sources")
     }
 }
