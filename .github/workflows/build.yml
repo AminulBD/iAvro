@@ -166,13 +166,19 @@ jobs:
           pattern: Avro-Keyboard-*
           merge-multiple: true
 
+      - name: Generate SHA256SUMS
+        run: |
+          cd dist
+          sha256sum *.dmg *.zip > SHA256SUMS
+          cat SHA256SUMS
+
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.ref_name }}
         run: |
           ls -la dist
-          gh release create "$TAG" dist/*.dmg dist/*.zip \
+          gh release create "$TAG" dist/*.dmg dist/*.zip dist/SHA256SUMS \
             --repo "$GITHUB_REPOSITORY" \
             --title "$TAG" \
             --generate-notes \
