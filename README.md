@@ -215,11 +215,13 @@ artifact: a `.dmg` installer and a `.zip` of the bare app.
 
 ### Releases
 
-Push a tag starting with `v` to publish a release:
+Bump the version in `Resources/en.lproj/InfoPlist.strings` (both
+`CFBundleShortVersionString` and `CFBundleGetInfoString`), commit, then push a
+tag starting with `v` to publish a release:
 
 ```sh
-git tag v1.6.0
-git push origin v1.6.0
+git tag -m "v1.6.0" v1.6.0
+git push origin master v1.6.0
 ```
 
 Once all three builds finish, a GitHub release is created for that tag with the
