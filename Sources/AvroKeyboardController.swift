@@ -66,7 +66,10 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
 
     nonisolated override func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
         guard let candidate = candidateString?.string else { return }
-        MainActor.assumeIsolated { composition.selectionChanged(to: candidate) }
+        MainActor.assumeIsolated {
+            composition.selectionChanged(to: candidate)
+            if !composition.isEmpty { updateMarkedText() }
+        }
     }
 
     nonisolated override func candidateSelected(_ candidateString: NSAttributedString!) {
@@ -95,9 +98,17 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
 
     // MARK: - Composition
 
-    /// Mirrors the buffer into the client as marked text.
+    /// The text shown, and committed on a focus change: the highlighted candidate, or the
+    /// raw buffer when there is none.
+    private var composedText: String {
+        let text = composition.selectedCandidate ?? composition.buffer
+        return Preferences.outputAsANSI ? Bijoy.convert(text) : text
+    }
+
+    /// Mirrors the highlighted candidate into the client as marked text, so the Bangla
+    /// shows live while typing.
     private func updateMarkedText() {
-        setMarkedText(composition.buffer)
+        setMarkedText(composedText)
     }
 
     /// Shows `text` in the client as marked text.
@@ -127,7 +138,7 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
             commitANSIWord()
             return
         }
-        client()?.insertText(composition.buffer, replacementRange: NSRange(location: NSNotFound, length: 0))
+        client()?.insertText(composedText, replacementRange: NSRange(location: NSNotFound, length: 0))
         composition.clear()
         updateCandidatesPanel()
     }
