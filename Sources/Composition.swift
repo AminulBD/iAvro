@@ -120,6 +120,16 @@ final class Composition {
             if rememberedIndex >= 1 { rememberedIndex += 1 }
         }
 
+        // Emoji whose name or tags match the typed word, after the spellings.
+        if Preferences.includeDictionary {
+            // By the English word typed and by each Bangla spelling it suggests.
+            for key in [term] + suggestions {
+                for emoji in EmojiLookup.shared.find(key).map({ prefix + $0 + suffix }) where !candidates.contains(emoji) {
+                    candidates.append(emoji)
+                }
+            }
+        }
+
         // Emoticons and other auto-correct entries that include the punctuation itself.
         if Preferences.includeDictionary, buffer != term, let smiley = AutoCorrect.shared.find(buffer) {
             candidates.insert(smiley, at: 0)
