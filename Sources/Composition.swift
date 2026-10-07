@@ -66,7 +66,7 @@ final class Composition {
         guard let index = candidates.firstIndex(of: candidate) else { return }
         selectedIndex = index
 
-        guard Preferences.includeDictionary, !term.isEmpty, !(index == 0 && rememberedIndex == -1) else { return }
+        guard Preferences.includeDictionary, !term.isEmpty, candidate != buffer, !(index == 0 && rememberedIndex == -1) else { return }
 
         let cache = CacheManager.shared
         let word = Self.stripping(prefix: prefix, suffix: suffix, from: candidate)
@@ -113,6 +113,12 @@ final class Composition {
             rememberedIndex = suggestions.firstIndex(of: remembered) ?? -1
         }
         candidates = suggestions.map { prefix + $0 + suffix }
+
+        // The typed text itself, second in line, so an English word can be picked.
+        if !candidates.contains(buffer) {
+            candidates.insert(buffer, at: min(1, candidates.count))
+            if rememberedIndex >= 1 { rememberedIndex += 1 }
+        }
 
         // Emoticons and other auto-correct entries that include the punctuation itself.
         if Preferences.includeDictionary, buffer != term, let smiley = AutoCorrect.shared.find(buffer) {
