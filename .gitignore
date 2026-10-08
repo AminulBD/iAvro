@@ -19,3 +19,10 @@ build/
 
 # Installer output
 /Installer
+
+# Language model training outputs
+ml/.venv/
+ml/data/
+ml/out/
+ml/export/
+__pycache__/

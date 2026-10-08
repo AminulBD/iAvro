@@ -1,0 +1,5 @@
+torch>=2.2
+numpy
+sentencepiece>=0.2
+datasets>=2.18
+coremltools>=8.0
