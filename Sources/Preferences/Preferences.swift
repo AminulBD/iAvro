@@ -12,6 +12,7 @@ enum Preferences {
     enum Key {
         static let keyboardLayout = "KeyboardLayout"
         static let outputAsANSI = "OutputAsANSI"
+        static let oldStyleTyping = "OldStyleTyping"
         static let candidatePanelType = "CandidatePanelType"
         static let includeDictionary = "IncludeDictionary"
         static let commitNewLineOnEnter = "CommitNewLineOnEnter"
@@ -59,6 +60,11 @@ enum Preferences {
     /// Bijoy fonts) instead of Unicode, with every layout.
     static var outputAsANSI: Bool {
         UserDefaults.standard.bool(forKey: Key.outputAsANSI)
+    }
+
+    /// Whether the fixed layouts are typed in the order letters are drawn. See `OldStyleTyping`.
+    static var oldStyleTyping: Bool {
+        UserDefaults.standard.bool(forKey: Key.oldStyleTyping)
     }
 
     /// Orientation of the candidate window. Defaults to `kIMKSingleRowSteppingCandidatePanel`

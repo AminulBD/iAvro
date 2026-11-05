@@ -17,7 +17,7 @@ final class PreferencesWindowController: NSWindowController {
         var identifier: NSToolbarItem.Identifier { NSToolbarItem.Identifier(rawValue) }
         var size: NSSize {
             switch self {
-            case .general: return NSSize(width: 450, height: 179)
+            case .general: return NSSize(width: 450, height: 241)
             case .autoCorrect: return NSSize(width: 450, height: 331)
             case .credits: return NSSize(width: 450, height: 450)
             }
@@ -105,6 +105,7 @@ final class PreferencesWindowController: NSWindowController {
 
     private func makeGeneralView() -> NSView {
         let defaults = NSUserDefaultsController.shared
+        let controlWidth: CGFloat = 236
 
         let layout = NSPopUpButton(frame: .zero, pullsDown: false)
         for keyboardLayout in Preferences.KeyboardLayout.allCases {
@@ -115,6 +116,17 @@ final class PreferencesWindowController: NSWindowController {
 
         let outputAsANSI = NSButton(checkboxWithTitle: "Output as ANSI (Bijoy fonts)", target: nil, action: nil)
         outputAsANSI.bind(.value, to: defaults, withKeyPath: "values.\(Preferences.Key.outputAsANSI)")
+
+        let oldStyleTyping = NSButton(checkboxWithTitle: "Use Full Old Style Typing", target: nil, action: nil)
+        oldStyleTyping.bind(.value, to: defaults, withKeyPath: "values.\(Preferences.Key.oldStyleTyping)")
+
+        let oldStyleNote = NSTextField(wrappingLabelWithString: "Type ি, ে and ৈ before their consonant and the reph after it, as on a typewriter.")
+        oldStyleNote.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+        oldStyleNote.textColor = .secondaryLabelColor
+        oldStyleNote.preferredMaxLayoutWidth = controlWidth
+
+        // Only the fixed layouts (every layout but 0) are typed in old style.
+        oldStyleTyping.bind(.enabled, to: defaults, withKeyPath: "values.\(Preferences.Key.keyboardLayout)")
 
         let orientation = NSPopUpButton(frame: .zero, pullsDown: false)
         for (title, tag) in [("Horizontal", kIMKSingleRowSteppingCandidatePanel), ("Vertical", kIMKSingleColumnScrollingCandidatePanel)] {
@@ -142,6 +154,8 @@ final class PreferencesWindowController: NSWindowController {
         let grid = NSGridView(views: [
             [layoutLabel, layout],
             [NSGridCell.emptyContentView, outputAsANSI],
+            [NSGridCell.emptyContentView, oldStyleTyping],
+            [NSGridCell.emptyContentView, oldStyleNote],
             [label, orientation],
             [NSGridCell.emptyContentView, includeDictionary],
             [NSGridCell.emptyContentView, commitNewline],
@@ -150,8 +164,9 @@ final class PreferencesWindowController: NSWindowController {
         grid.columnSpacing = 8
         grid.column(at: 0).xPlacement = .trailing
         grid.row(at: 0).yPlacement = .center
-        grid.row(at: 2).yPlacement = .center
-        grid.row(at: 1).bottomPadding = 8
+        grid.row(at: 4).yPlacement = .center
+        grid.row(at: 2).bottomPadding = -4
+        grid.row(at: 3).bottomPadding = 8
 
         let container = NSView()
         grid.translatesAutoresizingMaskIntoConstraints = false
@@ -160,7 +175,7 @@ final class PreferencesWindowController: NSWindowController {
             grid.topAnchor.constraint(equalTo: container.topAnchor, constant: 18),
             grid.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15),
             grid.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -15),
-            orientation.widthAnchor.constraint(equalToConstant: 236),
+            orientation.widthAnchor.constraint(equalToConstant: controlWidth),
             layout.widthAnchor.constraint(equalTo: orientation.widthAnchor),
         ])
         return container
