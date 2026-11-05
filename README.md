@@ -40,6 +40,7 @@
 - [Screenshots](#screenshots)
 - [Keyboard layouts](#keyboard-layouts)
 - [ANSI (Bijoy) output](#ansi-bijoy-output)
+- [Full old style typing](#full-old-style-typing)
 - [Supported macOS versions](#supported-macos-versions)
 - [Installation](#installation)
   - [Removing the old version](#removing-the-old-version)
@@ -79,7 +80,8 @@ the switch applies from the next key you press.
 With Probhat and Unijoy:
 
 - Text is typed in Unicode order, with a vowel sign after its consonant: কি is
-  ক then ি, even though ি is drawn first.
+  ক then ি, even though ি is drawn first. To type in the order the letters are
+  drawn instead, turn on [Full old style typing](#full-old-style-typing).
 - Keys are read as they would be on a US keyboard, so use a US (ABC) keyboard
   layout alongside it.
 - The Option (AltGr) layer is not included yet. For Unijoy this covers ZWJ/ZWNJ
@@ -106,6 +108,45 @@ letters.
   shown in Bijoy, until you press space, Return or another key outside the
   layout. Bijoy puts some vowel signs before their consonant, so a word can only
   be converted as a whole. <kbd>Delete</kbd> removes the last key you typed.
+
+## Full old style typing
+
+Turn on **Preferences… › Use Full Old Style Typing** to type Probhat and Unijoy
+the typewriter way, as with Bijoy: ি, ে and ৈ before their consonant, and the
+reph after the consonant it sits on. The text is still written in correct
+Unicode order. It is based on the same option in Avro Keyboard for Windows, and
+works with Unicode and ANSI output alike. Probhat has no reph key, so there the
+reph is still typed before its consonant, as র then hasanta.
+
+<p align="center">
+  <img src="docs/assets/screenshots/old-style-typing.png" width="560" alt="The Preferences window with Use Full Old Style Typing turned on for the Unijoy layout">
+</p>
+
+With Unijoy:
+
+| Keys | Typed as | Gives |
+| --- | --- | --- |
+| <kbd>c</kbd> <kbd>j</kbd> | ে ক | কে |
+| <kbd>c</kbd> <kbd>j</kbd> <kbd>f</kbd> | ে ক া | কো |
+| <kbd>d</kbd> <kbd>j</kbd> <kbd>g</kbd> <kbd>N</kbd> | ি ক ্ ষ | ক্ষি |
+| <kbd>c</kbd> <kbd>h</kbd> <kbd>z</kbd> | ে ব ্র | ব্রে |
+| <kbd>j</kbd> <kbd>m</kbd> <kbd>A</kbd> | ক ম র্ | কর্ম |
+| <kbd>c</kbd> <kbd>j</kbd> <kbd>X</kbd> | ে ক ৌ | কৌ |
+| <kbd>i</kbd> <kbd>x</kbd> | হ ও | হও |
+| <kbd>w</kbd> <kbd>f</kbd> <kbd>x</kbd> | য া ও | যাও |
+
+- ো and ৌ are made from ে, as on a typewriter: ে followed by া makes ো, and by
+  ৌ makes ৌ. So the ো key (<kbd>x</kbd> on Unijoy) always types ও, as in হও
+  and নেও. অ followed by া makes আ.
+- A vowel sign with no consonant to carry it makes the full vowel, so া at the
+  start of a word or after a vowel makes আ. ি, ে and ৈ wait for the consonant
+  that follows them, so they only make ই, এ and ঐ when none comes, as in খাই.
+- A vowel sign typed before a conjunct moves to its end, and ্র or ্য typed
+  after a vowel sign goes before it.
+- Press ি, ে or ৈ twice to type the sign on its own.
+- The word you are typing stays underlined until you press space, Return or
+  another key outside the layout, because a later key can still move a vowel
+  sign or reph. <kbd>Delete</kbd> removes the last key you typed.
 
 ## Supported macOS versions
 
