@@ -105,6 +105,7 @@ final class PreferencesWindowController: NSWindowController {
 
     private func makeGeneralView() -> NSView {
         let defaults = NSUserDefaultsController.shared
+        let controlWidth: CGFloat = 236
 
         let layout = NSPopUpButton(frame: .zero, pullsDown: false)
         for keyboardLayout in Preferences.KeyboardLayout.allCases {
@@ -122,7 +123,7 @@ final class PreferencesWindowController: NSWindowController {
         let oldStyleNote = NSTextField(wrappingLabelWithString: "Type ি, ে and ৈ before their consonant and the reph after it, as on a typewriter.")
         oldStyleNote.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         oldStyleNote.textColor = .secondaryLabelColor
-        oldStyleNote.preferredMaxLayoutWidth = 236
+        oldStyleNote.preferredMaxLayoutWidth = controlWidth
 
         // Only the fixed layouts (every layout but 0) are typed in old style.
         oldStyleTyping.bind(.enabled, to: defaults, withKeyPath: "values.\(Preferences.Key.keyboardLayout)")
@@ -174,7 +175,7 @@ final class PreferencesWindowController: NSWindowController {
             grid.topAnchor.constraint(equalTo: container.topAnchor, constant: 18),
             grid.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15),
             grid.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -15),
-            orientation.widthAnchor.constraint(equalToConstant: 236),
+            orientation.widthAnchor.constraint(equalToConstant: controlWidth),
             layout.widthAnchor.constraint(equalTo: orientation.widthAnchor),
         ])
         return container

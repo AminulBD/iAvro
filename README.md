@@ -114,8 +114,9 @@ letters.
 Turn on **Preferences… › Use Full Old Style Typing** to type Probhat and Unijoy
 the typewriter way, as with Bijoy: ি, ে and ৈ before their consonant, and the
 reph after the consonant it sits on. The text is still written in correct
-Unicode order. It is the same option as in Avro Keyboard for Windows, and works
-with Unicode and ANSI output alike.
+Unicode order. It is based on the same option in Avro Keyboard for Windows, and
+works with Unicode and ANSI output alike. Probhat has no reph key, so there the
+reph is still typed before its consonant, as র then hasanta.
 
 <p align="center">
   <img src="docs/assets/screenshots/old-style-typing.png" width="560" alt="The Preferences window with Use Full Old Style Typing turned on for the Unijoy layout">
@@ -137,10 +138,9 @@ With Unijoy:
 - ো and ৌ are made from ে, as on a typewriter: ে followed by া makes ো, and by
   ৌ makes ৌ. So the ো key (<kbd>x</kbd> on Unijoy) always types ও, as in হও
   and নেও. অ followed by া makes আ.
-- A vowel sign with no consonant to carry it makes the full vowel, as with
-  automatic vowel forming in Avro Keyboard for Windows, so া at the start of a
-  word or after a vowel makes আ. ি, ে and ৈ wait for the consonant that follows
-  them, so they only make ই, এ and ঐ when the word ends without one, as in খাই.
+- A vowel sign with no consonant to carry it makes the full vowel, so া at the
+  start of a word or after a vowel makes আ. ি, ে and ৈ wait for the consonant
+  that follows them, so they only make ই, এ and ঐ when none comes, as in খাই.
 - A vowel sign typed before a conjunct moves to its end, and ্র or ্য typed
   after a vowel sign goes before it.
 - Press ি, ে or ৈ twice to type the sign on its own.

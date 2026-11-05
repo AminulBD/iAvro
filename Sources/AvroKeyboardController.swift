@@ -28,9 +28,8 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
     /// What the last key of a fixed layout typed, while typing goes on uninterrupted.
     private var lastFixedText: String?
     /// What each key of the current word typed, while a fixed layout holds the word as
-    /// marked text. With ANSI output, Bijoy draws some vowel signs before their consonant,
-    /// so the word is converted as a whole when it ends; with old style typing, a vowel
-    /// sign or reph is moved into place by a later key.
+    /// marked text: ANSI output converts a word as a whole, and in old style typing a later
+    /// key can move a vowel sign or reph.
     private var heldWord: [String] = []
 
     /// Whether a fixed layout holds the current word as marked text.
@@ -312,10 +311,6 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
 
     /// Shows the held word and the held dead key as marked text.
     private func updateFixedMarkedText() {
-        guard holdsWord else {
-            setMarkedText(heldDeadKey ?? "")
-            return
-        }
         guard Preferences.outputAsANSI else {
             setMarkedText(heldWordText() + (heldDeadKey ?? ""))
             return

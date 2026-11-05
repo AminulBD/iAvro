@@ -62,9 +62,7 @@ enum Preferences {
         UserDefaults.standard.bool(forKey: Key.outputAsANSI)
     }
 
-    /// Whether the fixed layouts take vowel signs before their consonant and the reph
-    /// after it, as on a typewriter, and put the text in logical (Unicode) order. This is
-    /// "Full Old Style Typing" in Avro Keyboard for Windows.
+    /// Whether the fixed layouts are typed in the order letters are drawn. See `OldStyleTyping`.
     static var oldStyleTyping: Bool {
         UserDefaults.standard.bool(forKey: Key.oldStyleTyping)
     }
