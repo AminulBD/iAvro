@@ -64,7 +64,10 @@
 </p>
 
 Type phonetically and pick a spelling from the candidate bar, or switch to the
-Probhat or Unijoy layout under **Preferences… › Keyboard Layout**.
+Probhat or Unijoy layout under **Preferences… › Keyboard Layout**. To pick a
+spelling, use the arrow keys, or press its number (<kbd>1</kbd>–<kbd>9</kbd>, on
+the number row or the numeric keypad). To type a digit right after a word, press
+space first.
 
 ## Keyboard layouts
 

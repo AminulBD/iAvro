@@ -13,6 +13,9 @@ import InputMethodKit
 /// since Mojave), so switching orientation in Preferences requires rebuilding the window.
 @MainActor
 enum Candidates {
+    /// How many candidates the panel shows at once, numbered from 1, in either orientation.
+    static let visibleCount = 9
+
     private static var server: IMKServer?
     private(set) static var shared: IMKCandidates?
 
