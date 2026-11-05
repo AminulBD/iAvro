@@ -38,6 +38,12 @@ final class Composition {
         candidates.indices.contains(selectedIndex) ? candidates[selectedIndex] : nil
     }
 
+    /// Whether a number key picks a candidate rather than typing a digit: only after a
+    /// word, so that numbers like `100` and `3.14` can still be typed.
+    var acceptsNumberSelection: Bool {
+        !isEmpty && term.last?.isLetter == true
+    }
+
     // MARK: - Editing
 
     func append(_ string: String) {
