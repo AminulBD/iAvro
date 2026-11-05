@@ -10,7 +10,8 @@ import InputMethodKit
 /// One instance per client text field: routes keystrokes into a `Composition`, mirrors it
 /// into the client as marked text, and drives the shared candidate window.
 ///
-/// Space or Enter commits the highlighted candidate; arrow keys move through candidates.
+/// Space or Enter commits the highlighted candidate; arrow keys move through candidates,
+/// and a number key commits the candidate shown with that number.
 ///
 /// `IMKInputController` carries no actor annotation, so its overrides are `nonisolated`.
 /// InputMethodKit always calls them on the main thread, and each one enters the main actor
@@ -22,7 +23,10 @@ import InputMethodKit
 @MainActor
 final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
     private let composition = Composition()
-    private var usedArrowKeys = false
+    /// Whether the user picked a candidate by hand, so the choice is saved on commit.
+    private var pickedCandidate = false
+    /// Index of the candidate the panel shows with the number 1.
+    private var firstVisibleCandidate = 0
     /// Text of a fixed layout's dead key, shown as marked text until the next key decides it.
     private var heldDeadKey: String?
     /// What the last key of a fixed layout typed, while typing goes on uninterrupted.
@@ -40,6 +44,7 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
     // MARK: - Candidate window
 
     private func updateCandidatesPanel() {
+        firstVisibleCandidate = 0
         guard !composition.candidates.isEmpty else {
             Candidates.shared?.hide()
             return
@@ -73,7 +78,22 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
         guard let candidate = candidateString?.string else { return }
         MainActor.assumeIsolated {
             composition.selectionChanged(to: candidate)
+            updateFirstVisibleCandidate()
             if !composition.isEmpty { updateMarkedText() }
+        }
+    }
+
+    /// Follows the panel as the selection moves: the row steps a page at a time, the
+    /// column scrolls just far enough. The panel's own line lookups can't be used for
+    /// this, as `candidateIdentifier(atLineNumber:)` returns 0 for every line.
+    private func updateFirstVisibleCandidate() {
+        let index = composition.selectedIndex
+        if Candidates.shared?.panelType() == kIMKSingleRowSteppingCandidatePanel {
+            firstVisibleCandidate = index / Candidates.visibleCount * Candidates.visibleCount
+        } else if index < firstVisibleCandidate {
+            firstVisibleCandidate = index
+        } else if index >= firstVisibleCandidate + Candidates.visibleCount {
+            firstVisibleCandidate = index - Candidates.visibleCount + 1
         }
     }
 
@@ -88,8 +108,8 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
         composition.clear()
         updateCandidatesPanel()
 
-        if usedArrowKeys {
-            usedArrowKeys = false
+        if pickedCandidate {
+            pickedCandidate = false
             if Preferences.includeDictionary {
                 CacheManager.shared.persist()
             }
@@ -175,6 +195,13 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
             return false
         }
 
+        if let candidate = candidate(forNumberKey: string) {
+            pickedCandidate = true
+            composition.selectionChanged(to: candidate)
+            commit(candidate)
+            return true
+        }
+
         composition.append(string)
         compositionDidChange()
         return true
@@ -234,8 +261,18 @@ final class AvroKeyboardController: IMKInputController, @unchecked Sendable {
 
     private func moveInCandidates(_ move: (IMKCandidates) -> Void) {
         guard let panel = Candidates.shared, panel.isVisible() else { return }
-        usedArrowKeys = true
+        pickedCandidate = true
         move(panel)
+    }
+
+    /// The candidate shown with the number on `key`, if the key picks one instead of
+    /// typing a digit.
+    private func candidate(forNumberKey key: String) -> String? {
+        guard composition.acceptsNumberSelection, let number = Int(key),
+              (1...Candidates.visibleCount).contains(number),
+              Candidates.shared?.isVisible() == true else { return nil }
+        let index = firstVisibleCandidate + number - 1
+        return composition.candidates.indices.contains(index) ? composition.candidates[index] : nil
     }
 
     /// Commits the highlighted candidate followed by `string`.
