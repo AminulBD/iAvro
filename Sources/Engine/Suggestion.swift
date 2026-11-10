@@ -35,11 +35,13 @@ final class Suggestion {
                 suggestions = cached
             } else {
                 let autoCorrect = AutoCorrect.shared.find(term)
-                let dictionary = Database.shared.find(term)
+                var dictionary = Database.shared.find(term)
 
-                // Prefer the dictionary's own copy of a word over the auto-correct entry.
-                if let autoCorrect, !dictionary.contains(autoCorrect) {
+                // The auto-correct entry always leads, even when the dictionary also has it:
+                // it names the intended word for an ambiguous spelling, e.g. `chai` → চাই over ছাই.
+                if let autoCorrect {
                     suggestions.append(autoCorrect)
+                    dictionary.removeAll { $0 == autoCorrect }
                 }
                 let distances = Dictionary(uniqueKeysWithValues: dictionary.map { ($0, parsed.levenshteinDistance(to: $0)) })
                 suggestions += dictionary.sorted { distances[$0]! < distances[$1]! }
