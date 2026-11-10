@@ -1960,6 +1960,8 @@
 	<string>বানানা</string>
 	<key>banasree</key>
 	<string>বনশ্রী</string>
+	<key>bandarban</key>
+	<string>বান্দরবান</string>
 	<key>bandwidth</key>
 	<string>ব্যান্ডউইথ</string>
 	<key>banerjee</key>
@@ -1990,8 +1992,12 @@
 	<string>বার্গেন</string>
 	<key>bargains</key>
 	<string>বারগেইনস</string>
+	<key>barguna</key>
+	<string>বরগুনা</string>
 	<key>bari</key>
 	<string>বাড়ি</string>
+	<key>barisal</key>
+	<string>বরিশাল</string>
 	<key>barishal</key>
 	<string>বরিশাল</string>
 	<key>barrel</key>
@@ -2058,6 +2064,8 @@
 	<string>ব্যাটলফিল্ড</string>
 	<key>bba</key>
 	<string>বিবিএ</string>
+	<key>bbaria</key>
+	<string>ব্রাহ্মণবাড়িয়া</string>
 	<key>bbc</key>
 	<string>বিবিসি</string>
 	<key>bcb</key>
@@ -2178,6 +2186,8 @@
 	<string>বেল্টস</string>
 	<key>ben</key>
 	<string>বেন</string>
+	<key>benapole</key>
+	<string>বেনাপোল</string>
 	<key>benchmark</key>
 	<string>বেঞ্চমার্ক</string>
 	<key>beneath</key>
@@ -2230,6 +2240,8 @@
 	<string>বিয়ন্ড</string>
 	<key>bhabsi</key>
 	<string>ভাবছি</string>
+	<key>bhairab</key>
+	<string>ভৈরব</string>
 	<key>bhallagse</key>
 	<string>ভাল্লাগছে</string>
 	<key>bharat</key>
@@ -2572,6 +2584,8 @@
 	<string>ব্র্যাডফোর্ড</string>
 	<key>bradley</key>
 	<string>ব্র্যাডলি</string>
+	<key>brahmanbaria</key>
+	<string>ব্রাহ্মণবাড়িয়া</string>
 	<key>brain</key>
 	<string>ব্রেন</string>
 	<key>brake</key>
@@ -3372,6 +3386,12 @@
 	<string>চাও</string>
 	<key>chaos</key>
 	<string>কেয়স</string>
+	<key>chapai</key>
+	<string>চাঁপাই</string>
+	<key>chapainababganj</key>
+	<string>চাঁপাইনবাবগঞ্জ</string>
+	<key>chapainawabganj</key>
+	<string>চাঁপাইনবাবগঞ্জ</string>
 	<key>chapter</key>
 	<string>চ্যাপ্টার</string>
 	<key>chapters</key>
@@ -3507,7 +3527,7 @@
 	<key>chinese</key>
 	<string>চাইনীজ</string>
 	<key>chittagong</key>
-	<string>চট্রগ্রাম</string>
+	<string>চট্টগ্রাম</string>
 	<key>chocolate</key>
 	<string>চকলেট</string>
 	<key>choice</key>
@@ -4666,7 +4686,11 @@
 	<string>কাউ</string>
 	<key>cowboy</key>
 	<string>কাউবয়</string>
+	<key>coxbazar</key>
+	<string>কক্সবাজার</string>
 	<key>coxsbajar</key>
+	<string>কক্সবাজার</string>
+	<key>coxsbazar</key>
 	<string>কক্সবাজার</string>
 	<key>cpi</key>
 	<string>সিপিআই</string>
@@ -6970,6 +6994,8 @@
 	<string>ফেয়ার</string>
 	<key>fares</key>
 	<string>ফেয়ারস</string>
+	<key>faridpur</key>
+	<string>ফরিদপুর</string>
 	<key>farmer</key>
 	<string>ফার্মার</string>
 	<key>farmers</key>
@@ -7092,6 +7118,8 @@
 	<string>ফিমেইলস</string>
 	<key>fence</key>
 	<string>ফেন্স</string>
+	<key>feni</key>
+	<string>ফেনী</string>
 	<key>ferrari</key>
 	<string>ফেরারি</string>
 	<key>ferry</key>
@@ -7978,6 +8006,8 @@
 	<string>গুডস</string>
 	<key>google</key>
 	<string>গুগল</string>
+	<key>gopalganj</key>
+	<string>গোপালগঞ্জ</string>
 	<key>gordon</key>
 	<string>গর্ডন</string>
 	<key>gorgeous</key>
@@ -8190,6 +8220,8 @@
 	<string>জিজিপ</string>
 	<key>ha^Tenni</key>
 	<string>হাঁটেননি</string>
+	<key>habiganj</key>
+	<string>হবিগঞ্জ</string>
 	<key>habitat</key>
 	<string>হ্যাবিট্যাট</string>
 	<key>habits</key>
@@ -8536,6 +8568,8 @@
 	<string>হবিজ</string>
 	<key>hobby</key>
 	<string>হবি</string>
+	<key>hobiganj</key>
+	<string>হবিগঞ্জ</string>
 	<key>hoibo</key>
 	<string>হইবো</string>
 	<key>hoini</key>
@@ -9342,6 +9376,10 @@
 	<string>আইআরএস</string>
 	<key>isbn</key>
 	<string>আইএসবিএন</string>
+	<key>ishurdi</key>
+	<string>ঈশ্বরদী</string>
+	<key>ishwardi</key>
+	<string>ঈশ্বরদী</string>
 	<key>islamic</key>
 	<string>ইসলামিক</string>
 	<key>islands</key>
@@ -9392,6 +9430,8 @@
 	<string>জ্যাকব</string>
 	<key>jade</key>
 	<string>জেড</string>
+	<key>jaflong</key>
+	<string>জাফলং</string>
 	<key>jai</key>
 	<string>যাই</string>
 	<key>jail</key>
@@ -9400,6 +9440,8 @@
 	<string>যাইমু</string>
 	<key>jaio</key>
 	<string>যাইও</string>
+	<key>jaipurhat</key>
+	<string>জয়পুরহাট</string>
 	<key>jaitasi</key>
 	<string>যাইতাছি</string>
 	<key>jaitaso</key>
@@ -9474,6 +9516,14 @@
 	<string>জুয়েলারি</string>
 	<key>jewish</key>
 	<string>জিউইশ</string>
+	<key>jhalakathi</key>
+	<string>ঝালকাঠি</string>
+	<key>jhalokati</key>
+	<string>ঝালকাঠি</string>
+	<key>jhenaidah</key>
+	<string>ঝিনাইদহ</string>
+	<key>jhenaidaha</key>
+	<string>ঝিনাইদহ</string>
 	<key>jkhn</key>
 	<string>যখন</string>
 	<key>joe</key>
@@ -9608,6 +9658,8 @@
 	<string>কেনিয়া</string>
 	<key>kept</key>
 	<string>কেপ্ট</string>
+	<key>keraniganj</key>
+	<string>কেরানীগঞ্জ</string>
 	<key>kernel</key>
 	<string>কার্নেল</string>
 	<key>ketchup</key>
@@ -9630,6 +9682,10 @@
 	<string>কেজি</string>
 	<key>khaccho</key>
 	<string>খাচ্ছো</string>
+	<key>khagrachari</key>
+	<string>খাগড়াছড়ি</string>
+	<key>khagrachhari</key>
+	<string>খাগড়াছড়ি</string>
 	<key>khaise</key>
 	<string>খাইছে</string>
 	<key>khaisi</key>
@@ -9690,6 +9746,12 @@
 	<string>কিনছি</string>
 	<key>kisher</key>
 	<string>কিসের</string>
+	<key>kishoreganj</key>
+	<string>কিশোরগঞ্জ</string>
+	<key>kishoregonj</key>
+	<string>কিশোরগঞ্জ</string>
+	<key>kishorganj</key>
+	<string>কিশোরগঞ্জ</string>
 	<key>kiss</key>
 	<string>কিস</string>
 	<key>kisukkhon</key>
@@ -9852,6 +9914,8 @@
 	<string>লেক</string>
 	<key>lakes</key>
 	<string>লেকস</string>
+	<key>lakshmipur</key>
+	<string>লক্ষ্মীপুর</string>
 	<key>lamborghini</key>
 	<string>ল্যাম্বরগিনি</string>
 	<key>lamps</key>
@@ -9930,6 +9994,8 @@
 	<string>লসুট</string>
 	<key>lawyers</key>
 	<string>লয়ারস</string>
+	<key>laxmipur</key>
+	<string>লক্ষ্মীপুর</string>
 	<key>lay</key>
 	<string>লে</string>
 	<key>layers</key>
@@ -10360,6 +10426,8 @@
 	<string>ম্যাগনিফিসেন্ট</string>
 	<key>magnitude</key>
 	<string>ম্যাগনিটিউড</string>
+	<key>maheshkhali</key>
+	<string>মহেশখালী</string>
 	<key>maiden</key>
 	<string>মেইডেন</string>
 	<key>mailed</key>
@@ -10430,6 +10498,8 @@
 	<string>ম্যান্ডেটরি</string>
 	<key>manhattan</key>
 	<string>ম্যানহাটন</string>
+	<key>manikganj</key>
+	<string>মানিকগঞ্জ</string>
 	<key>manitoba</key>
 	<string>ম্যানিটোবা</string>
 	<key>manner</key>
@@ -10544,6 +10614,8 @@
 	<string>ম্যাথিউ</string>
 	<key>mattress</key>
 	<string>ম্যাট্রেস</string>
+	<key>maulvibazar</key>
+	<string>মৌলভীবাজার</string>
 	<key>mauritius</key>
 	<string>মরিশাস</string>
 	<key>maybe</key>
@@ -10880,6 +10952,8 @@
 	<string>মানডে</string>
 	<key>monetary</key>
 	<string>মনিটারি</string>
+	<key>mongla</key>
+	<string>মোংলা</string>
 	<key>monica</key>
 	<string>মনিকা</string>
 	<key>monitored</key>
@@ -10970,6 +11044,8 @@
 	<string>মুভিজ</string>
 	<key>moving</key>
 	<string>মুভিং</string>
+	<key>moymonsingh</key>
+	<string>ময়মনসিংহ</string>
 	<key>mozambique</key>
 	<string>মোজাম্বিক</string>
 	<key>mozar</key>
@@ -11006,6 +11082,10 @@
 	<string>মিউনিসিপ্যাল</string>
 	<key>municipality</key>
 	<string>মিউনিসিপ্যালিটি</string>
+	<key>munshiganj</key>
+	<string>মুন্সীগঞ্জ</string>
+	<key>munshigonj</key>
+	<string>মুন্সীগঞ্জ</string>
 	<key>murder</key>
 	<string>মার্ডার</string>
 	<key>muscle</key>
@@ -11056,14 +11136,26 @@
 	<string>ন্যান্সি</string>
 	<key>nani</key>
 	<string>নানী</string>
+	<key>naogaon</key>
+	<string>নওগাঁ</string>
 	<key>napa</key>
 	<string>নাপা</string>
 	<key>naples</key>
 	<string>নেপলস</string>
+	<key>narail</key>
+	<string>নড়াইল</string>
+	<key>narayanganj</key>
+	<string>নারায়ণগঞ্জ</string>
+	<key>narayangonj</key>
+	<string>নারায়ণগঞ্জ</string>
 	<key>narrative</key>
 	<string>ন্যারেটিভ</string>
 	<key>narrow</key>
 	<string>ন্যারো</string>
+	<key>narshingdi</key>
+	<string>নরসিংদী</string>
+	<key>narsingdi</key>
+	<string>নরসিংদী</string>
 	<key>nasdaq</key>
 	<string>ন্যাসড্যাক</string>
 	<key>nasty</key>
@@ -11076,6 +11168,8 @@
 	<string>নেশনস</string>
 	<key>nationwide</key>
 	<string>নেশনওয়াইড</string>
+	<key>natore</key>
+	<string>নাটোর</string>
 	<key>natural</key>
 	<string>ন্যাচারাল</string>
 	<key>naturally</key>
@@ -11092,6 +11186,8 @@
 	<string>নেভিগেটর</string>
 	<key>navy</key>
 	<string>নেভি</string>
+	<key>nawabganj</key>
+	<string>নবাবগঞ্জ</string>
 	<key>nba</key>
 	<string>এনবিএ</string>
 	<key>nbc</key>
@@ -11156,6 +11252,8 @@
 	<string>নেটফ্লিক্স</string>
 	<key>netherlands</key>
 	<string>নেদারল্যান্ডস</string>
+	<key>netrakona</key>
+	<string>নেত্রকোনা</string>
 	<key>netscape</key>
 	<string>নেটস্কেপ</string>
 	<key>networking</key>
@@ -11778,6 +11876,10 @@
 	<string>প্যানাসনিক</string>
 	<key>panch</key>
 	<string>পাঁচ</string>
+	<key>panchagar</key>
+	<string>পঞ্চগড়</string>
+	<key>panchagarh</key>
+	<string>পঞ্চগড়</string>
 	<key>pandemic</key>
 	<string>প্যানডেমিক</string>
 	<key>panels</key>
@@ -11930,6 +12032,8 @@
 	<string>প্যাটার্ন</string>
 	<key>patterns</key>
 	<string>প্যাটার্নস</string>
+	<key>patuakhali</key>
+	<string>পটুয়াখালী</string>
 	<key>paul</key>
 	<string>পল</string>
 	<key>payable</key>
@@ -13028,6 +13132,8 @@
 	<string>রেইজেস</string>
 	<key>raising</key>
 	<string>রেইজিং</string>
+	<key>rajbari</key>
+	<string>রাজবাড়ী</string>
 	<key>rakhse</key>
 	<string>রাখছে</string>
 	<key>rakhsi</key>
@@ -13950,8 +14056,12 @@
 	<string>সেফটি</string>
 	<key>sagol</key>
 	<string>ছাগল</string>
+	<key>saidpur</key>
+	<string>সৈয়দপুর</string>
 	<key>sailing</key>
 	<string>সেইলিং</string>
+	<key>saintmartin</key>
+	<string>সেন্টমার্টিন</string>
 	<key>saints</key>
 	<string>সেইন্টস</string>
 	<key>salaries</key>
@@ -13994,6 +14104,8 @@
 	<string>স্যান্ড্রা</string>
 	<key>sandwich</key>
 	<string>স্যান্ডউইচ</string>
+	<key>sandwip</key>
+	<string>সন্দ্বীপ</string>
 	<key>sandy</key>
 	<string>স্যান্ডি</string>
 	<key>sanitizer</key>
@@ -14014,6 +14126,8 @@
 	<string>স্যাটিসফাইড</string>
 	<key>satisfy</key>
 	<string>স্যাটিসফাই</string>
+	<key>satkhira</key>
+	<string>সাতক্ষীরা</string>
 	<key>saturday</key>
 	<string>স্যাটারডে</string>
 	<key>saturn</key>
@@ -14362,6 +14476,8 @@
 	<string>শেয়ারস</string>
 	<key>shareware</key>
 	<string>শেয়ারওয়্যার</string>
+	<key>shariatpur</key>
+	<string>শরীয়তপুর</string>
 	<key>sharing</key>
 	<string>শেয়ারিং</string>
 	<key>shark</key>
@@ -14410,6 +14526,8 @@
 	<string>শপারস</string>
 	<key>shops</key>
 	<string>শপস</string>
+	<key>shoriotpur</key>
+	<string>শরীয়তপুর</string>
 	<key>shortcuts</key>
 	<string>শর্টকাটস</string>
 	<key>shorter</key>
@@ -14520,10 +14638,14 @@
 	<string>সিঙ্গেলস</string>
 	<key>sink</key>
 	<string>সিংক</string>
+	<key>sirajganj</key>
+	<string>সিরাজগঞ্জ</string>
 	<key>sister</key>
 	<string>সিস্টার</string>
 	<key>sisters</key>
 	<string>সিস্টার্স</string>
+	<key>sitakunda</key>
+	<string>সীতাকুণ্ড</string>
 	<key>sitemap</key>
 	<string>সাইটম্যাপ</string>
 	<key>sites</key>
@@ -14868,6 +14990,10 @@
 	<string>এসকিউএল</string>
 	<key>squad</key>
 	<string>স্কোয়াড</string>
+	<key>sreemangal</key>
+	<string>শ্রীমঙ্গল</string>
+	<key>srimangal</key>
+	<string>শ্রীমঙ্গল</string>
 	<key>sry</key>
 	<string>সরি</string>
 	<key>ssc</key>
@@ -15254,6 +15380,8 @@
 	<string>সামার</string>
 	<key>summit</key>
 	<string>সামিট</string>
+	<key>sunamganj</key>
+	<string>সুনামগঞ্জ</string>
 	<key>sunday</key>
 	<string>সানডে</string>
 	<key>sunglasses</key>
@@ -15646,6 +15774,8 @@
 	<string>টেক্সটস</string>
 	<key>texture</key>
 	<string>টেক্সচার</string>
+	<key>thakurgaon</key>
+	<string>ঠাকুরগাঁও</string>
 	<key>thanksgiving</key>
 	<string>থ্যাংকসগিভিং</string>
 	<key>thankyou</key>
@@ -15910,6 +16040,8 @@
 	<string>টোনার</string>
 	<key>tones</key>
 	<string>টোনস</string>
+	<key>tongi</key>
+	<string>টঙ্গী</string>
 	<key>tongue</key>
 	<string>টাং</string>
 	<key>tonight</key>
