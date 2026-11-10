@@ -351,6 +351,14 @@
   .layouts-note { border: 1px solid var(--line); border-top: 0; padding: 1.15rem 1.4rem; font-size: .93rem; color: var(--muted); }
   .layouts-note strong { color: var(--text); font-weight: 650; }
 
+  /* full feature list */
+  .flist .feat ul { list-style: none; margin: .9rem 0 0; padding: 0; color: var(--muted); font-size: .9rem; }
+  .flist .feat li { padding: .45rem 0 .45rem 1.05rem; position: relative; border-top: 1px solid var(--line); }
+  .flist .feat li:first-child { border-top: 0; padding-top: 0; }
+  .flist .feat li::before { content: ""; position: absolute; left: 0; top: .95em; width: 5px; height: 5px; background: var(--accent); }
+  .flist .feat li:first-child::before { top: .5em; }
+  .flist strong { color: var(--text); font-weight: 650; }
+
   /* ANSI highlight */
   .ansi { scroll-margin-top: 80px; margin-top: 3.5rem; border: 1px solid var(--accent); display: grid; grid-template-columns: 1.1fr .9fr; }
   .ansi > * { padding: 2.1rem 1.9rem; }
@@ -646,6 +654,67 @@
       <figure class="shot">
         <a class="frame" href="assets/screenshots/output-as-ansi.png"><img src="assets/screenshots/output-as-ansi.png" width="810" height="536" loading="lazy" alt="The Preferences window with the Output as ANSI (Bijoy fonts) checkbox under Keyboard Layout"></a>
       </figure>
+    </div>
+
+    <div class="layouts-head" id="all-features">
+      <h3>Everything it does</h3>
+      <p>Every feature in the current release, in one place.</p>
+    </div>
+    <div class="cells c3 flist">
+      <div class="feat"><span class="idx">9 FEATURES</span><h3>Typing</h3>
+        <ul>
+          <li>Avro Phonetic, with the same rules as Avro Keyboard for Windows: <code>ami</code> → <span class="bn">আমি</span></li>
+          <li>Live preview: the highlighted spelling shows underlined in your text as you type</li>
+          <li>Candidate bar, horizontal or vertical</li>
+          <li>Pick with the arrow keys or <kbd>1</kbd>–<kbd>9</kbd> (number row or keypad); <kbd>Space</kbd> commits</li>
+          <li>What you typed is always the second candidate, to keep an English word</li>
+          <li>Punctuation is kept: <code>(ami)</code> → (<span class="bn">আমি</span>), <code>ami.</code> → <span class="bn">আমি।</span></li>
+          <li>Remembers the spelling you pick and offers it first next time</li>
+          <li><kbd>Return</kbd> commits, optionally with a new line; <kbd>Tab</kbd> commits and types a tab</li>
+          <li>Works in every app, and the candidate bar stays above Spotlight</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">4 FEATURES</span><h3>Suggestions</h3>
+        <ul>
+          <li>Dictionary of about 159,000 Bangla words, closest spelling first</li>
+          <li>About 750 suffixes joined to dictionary words: <code>bhalobashar</code> → <span class="bn">ভালোবাসার</span></li>
+          <li>About 1,900 emoji by their English and Bangla names: <code>happy</code> or <code>hasi</code> → 😀</li>
+          <li>Dictionary suggestions can be turned off in Preferences</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">6 FEATURES</span><h3>Auto-correct</h3>
+        <ul>
+          <li>About 10,000 built-in entries, including fixed spellings of common words</li>
+          <li>About 7,300 English words in Bangla script: <code>exciting</code> → <span class="bn">এক্সাইটিং</span></li>
+          <li>Banglish and chat spellings: <code>tmi</code> → <span class="bn">তুমি</span>, <code>korsi</code> → <span class="bn">করছি</span></li>
+          <li>Every district, well-known towns, and Dhaka and Chattogram neighbourhoods</li>
+          <li>Ordinals like <code>1st</code> → <span class="bn">১ম</span>, and emoticons</li>
+          <li><strong>Your own replacements</strong>, like macOS text replacements: <code>addr</code> → your address. They come first, even with dictionary suggestions off</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">3 FEATURES</span><h3>Layouts and output</h3>
+        <ul>
+          <li>Avro Phonetic, Probhat and Unijoy, switched from the next key you press</li>
+          <li>ANSI (Bijoy) output for SutonnyMJ and other Bijoy fonts, with every layout</li>
+          <li>Full old style typing for Probhat and Unijoy: <span class="bn">ি</span>, <span class="bn">ে</span> and <span class="bn">ৈ</span> before their consonant, as on a typewriter</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">2 FEATURES</span><h3>Preferences</h3>
+        <ul>
+          <li><strong>General:</strong> layout, ANSI output, old style typing, candidate bar orientation, dictionary suggestions, Return key</li>
+          <li><strong>AutoCorrect:</strong> add, change and remove your own replacements, and search the built-in list</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">6 FEATURES</span><h3>Install and system</h3>
+        <ul>
+          <li>Double-click to install from the DMG; it adds and selects itself with no log-out, and offers to update older versions</li>
+          <li>Homebrew: <code>brew install --cask aminulbd/tap/avro</code></li>
+          <li>macOS 12 Monterey and later, on Apple Silicon and Intel, from one universal build</li>
+          <li>Signed and notarized releases, with SHA-256 checksums</li>
+          <li>Native Swift on Input Method Kit, with no third-party dependencies</li>
+          <li>Free and open source under MPL 1.1</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>

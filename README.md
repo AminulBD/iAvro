@@ -37,6 +37,7 @@
 > for SutonnyMJ and other Bijoy fonts, with all three layouts. See
 > [ANSI (Bijoy) output](#ansi-bijoy-output).
 
+- [Features](#features)
 - [Screenshots](#screenshots)
 - [Keyboard layouts](#keyboard-layouts)
 - [ANSI (Bijoy) output](#ansi-bijoy-output)
@@ -52,6 +53,86 @@
   - [Releases](#releases)
   - [Signing and notarization](#signing-and-notarization)
 - [License](#license)
+
+## Features
+
+### Typing
+
+- **Avro Phonetic**, with the same transliteration rules as Avro Keyboard for
+  Windows: write Bangla in Latin letters the way it sounds, so `ami` becomes আমি.
+- **Live preview:** the highlighted spelling is shown underlined in your text
+  while you type, in Bangla, and is replaced as you pick another.
+- **Candidate bar** with alternate spellings, shown horizontally (the default)
+  or as a vertical list.
+- **Pick a spelling** with the arrow keys, or by pressing its number
+  (<kbd>1</kbd>–<kbd>9</kbd>, on the number row or the numeric keypad).
+  <kbd>Space</kbd> commits the highlighted spelling. Numbers like `100` and
+  `3.14` still type as digits.
+- **English stays one key away:** the text you typed is always the second
+  candidate, so an English word can be kept as it is.
+- **Punctuation is kept around a word:** `(ami)` gives (আমি), and `ami.` gives
+  আমি।
+- **Remembers your choices:** the spelling you pick for a word is offered first
+  the next time. Picking a word with a suffix also teaches its base word.
+- <kbd>Return</kbd> commits the word, and can also start a new line if you turn
+  on **Commit new line on Enter/Return**. <kbd>Tab</kbd> commits the word and
+  types a tab.
+- **Works in every app**, as a regular macOS input source, and the candidate
+  bar stays visible above Spotlight and other overlays.
+
+### Suggestions
+
+- **Dictionary suggestions** from about 159,000 Bangla words, with the closest
+  spelling first. You can turn them off under **Include Dictionary Suggestions**.
+- **Suffixes:** about 750 suffixes like `-er`, `-ke` and `-gulo` are joined to
+  dictionary words with the right spelling at the join, so `bhalobashar` offers
+  ভালোবাসার.
+- **Built-in auto-correct** with about 10,000 entries:
+  - fixed spellings of common words
+  - about 7,300 English words in Bangla script: `exciting` gives এক্সাইটিং
+  - Banglish and chat spellings: `tmi` gives তুমি, `korsi` gives করছি, `plz`
+    gives প্লিজ
+  - every district of Bangladesh, well-known towns, and the neighbourhoods of
+    Dhaka and Chattogram
+  - ordinals like `1st` (১ম), and emoticons
+- **[Your own replacements](#your-own-replacements),** like text replacements
+  in macOS: `addr` for your address, `@@` for your email. They come first, and
+  work even with dictionary suggestions turned off.
+- **Emoji:** about 1,900 emoji, found by their English and Bangla names and
+  tags. `happy` or `hasi` (হাসি) offer 😀 after the spellings.
+
+### Layouts and output
+
+- **[Three keyboard layouts](#keyboard-layouts):** Avro Phonetic, Probhat and
+  Unijoy. Switch under **Preferences… › Keyboard Layout**; the switch applies
+  from the next key you press.
+- **[ANSI (Bijoy) output](#ansi-bijoy-output)** for SutonnyMJ and other Bijoy
+  fonts, with all three layouts.
+- **[Full old style typing](#full-old-style-typing)** for Probhat and Unijoy:
+  type ি, ে and ৈ before their consonant and the reph after it, as on a
+  typewriter.
+
+### Preferences
+
+- **General:** keyboard layout, ANSI output, old style typing, candidate bar
+  orientation, dictionary suggestions, and what Return does.
+- **AutoCorrect:** add, change and remove your own replacements, and search the
+  built-in list.
+
+### Installation and system
+
+- **Install by double-clicking:** open the DMG and double-click **Avro
+  Keyboard**. It copies itself into `~/Library/Input Methods`, adds itself to
+  your input sources and switches to itself, with no log-out needed. Opening a
+  newer version offers to update.
+- **[Homebrew](#homebrew):** `brew install --cask aminulbd/tap/avro`.
+- **[macOS 12 Monterey and later](#supported-macos-versions),** on Apple
+  silicon and Intel, from a single universal build. Apple silicon-only and
+  Intel-only builds are available too.
+- **Signed and notarized** releases, with SHA-256 checksums.
+- **Native Swift** on Apple's Input Method Kit, with no third-party
+  dependencies. SQLite comes from macOS.
+- **Free and open source** under the [Mozilla Public License 1.1](LICENSE).
 
 ## Screenshots
 
