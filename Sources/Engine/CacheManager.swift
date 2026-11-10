@@ -21,15 +21,9 @@ final class CacheManager {
     private var phoneticCache: [String: [String]] = [:]
     private var recentBaseCache: [String: (term: String, word: String)] = [:]
 
-    private static let storageDirectory: URL = {
-        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        return appSupport.appendingPathComponent("app.aminul.inputmethod.AvroKeyboard")
-    }()
-
-    private static let weightFile = storageDirectory.appendingPathComponent("weight.plist")
+    private static let weightFile = Storage.file("weight.plist")
 
     private init() {
-        try? FileManager.default.createDirectory(at: Self.storageDirectory, withIntermediateDirectories: true)
         weightCache = (NSDictionary(contentsOf: Self.weightFile) as? [String: String]) ?? [:]
     }
 
@@ -59,6 +53,11 @@ final class CacheManager {
 
     func setArray(_ array: [String], forKey key: String) {
         phoneticCache[key] = array
+    }
+
+    /// Forgets every suggestion list, so the next lookup sees changed auto-correct entries.
+    func removeAllArrays() {
+        phoneticCache.removeAll()
     }
 
     // MARK: Base (reverse suffix lookup)

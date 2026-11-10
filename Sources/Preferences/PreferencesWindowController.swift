@@ -18,7 +18,7 @@ final class PreferencesWindowController: NSWindowController {
         var size: NSSize {
             switch self {
             case .general: return NSSize(width: 450, height: 241)
-            case .autoCorrect: return NSSize(width: 450, height: 331)
+            case .autoCorrect: return NSSize(width: 450, height: 400)
             case .credits: return NSSize(width: 450, height: 450)
             }
         }
@@ -32,11 +32,24 @@ final class PreferencesWindowController: NSWindowController {
     private lazy var creditsView = makeCreditsView()
 
     // AutoCorrect pane state
-    private let autoCorrectEntries: [(replace: String, with: String)] = AutoCorrect.shared.entries
+    private enum AutoCorrectList: Int {
+        case personal = 0
+        case builtIn = 1
+    }
+
+    private var autoCorrectList: AutoCorrectList = .personal
+    private let builtInEntries: [Replacement] = AutoCorrect.shared.entries
         .sorted { $0.key < $1.key }
-        .map { (replace: $0.key, with: $0.value) }
-    private var filteredEntries: [(replace: String, with: String)] = []
-    private let autoCorrectTable = NSTableView()
+        .map { Replacement(shortcut: $0.key, phrase: $0.value) }
+    /// The user's entries as edited here, including a new row still being typed.
+    private var personalEntries: [Replacement] = AutoCorrect.shared.replacements
+        .sorted { $0.shortcut.localizedStandardCompare($1.shortcut) == .orderedAscending }
+    /// Rows of the table that match the search: indices into the shown list.
+    private var filteredRows: [Int] = []
+    private let autoCorrectTable = DeletingTableView()
+    private let searchField = NSSearchField()
+    private let addRemoveControl = NSSegmentedControl()
+    private let messageLabel = NSTextField(wrappingLabelWithString: "")
     private let countLabel = NSTextField(labelWithString: "")
 
     init() {
@@ -56,7 +69,6 @@ final class PreferencesWindowController: NSWindowController {
         toolbar.selectedItemIdentifier = Pane.general.identifier
         panel.toolbar = toolbar
 
-        filteredEntries = autoCorrectEntries
         show(.general, animated: false)
         panel.center()
     }
@@ -78,6 +90,7 @@ final class PreferencesWindowController: NSWindowController {
 
     @objc private func switchPane(_ sender: NSToolbarItem) {
         guard let pane = Pane(rawValue: sender.itemIdentifier.rawValue), pane != currentPane else { return }
+        window?.makeFirstResponder(nil) // finish any edit in the AutoCorrect table
         show(pane, animated: true)
     }
 
@@ -184,7 +197,10 @@ final class PreferencesWindowController: NSWindowController {
     // MARK: - AutoCorrect
 
     private func makeAutoCorrectView() -> NSView {
-        let searchField = NSSearchField()
+        let listSwitch = NSSegmentedControl(labels: ["Personal", "Built-in"], trackingMode: .selectOne,
+                                            target: self, action: #selector(switchAutoCorrectList(_:)))
+        listSwitch.selectedSegment = autoCorrectList.rawValue
+
         searchField.target = self
         searchField.action = #selector(filterEntries(_:))
         searchField.sendsSearchStringImmediately = true
@@ -192,32 +208,49 @@ final class PreferencesWindowController: NSWindowController {
         for (title, key) in [("Replace", "replace"), ("With", "with")] {
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(key))
             column.title = title
-            column.width = 200
-            column.isEditable = false
+            column.width = key == "replace" ? 140 : 260
             autoCorrectTable.addTableColumn(column)
         }
         autoCorrectTable.usesAlternatingRowBackgroundColors = true
-        autoCorrectTable.allowsMultipleSelection = false
+        autoCorrectTable.allowsMultipleSelection = true
         autoCorrectTable.allowsColumnReordering = false
         autoCorrectTable.columnAutoresizingStyle = .lastColumnOnlyAutoresizingStyle
         autoCorrectTable.dataSource = self
         autoCorrectTable.delegate = self
+        autoCorrectTable.target = self
+        autoCorrectTable.doubleAction = #selector(editClickedEntry(_:))
+        autoCorrectTable.onDelete = { [weak self] in self?.removeSelectedEntries() }
 
         let scrollView = NSScrollView()
         scrollView.documentView = autoCorrectTable
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .bezelBorder
 
+        addRemoveControl.segmentCount = 2
+        addRemoveControl.trackingMode = .momentary
+        addRemoveControl.segmentStyle = .smallSquare
+        addRemoveControl.setImage(NSImage(named: NSImage.addTemplateName), forSegment: 0)
+        addRemoveControl.setImage(NSImage(named: NSImage.removeTemplateName), forSegment: 1)
+        addRemoveControl.setToolTip("Add a replacement", forSegment: 0)
+        addRemoveControl.setToolTip("Remove the selected replacements", forSegment: 1)
+        for segment in 0..<2 { addRemoveControl.setWidth(24, forSegment: segment) }
+        addRemoveControl.target = self
+        addRemoveControl.action = #selector(addOrRemoveEntry(_:))
+
+        messageLabel.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+        messageLabel.preferredMaxLayoutWidth = 410
         countLabel.alignment = .right
-        updateCountLabel()
 
         let container = NSView()
-        for view in [searchField, scrollView, countLabel] {
+        for view in [listSwitch, searchField, scrollView, addRemoveControl, countLabel, messageLabel] {
             view.translatesAutoresizingMaskIntoConstraints = false
             container.addSubview(view)
         }
         NSLayoutConstraint.activate([
-            searchField.topAnchor.constraint(equalTo: container.topAnchor, constant: 20),
+            listSwitch.topAnchor.constraint(equalTo: container.topAnchor, constant: 16),
+            listSwitch.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+
+            searchField.topAnchor.constraint(equalTo: listSwitch.bottomAnchor, constant: 12),
             searchField.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
             searchField.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20),
 
@@ -225,28 +258,181 @@ final class PreferencesWindowController: NSWindowController {
             scrollView.leadingAnchor.constraint(equalTo: searchField.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: searchField.trailingAnchor),
 
-            countLabel.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 8),
+            // The add/remove buttons sit right under the table, as in macOS's own lists.
+            addRemoveControl.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -1),
+            addRemoveControl.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+
+            countLabel.centerYAnchor.constraint(equalTo: addRemoveControl.centerYAnchor),
             countLabel.trailingAnchor.constraint(equalTo: searchField.trailingAnchor),
-            countLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20),
+
+            messageLabel.topAnchor.constraint(equalTo: addRemoveControl.bottomAnchor, constant: 8),
+            messageLabel.leadingAnchor.constraint(equalTo: searchField.leadingAnchor),
+            messageLabel.trailingAnchor.constraint(equalTo: searchField.trailingAnchor),
+            messageLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -16),
         ])
+
+        reloadAutoCorrectTable()
+        showMessage(nil)
         return container
     }
 
-    @objc private func filterEntries(_ sender: NSSearchField) {
-        let query = sender.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
-        if query.isEmpty {
-            filteredEntries = autoCorrectEntries
-        } else {
-            filteredEntries = autoCorrectEntries.filter {
-                $0.replace.localizedCaseInsensitiveContains(query) || $0.with.contains(query)
-            }
-        }
-        autoCorrectTable.reloadData()
-        updateCountLabel()
+    /// The list the table shows: the user's own entries or the built-in ones.
+    private var shownEntries: [Replacement] {
+        autoCorrectList == .personal ? personalEntries : builtInEntries
     }
 
-    private func updateCountLabel() {
-        countLabel.stringValue = "\(filteredEntries.count) Items"
+    @objc private func switchAutoCorrectList(_ sender: NSSegmentedControl) {
+        guard let list = AutoCorrectList(rawValue: sender.selectedSegment), list != autoCorrectList else { return }
+        window?.makeFirstResponder(nil)
+        autoCorrectList = list
+        searchField.stringValue = ""
+        addRemoveControl.isHidden = list == .builtIn
+        reloadAutoCorrectTable()
+        showMessage(nil)
+    }
+
+    @objc private func filterEntries(_ sender: NSSearchField) {
+        reloadAutoCorrectTable()
+    }
+
+    /// Re-applies the search and reloads the table.
+    private func reloadAutoCorrectTable() {
+        let query = searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        let entries = shownEntries
+        filteredRows = entries.indices.filter { index in
+            query.isEmpty
+                || entries[index].shortcut.localizedCaseInsensitiveContains(query)
+                || entries[index].phrase.contains(query)
+        }
+        autoCorrectTable.reloadData()
+        countLabel.stringValue = filteredRows.count == 1 ? "1 Item" : "\(filteredRows.count) Items"
+        updateRemoveButton()
+    }
+
+    private func updateRemoveButton() {
+        addRemoveControl.setEnabled(!autoCorrectTable.selectedRowIndexes.isEmpty, forSegment: 1)
+    }
+
+    /// Shows `problem` in red, else `hint`, else a note on how the shown list is used.
+    private func showMessage(_ problem: String?, hint: String? = nil) {
+        if let problem {
+            messageLabel.stringValue = problem
+            messageLabel.textColor = .systemRed
+            return
+        }
+        messageLabel.textColor = .secondaryLabelColor
+        if let hint {
+            messageLabel.stringValue = hint
+            return
+        }
+        switch autoCorrectList {
+        case .personal:
+            messageLabel.stringValue = "Your replacements come first in the suggestions when typing with Avro Phonetic, even with dictionary suggestions turned off. Click + to add one; double-click a row to change it."
+        case .builtIn:
+            messageLabel.stringValue = "Built-in replacements are offered with dictionary suggestions turned on. Add a personal replacement with the same shortcut to override one."
+        }
+    }
+
+    // MARK: Editing personal replacements
+
+    @objc private func addOrRemoveEntry(_ sender: NSSegmentedControl) {
+        if sender.selectedSegment == 0 {
+            addEntry()
+        } else {
+            removeSelectedEntries()
+        }
+    }
+
+    private func addEntry() {
+        guard autoCorrectList == .personal, let window else { return }
+        window.makeFirstResponder(nil)
+        // Reuse a blank row left from an earlier add.
+        if !personalEntries.contains(where: { $0.shortcut.isEmpty && $0.phrase.isEmpty }) {
+            personalEntries.append(Replacement(shortcut: "", phrase: ""))
+        }
+        searchField.stringValue = ""
+        reloadAutoCorrectTable()
+        guard let row = filteredRows.firstIndex(where: { personalEntries[$0].shortcut.isEmpty && personalEntries[$0].phrase.isEmpty }) else { return }
+        autoCorrectTable.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        autoCorrectTable.scrollRowToVisible(row)
+        autoCorrectTable.editColumn(0, row: row, with: nil, select: true)
+    }
+
+    private func removeSelectedEntries() {
+        guard autoCorrectList == .personal else { return }
+        window?.makeFirstResponder(nil)
+        let indices = autoCorrectTable.selectedRowIndexes.compactMap { filteredRows.indices.contains($0) ? filteredRows[$0] : nil }
+        guard !indices.isEmpty else { return }
+        for index in indices.sorted(by: >) {
+            personalEntries.remove(at: index)
+        }
+        autoCorrectTable.deselectAll(nil)
+        reloadAutoCorrectTable()
+        savePersonalEntries()
+    }
+
+    @objc private func editClickedEntry(_ sender: NSTableView) {
+        guard autoCorrectList == .personal, sender.clickedRow >= 0 else { return }
+        sender.editColumn(max(sender.clickedColumn, 0), row: sender.clickedRow, with: nil, select: true)
+    }
+
+    /// A cell of the personal list was edited.
+    @objc private func entryEdited(_ field: NSTextField) {
+        let row = autoCorrectTable.row(for: field)
+        let column = autoCorrectTable.column(for: field)
+        guard autoCorrectList == .personal, column >= 0, filteredRows.indices.contains(row) else { return }
+        let index = filteredRows[row]
+
+        if column == 0 {
+            personalEntries[index].shortcut = field.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+            field.stringValue = personalEntries[index].shortcut
+        } else {
+            personalEntries[index].phrase = field.stringValue
+        }
+        let entry = personalEntries[index]
+
+        // A row emptied out is removed.
+        if entry.shortcut.isEmpty && entry.phrase.isEmpty {
+            personalEntries.remove(at: index)
+            reloadAutoCorrectTable()
+            savePersonalEntries()
+            return
+        }
+
+        savePersonalEntries()
+
+        // Go on to the phrase of a new entry once its shortcut is in.
+        if column == 0, entry.phrase.isEmpty,
+           AutoCorrect.problem(withShortcut: entry.shortcut, others: personalEntries.enumerated().filter { $0.offset != index }.map(\.element)) == nil {
+            DispatchQueue.main.async { [weak self] in
+                self?.autoCorrectTable.editColumn(1, row: row, with: nil, select: true)
+            }
+        }
+    }
+
+    /// Saves the complete, valid entries, and reports the first one that can't be saved.
+    private func savePersonalEntries() {
+        var valid: [Replacement] = []
+        var problem: String?
+        var hint: String?
+        for entry in personalEntries {
+            if entry.shortcut.isEmpty && entry.phrase.isEmpty { continue }
+            if let shortcutProblem = AutoCorrect.problem(withShortcut: entry.shortcut, others: valid) {
+                problem = problem ?? shortcutProblem
+                continue
+            }
+            if entry.phrase.isEmpty {
+                hint = hint ?? "Type what “\(entry.shortcut)” should be replaced with."
+                continue
+            }
+            valid.append(entry)
+        }
+        do {
+            try AutoCorrect.shared.setReplacements(valid)
+        } catch {
+            problem = "Your replacements could not be saved: \(error.localizedDescription)"
+        }
+        showMessage(problem, hint: hint)
     }
 
     // MARK: - Credits
@@ -309,20 +495,29 @@ extension PreferencesWindowController: NSToolbarDelegate {
 
 extension PreferencesWindowController: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        filteredEntries.count
+        filteredRows.count
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let tableColumn else { return nil }
-        let entry = filteredEntries[row]
-        let text = tableColumn.identifier.rawValue == "replace" ? entry.replace : entry.with
+        guard let tableColumn, filteredRows.indices.contains(row) else { return nil }
+        let entry = shownEntries[filteredRows[row]]
+        let text = tableColumn.identifier.rawValue == "replace" ? entry.shortcut : entry.phrase
+        let editable = autoCorrectList == .personal
 
-        let identifier = NSUserInterfaceItemIdentifier("cell")
+        let identifier = NSUserInterfaceItemIdentifier(editable ? "editableCell" : "cell")
         let cell = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView ?? {
             let cell = NSTableCellView()
             cell.identifier = identifier
             let field = NSTextField(labelWithString: "")
             field.lineBreakMode = .byTruncatingTail
+            if editable {
+                field.isEditable = true
+                field.cell?.isScrollable = true
+                field.cell?.wraps = false
+                field.cell?.sendsActionOnEndEditing = true
+                field.target = self
+                field.action = #selector(entryEdited(_:))
+            }
             field.translatesAutoresizingMaskIntoConstraints = false
             cell.addSubview(field)
             cell.textField = field
@@ -334,6 +529,27 @@ extension PreferencesWindowController: NSTableViewDataSource, NSTableViewDelegat
             return cell
         }()
         cell.textField?.stringValue = text
+        cell.textField?.placeholderString = editable && text.isEmpty
+            ? (tableColumn.identifier.rawValue == "replace" ? "Shortcut" : "Replacement")
+            : nil
         return cell
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        updateRemoveButton()
+    }
+}
+
+/// A table that reports the Delete key, to remove the selected rows.
+private final class DeletingTableView: NSTableView {
+    var onDelete: (() -> Void)?
+
+    override func keyDown(with event: NSEvent) {
+        let deleteKeys: [Character] = ["\u{7F}", Character(UnicodeScalar(NSDeleteFunctionKey)!)]
+        if let key = event.charactersIgnoringModifiers?.first, deleteKeys.contains(key), let onDelete {
+            onDelete()
+        } else {
+            super.keyDown(with: event)
+        }
     }
 }

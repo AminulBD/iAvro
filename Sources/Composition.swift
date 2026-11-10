@@ -44,6 +44,29 @@ final class Composition {
         !isEmpty && term.last?.isLetter == true
     }
 
+    /// Splits raw `text` into (leading punctuation, term, trailing punctuation), untransliterated.
+    private static func split(_ text: String) -> (prefix: String, term: String, suffix: String)? {
+        let string = text as NSString
+        guard let match = splitter.firstMatch(in: text, range: NSRange(location: 0, length: string.length)) else {
+            return nil
+        }
+        return (string.substring(with: match.range(at: 1)),
+                string.substring(with: match.range(at: 2)),
+                string.substring(with: match.range(at: 3)))
+    }
+
+    /// The first digit in `text` that would pick a candidate instead of being typed, if any.
+    static func digitPickingCandidate(in text: String) -> Character? {
+        var typed = ""
+        for character in text {
+            if ("1"..."9").contains(character), split(typed)?.term.last?.isLetter == true {
+                return character
+            }
+            typed.append(character)
+        }
+        return nil
+    }
+
     // MARK: - Editing
 
     func append(_ string: String) {
@@ -101,17 +124,15 @@ final class Composition {
         rememberedIndex = -1
         guard !buffer.isEmpty else { return }
 
-        let text = buffer as NSString
-        guard let match = Self.splitter.firstMatch(in: buffer, range: NSRange(location: 0, length: text.length)) else {
-            return
-        }
-        prefix = AvroParser.shared.parse(text.substring(with: match.range(at: 1)))
-        term = text.substring(with: match.range(at: 2))
-        suffix = AvroParser.shared.parse(text.substring(with: match.range(at: 3)))
+        guard let parts = Self.split(buffer) else { return }
+        prefix = AvroParser.shared.parse(parts.prefix)
+        term = parts.term
+        suffix = AvroParser.shared.parse(parts.suffix)
 
         let suggestions = Suggestion.shared.list(for: term)
         guard !suggestions.isEmpty else {
             candidates = [prefix]
+            insertWholeBufferEntry()
             return
         }
 
@@ -136,10 +157,18 @@ final class Composition {
             }
         }
 
-        // Emoticons and other auto-correct entries that include the punctuation itself.
-        if Preferences.includeDictionary, buffer != term, let smiley = AutoCorrect.shared.find(buffer) {
-            candidates.insert(smiley, at: 0)
-            if rememberedIndex >= 0 { rememberedIndex += 1 }
-        }
+        insertWholeBufferEntry()
+    }
+
+    /// Puts first an auto-correct entry for the whole buffer, punctuation included: an
+    /// emoticon, or one of the user's own shortcuts such as `@@`. The user's entries
+    /// apply even without dictionary suggestions, like macOS text replacements.
+    private func insertWholeBufferEntry() {
+        guard buffer != term,
+              let entry = AutoCorrect.shared.find(buffer, includeBuiltIn: Preferences.includeDictionary) else { return }
+        let remembered = candidates.indices.contains(rememberedIndex) ? candidates[rememberedIndex] : nil
+        candidates.removeAll { $0 == entry }
+        candidates.insert(entry, at: 0)
+        rememberedIndex = remembered.flatMap { candidates.firstIndex(of: $0) } ?? -1
     }
 }

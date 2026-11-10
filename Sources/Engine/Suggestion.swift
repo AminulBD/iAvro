@@ -50,6 +50,9 @@ final class Suggestion {
             }
 
             suggestions += suffixedWords(for: term, existing: suggestions)
+        } else if let replacement = AutoCorrect.shared.find(term, includeBuiltIn: false) {
+            // The user's own entries apply even without dictionary suggestions.
+            suggestions.append(replacement)
         }
 
         if !suggestions.contains(parsed) {
