@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>টাইপিং গাইড · macOS-এর জন্য অভ্র কিবোর্ড</title>
+<meta name="description" content="macOS-এ অভ্র কিবোর্ড দিয়ে প্রতিটি বাংলা বর্ণ, চিহ্ন ও যুক্তাক্ষর লেখার নিয়ম: অভ্র ফোনেটিকের নিয়ম, প্রভাত ও ইউনিজয়ের কি-ম্যাপ, আর পূর্ণ যুক্তাক্ষর তালিকা।">
+<meta property="og:title" content="টাইপিং গাইড · macOS-এর জন্য অভ্র কিবোর্ড">
+<meta property="og:description" content="macOS-এ অভ্র কিবোর্ড দিয়ে প্রতিটি বাংলা বর্ণ, চিহ্ন ও যুক্তাক্ষর লেখার নিয়ম: অভ্র ফোনেটিকের নিয়ম, প্রভাত ও ইউনিজয়ের কি-ম্যাপ, আর পূর্ণ যুক্তাক্ষর তালিকা।">
+<meta property="og:image" content="https://aminulbd.github.io/iAvro/icon.png">
+<meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://avro.aminul.dev/bn-guide.html">
+<link rel="alternate" hreflang="en" href="https://avro.aminul.dev/guide.html">
+<link rel="alternate" hreflang="bn" href="https://avro.aminul.dev/bn-guide.html">
+<link rel="alternate" hreflang="x-default" href="https://avro.aminul.dev/guide.html">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<!-- Generated from the app's own rules and key maps; every example is checked against the engine. -->
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-2: #f7f7f8;
+    --text: #0b0b0d;
+    --muted: #6a6a73;
+    --line: #e3e3e6;
+    --line-strong: #c9c9ce;
+    --accent: #f6821f;
+    --accent-ink: #b45309;
+    /* hero, closing banner and footer */
+    --ink: #f7f7f8;
+    --ink-line: #e3e3e6;
+    --ink-text: #0b0b0d;
+    --ink-muted: #6a6a73;
+    --ink-dim: #85858f;
+    --ink-btn-line: #c9c9ce;
+    --ink-grid: rgba(0,0,0,.05);
+    --ink-panel: rgba(255,255,255,.7);
+    --max: 1160px;
+    --pad: 28px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0b0d;
+      --bg-2: #121216;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --line: #26262c;
+      --line-strong: #3a3a43;
+      --accent: #f6821f;
+      --accent-ink: #fbbf24;
+      --ink: #0b0b0d;
+      --ink-line: #2a2a31;
+      --ink-text: #f4f4f5;
+      --ink-muted: #a1a1aa;
+      --ink-dim: #7d7d8a;
+      --ink-btn-line: #40404a;
+      --ink-grid: rgba(255,255,255,.045);
+      --ink-panel: rgba(255,255,255,.02);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4, p, ul, ol { margin: 0; }
+  img { max-width: 100%; }
+
+  /* grid children must be free to shrink, or long tokens widen the page */
+  .cells > *, .split > *, .hero-grid > *, ol.steps li > *, .links a > * { min-width: 0; }
+
+  /* ---------- shared square-grid shell ---------- */
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-inline: var(--pad);
+    border-inline: 1px solid var(--line);
+  }
+  .band { border-top: 1px solid var(--line); }
+  .band:first-child { border-top: 0; }
+  .pad { padding-block: 72px; }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: 1.1rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--accent);
+    flex: none;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 6vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -.035em;
+    font-weight: 800;
+  }
+  h2 {
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    line-height: 1.08;
+    letter-spacing: -.028em;
+    font-weight: 750;
+  }
+  h3 { font-size: 1.05rem; font-weight: 650; letter-spacing: -.012em; }
+  .lead { color: var(--muted); max-width: 62ch; font-size: 1.02rem; }
+  .sec-head { max-width: 64ch; margin-bottom: 2.75rem; }
+  .sec-head .lead { margin-top: .9rem; }
+
+  code, pre, kbd, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  code {
+    font-size: .875em;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: .1em .38em;
+    overflow-wrap: anywhere;
+  }
+  kbd {
+    font-size: .8em;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    border-bottom-width: 2px;
+    padding: .12em .42em;
+  }
+  .bn { font-family: "Kohinoor Bangla", "Bangla Sangam MN", "Noto Sans Bengali", Vrinda, sans-serif; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .82rem 1.4rem;
+    font-size: .925rem;
+    font-weight: 650;
+    letter-spacing: -.01em;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    background: var(--bg);
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
+  .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; color: #1a0d00; }
+  .btn .arw { font-size: 1.05em; line-height: 1; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; height: 60px; gap: 1.75rem; }
+  .brand { display: flex; align-items: center; gap: .65rem; font-weight: 700; letter-spacing: -.02em; }
+  .brand img { width: 26px; height: 26px; flex: none; }
+  nav ul { list-style: none; padding: 0; margin-left: auto; display: flex; gap: 1.5rem; font-size: .9rem; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); }
+  .lang {
+    margin-left: 1.5rem; padding: .3rem .65rem; border: 1px solid var(--line-strong);
+    font-size: .85rem; font-weight: 600; transition: border-color .15s, color .15s;
+  }
+  .lang:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 860px) { nav ul { display: none; } .lang { margin-left: auto; } }
+
+  /* Bangla page: Bangla fonts first, no tight tracking, room for vowel signs */
+  :lang(bn) body { font-family: -apple-system, BlinkMacSystemFont, "Kohinoor Bangla", "Bangla Sangam MN", "Noto Sans Bengali", "Hind Siliguri", Vrinda, sans-serif; }
+  :lang(bn) h1 { line-height: 1.22; letter-spacing: 0; }
+  :lang(bn) h2 { line-height: 1.3; letter-spacing: 0; }
+  :lang(bn) h3, :lang(bn) .btn { letter-spacing: 0; }
+  :lang(bn) .lead, :lang(bn) p, :lang(bn) li { line-height: 1.75; }
+  /* tracked monospace labels break Bangla glyph clusters apart */
+  :lang(bn) :is(.eyebrow, .specs, .stat span, .demo-bar, .feat .idx, .person .role, .os small, .hero-new b) {
+    font-family: inherit; letter-spacing: 0; text-transform: none; font-size: .82rem;
+  }
+  :lang(bn) ol.steps li::before { content: counter(s, bengali); font-family: inherit; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background: var(--ink);
+    color: var(--ink-text);
+    background-image:
+      linear-gradient(to right, var(--ink-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--ink-grid) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .hero .wrap { border-color: var(--ink-line); position: relative; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 0;
+  }
+  .hero-copy { padding: 84px 44px 84px 0; }
+  .hero-side {
+    border-left: 1px solid var(--ink-line);
+    padding: 84px 0 84px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero h1 { margin-bottom: 1.35rem; }
+  .hero .lead { color: var(--ink-muted); font-size: 1.12rem; max-width: 46ch; }
+  .cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2.1rem; }
+  .hero .btn { background: transparent; color: var(--ink-text); border-color: var(--ink-btn-line); }
+  .hero .btn:hover { background: var(--ink-text); color: var(--ink); border-color: var(--ink-text); }
+  .hero .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
+  .hero .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; }
+  .specs {
+    margin-top: 1.9rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .76rem;
+    letter-spacing: .04em;
+    color: var(--ink-dim);
+  }
+
+  /* demo panel */
+  .demo { border: 1px solid var(--ink-line); background: var(--ink-panel); }
+  .demo-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .6rem .9rem;
+    border-bottom: 1px solid var(--ink-line);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .demo-bar .dot { width: 7px; height: 7px; background: var(--accent); display: inline-block; }
+  .demo-body { padding: 1.4rem 1.25rem 1.6rem; }
+  .demo .typed {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .9rem;
+    color: var(--ink-dim);
+  }
+  .demo .typed::before { content: "> "; color: var(--accent); }
+  .demo .caret {
+    display: inline-block; width: .55em; height: 1.05em;
+    background: var(--accent); vertical-align: -.18em; margin-left: .1em;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .demo .caret { animation: none; } }
+  .demo .rule { height: 1px; background: var(--ink-line); margin: 1.1rem 0; }
+  .demo .out { font-size: 1.85rem; line-height: 1.45; color: var(--ink-text); }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy { padding: 60px 0 44px; }
+    .hero-side { border-left: 0; border-top: 1px solid var(--ink-line); padding: 44px 0 64px; }
+  }
+
+  /* ---------- hairline cell grid ---------- */
+  .cells {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .cells > * { background: var(--bg); }
+  .c2 { grid-template-columns: repeat(2, 1fr); }
+  .c3 { grid-template-columns: repeat(3, 1fr); }
+  .c4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 900px) { .c3, .c4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .c2 { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .c3, .c4 { grid-template-columns: 1fr; } }
+
+  /* stats strip */
+  .stats { border: 0; }
+  .stats .stat:first-child { padding-left: var(--pad); }
+  .stat { padding: 1.9rem 1.6rem; }
+  .stat b {
+    display: block;
+    font-size: 1.45rem;
+    font-weight: 750;
+    letter-spacing: -.03em;
+    margin-bottom: .2rem;
+  }
+  .stat span {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* feature cells */
+  .feat { padding: 2.1rem 1.8rem 2.3rem; position: relative; }
+  .feat .idx {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .7rem;
+    letter-spacing: .14em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .feat h3 { margin-bottom: .5rem; }
+  .feat p { color: var(--muted); font-size: .935rem; }
+  .feat::after {
+    content: "";
+    position: absolute; inset: auto 0 0 0; height: 2px;
+    background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .feat:hover::after { transform: scaleX(1); }
+
+  /* keyboard layouts */
+  .layouts-head { margin: 3.5rem 0 1.4rem; max-width: 64ch; }
+  .layouts-head h3 { font-size: 1.35rem; letter-spacing: -.02em; }
+  .layouts-head p { color: var(--muted); margin-top: .5rem; }
+  .layouts .feat p + p { margin-top: .7rem; }
+  .kp { white-space: nowrap; }
+  .layouts-note { border: 1px solid var(--line); border-top: 0; padding: 1.15rem 1.4rem; font-size: .93rem; color: var(--muted); }
+  .layouts-note strong { color: var(--text); font-weight: 650; }
+
+  /* full feature list */
+  .flist .feat ul { list-style: none; margin: .9rem 0 0; padding: 0; color: var(--muted); font-size: .9rem; }
+  .flist .feat li { padding: .45rem 0 .45rem 1.05rem; position: relative; border-top: 1px solid var(--line); }
+  .flist .feat li:first-child { border-top: 0; padding-top: 0; }
+  .flist .feat li::before { content: ""; position: absolute; left: 0; top: .95em; width: 5px; height: 5px; background: var(--accent); }
+  .flist .feat li:first-child::before { top: .5em; }
+  .flist strong { color: var(--text); font-weight: 650; }
+
+  /* ANSI highlight */
+  .ansi { scroll-margin-top: 80px; margin-top: 3.5rem; border: 1px solid var(--accent); display: grid; grid-template-columns: 1.1fr .9fr; }
+  .ansi > * { padding: 2.1rem 1.9rem; }
+  .ansi h3 { font-size: 1.35rem; letter-spacing: -.02em; margin-bottom: .6rem; }
+  .ansi p { color: var(--muted); font-size: .95rem; }
+  .ansi p + p { margin-top: .7rem; }
+  .ansi strong { color: var(--text); font-weight: 650; }
+  .ansi ul { list-style: none; margin: 1.3rem 0 0; padding: 1.1rem 0 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .93rem; }
+  .ansi li { padding: .35rem 0 .35rem 1.15rem; position: relative; }
+  .ansi li + li { margin-top: .4rem; }
+  .ansi .shot { border-left: 1px solid var(--line); padding: 0; }
+  .ansi .shot .frame { flex: 1; aspect-ratio: auto; }
+  .ansi li::before { content: ""; position: absolute; left: 0; top: .82em; width: 5px; height: 5px; background: var(--accent); }
+  @media (max-width: 860px) {
+    .ansi { grid-template-columns: 1fr; }
+    .ansi .shot { border-left: 0; border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 600px) { .ansi > * { padding: 1.6rem 1.35rem; } }
+
+  /* ---------- screenshots ---------- */
+  .shot { margin: 0; display: flex; flex-direction: column; }
+  .shot .frame {
+    background: var(--bg-2);
+    padding: 1.4rem;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
+  }
+  .shot img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; }
+  .shot figcaption { padding: 1.05rem 1.3rem 1.3rem; border-top: 1px solid var(--line); font-size: .92rem; color: var(--muted); flex: 1; }
+  .shot figcaption strong { display: block; color: var(--text); font-weight: 650; margin-bottom: .15rem; }
+  .shots-install { border-top: 0; }
+  @media (max-width: 600px) { .shot .frame { padding: 1rem; } }
+
+  /* ---------- notices ---------- */
+  .notice-strip { background: color-mix(in srgb, var(--accent) 14%, var(--bg)); border-bottom: 1px solid var(--line); font-size: .9rem; }
+  .notice-strip .wrap { padding-block: .7rem; display: flex; gap: .4rem 1rem; flex-wrap: wrap; align-items: baseline; }
+  .notice-strip strong { font-weight: 650; }
+  .notice-strip a { color: var(--accent-ink); border-bottom: 1px solid currentColor; font-weight: 600; }
+  .hero-new {
+    display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.4rem;
+    padding: .38rem .8rem .38rem .38rem; border: 1px solid var(--ink-btn-line);
+    font-size: .85rem; color: var(--ink-text); transition: border-color .15s;
+  }
+  .hero-new:hover { border-color: var(--accent); }
+  .hero-new b {
+    background: var(--accent); color: #1a0d00; padding: .1rem .45rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .68rem; letter-spacing: .12em;
+  }
+
+  .callout { border: 1px solid var(--accent); border-left-width: 4px; padding: 1.6rem 1.8rem; margin-bottom: 2rem; scroll-margin-top: 80px; }
+  .callout h3 { margin-bottom: .5rem; }
+  .callout > p { color: var(--muted); font-size: .95rem; max-width: 72ch; }
+  .callout ol { margin: 1rem 0 0; padding-left: 1.3rem; color: var(--muted); font-size: .94rem; }
+  .callout li + li { margin-top: .45rem; }
+  .callout strong { color: var(--text); font-weight: 650; }
+  @media (max-width: 600px) { .callout { padding: 1.4rem 1.2rem; } }
+
+  /* ---------- supported macOS ---------- */
+  .os-head { margin: 3.5rem 0 1.4rem; max-width: 64ch; scroll-margin-top: 80px; }
+  .os-head h3 { font-size: 1.35rem; letter-spacing: -.02em; }
+  .os-head p { color: var(--muted); margin-top: .5rem; }
+  .os { list-style: none; padding: 0; margin: 0; grid-template-columns: repeat(6, 1fr); }
+  .os li { padding: 1.3rem 1.2rem; }
+  .os b { display: block; font-size: 1.1rem; font-weight: 700; letter-spacing: -.02em; }
+  .os span { display: block; color: var(--muted); font-size: .9rem; }
+  .os small {
+    display: block; margin-top: .7rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+  }
+  @media (max-width: 900px) { .os { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .os { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ---------- install ---------- */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .split > * { background: var(--bg); padding: 2.1rem 1.9rem; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+
+  .term { border: 1px solid var(--line); background: #0b0b0d; margin-top: 1.1rem; }
+  .term-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .55rem .85rem; border-bottom: 1px solid #2a2a31;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: #7d7d8a;
+  }
+  pre {
+    margin: 0; padding: 1.05rem .95rem; overflow-x: auto;
+    font-size: .84rem; line-height: 1.65; color: #e4e4e7;
+  }
+  pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+  .term .p { color: var(--accent); }
+
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 2.6rem 1fr; gap: 1.1rem; padding: 1.4rem 0; border-top: 1px solid var(--line); }
+  ol.steps li:first-child { border-top: 0; padding-top: 0; }
+  ol.steps li::before {
+    content: counter(s, decimal-leading-zero);
+    width: 2.6rem; height: 2.6rem;
+    display: grid; place-items: center;
+    border: 1px solid var(--line-strong);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .8rem; font-weight: 600; color: var(--accent);
+  }
+  ol.steps strong { display: block; margin-bottom: .25rem; font-weight: 650; }
+  ol.steps span { color: var(--muted); font-size: .94rem; }
+
+  .notes { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-top: 0; }
+  .note { background: var(--bg); padding: 1.15rem 1.4rem; font-size: .93rem; color: var(--muted); }
+  .note strong { color: var(--text); font-weight: 650; }
+
+  .kv { color: var(--muted); font-size: .94rem; }
+  .kv p + p { margin-top: .8rem; }
+
+  /* ---------- docs links ---------- */
+  .links { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .links li { border-bottom: 1px solid var(--line); }
+  .links a {
+    display: grid;
+    grid-template-columns: 220px 1fr auto;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 1.15rem .4rem;
+    transition: background .15s, padding .15s;
+  }
+  .links a:hover { background: var(--bg-2); padding-inline: .9rem .4rem; }
+  .links a:hover strong { color: var(--accent); }
+  .links strong { font-weight: 650; letter-spacing: -.01em; transition: color .15s; }
+  .links span { color: var(--muted); font-size: .94rem; }
+  .links .arw { color: var(--muted); font-size: .95rem; }
+  @media (max-width: 720px) { .links a { grid-template-columns: 1fr auto; } .links span { grid-column: 1 / -1; } }
+
+  /* ---------- credits ---------- */
+  .person { padding: 2rem 1.9rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+  .person img { width: 64px; height: 64px; flex: none; border: 1px solid var(--line); filter: grayscale(1); transition: filter .2s; }
+  .person > div { min-width: 0; }
+  .person:hover img { filter: none; }
+  .person .role {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+  }
+  .person h3 { margin: .35rem 0 .45rem; }
+  .person p { color: var(--muted); font-size: .93rem; margin-bottom: .7rem; }
+  .person .l { display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: .87rem; }
+  .person .l a { color: var(--muted); border-bottom: 1px solid var(--line-strong); }
+  .person .l a:hover { color: var(--accent); border-color: var(--accent); }
+  .thanks { border: 1px solid var(--line); border-top: 0; padding: 1.7rem 1.9rem; }
+  .thanks h3 { margin-bottom: .7rem; }
+  .thanks ul { list-style: none; padding: 0; color: var(--muted); font-size: .94rem; }
+  .thanks li { padding: .35rem 0 .35rem 1.15rem; position: relative; }
+  .thanks li::before { content: ""; position: absolute; left: 0; top: .82em; width: 5px; height: 5px; background: var(--accent); }
+  .thanks a { border-bottom: 1px solid var(--line-strong); }
+  .thanks a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------- closing CTA ---------- */
+  .close { background: var(--ink); color: var(--ink-text); }
+  .close .wrap { border-color: var(--ink-line); padding-block: 78px; text-align: center; }
+  .close h2 { margin-bottom: 1rem; }
+  .close .lead { color: var(--ink-muted); margin: 0 auto; }
+  .close .cta { justify-content: center; }
+  .close .btn { background: transparent; color: var(--ink-text); border-color: var(--ink-btn-line); }
+  .close .btn:hover { background: var(--ink-text); color: var(--ink); border-color: var(--ink-text); }
+  .close .btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
+  .close .btn.primary:hover { background: #ffa24d; border-color: #ffa24d; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--ink); color: var(--ink-muted); border-top: 1px solid var(--ink-line); font-size: .87rem; }
+  footer .wrap { border-color: var(--ink-line); padding-block: 1.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .6rem 1.75rem; }
+  footer a { color: var(--ink-muted); border-bottom: 1px solid var(--ink-line); }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+  footer .r { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  footer .credit { flex-basis: 100%; margin: 0; text-align: center; font-size: .8rem; opacity: .8; }
+
+  @media (max-width: 600px) {
+    :root { --pad: 20px; }
+    /* wrap commands rather than hiding them behind a scrollbar */
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .pad { padding-block: 56px; }
+    .feat, .split > *, .person, .thanks { padding: 1.6rem 1.35rem; }
+    .stat { padding: 1.4rem 1.35rem; }
+  }
+
+  /* ---------- typing guide ---------- */
+  nav ul a[aria-current] { color: var(--text); }
+  .g-head { border-bottom: 1px solid var(--line); background: var(--bg-2); }
+  .g-head .wrap { padding-block: 56px 44px; }
+  .g-head h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -.035em; line-height: 1.05; margin: .7rem 0 1rem; }
+  .g-head .lead { color: var(--muted); font-size: 1.12rem; max-width: 62ch; }
+  .g-head .src { color: var(--muted); font-size: .86rem; margin-top: 1.1rem; max-width: 80ch; }
+  .g-head .src a, .g-body a { color: var(--accent-ink); border-bottom: 1px solid currentColor; }
+  .g-head .eyebrow { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  .g-main { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 48px; padding-block: 40px 80px; }
+  .g-toc .toc-in { position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow: auto; font-size: .86rem; }
+  .g-toc .toc-h { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; }
+  .g-toc ol { list-style: none; margin: 0; padding: 0; }
+  .g-toc > .toc-in > ol > li { margin-bottom: .7rem; }
+  .g-toc > .toc-in > ol > li > a { font-weight: 650; }
+  .g-toc ol ol { margin-top: .3rem; padding-left: .8rem; border-left: 1px solid var(--line); }
+  .g-toc ol ol a { color: var(--muted); display: block; padding: .12rem 0; }
+  .g-toc a:hover { color: var(--accent-ink); }
+  .g-sec { scroll-margin-top: 80px; }
+  .g-sec.l2 { padding-top: 8px; margin-top: 28px; }
+  .g-sec.l2:first-child { margin-top: 0; }
+  .g-sec.l2 > h2 { font-size: 1.9rem; letter-spacing: -.03em; padding-bottom: .5rem; border-bottom: 2px solid var(--text); margin-bottom: 1rem; }
+  .g-sec.l3 { margin-top: 36px; }
+  .g-sec.l3 > h3 { font-size: 1.3rem; letter-spacing: -.02em; margin-bottom: .7rem; }
+  .g-sec h2 a, .g-sec h3 a { border: 0; color: inherit; }
+  .g-body h4 { font-size: 1rem; margin: 1.4rem 0 .6rem; }
+  .g-body p { margin: 0 0 .9rem; max-width: 74ch; }
+  .g-body .lead2 { font-size: 1.08rem; color: var(--muted); }
+  .g-body .g-note { color: var(--muted); font-size: .93rem; }
+  .g-body .tip { border-left: 3px solid var(--accent); padding: .6rem .9rem; background: var(--bg-2); font-size: .93rem; }
+  .g-body ol.g-steps, .g-body ol.bar, .g-body ul.g-list { margin: 0 0 1rem; padding-left: 1.3rem; max-width: 74ch; }
+  .g-body li { margin: .35rem 0; }
+  .g-body .bn { font-size: 1.12em; }
+  kbd { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .82em; border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: 4px; padding: .05em .4em; background: var(--bg); white-space: nowrap; }
+  .keys { display: inline-flex; gap: 3px; flex-wrap: wrap; vertical-align: middle; }
+  .tbl { overflow-x: auto; margin: 0 0 1rem; }
+  .g-body table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+  .g-body table.narrow { width: auto; min-width: 50%; }
+  .g-body th { text-align: left; font-weight: 650; font-size: .8rem; color: var(--muted); border-bottom: 1px solid var(--line-strong); padding: .45rem .8rem .45rem 0; }
+  .g-body td { border-bottom: 1px solid var(--line); padding: .5rem .8rem .5rem 0; vertical-align: top; }
+  .g-body td:first-child { white-space: nowrap; }
+  .g-body .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .g-body .two table.narrow { width: 100%; }
+  .dim { color: var(--muted); font-style: italic; }
+  .kx { display: flex; align-items: center; gap: .5rem; margin-top: .3rem; font-size: .78rem; color: var(--muted); }
+  .kx > span:first-child { min-width: 4.2em; }
+  .glance, .cons .crow, .cjgrid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .glance { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); margin-bottom: .8rem; }
+  .glance .g, .cons .c, .cjgrid .cj { background: var(--bg); padding: .55rem .6rem; display: flex; flex-direction: column; gap: .2rem; }
+  .glance .g .bn, .cons .c .bn { font-size: 1.35rem; line-height: 1.2; }
+  .glance .g span, .cons .c span, .cjgrid .cj span { font-size: .82rem; }
+  .cons { display: grid; gap: 1px; margin-bottom: 1rem; }
+  .cons .crow { grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 0; }
+  .cons .crow:first-child { border-top: 1px solid var(--line); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .chip { border: 1px solid var(--line); padding: .3rem .6rem; font-size: .93rem; }
+  .cjgrid { grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); margin-bottom: 1rem; }
+  .cjgrid .cj { flex-direction: row; align-items: baseline; gap: .6rem; }
+  .cjgrid .cj .bn { font-size: 1.3rem; min-width: 2.4em; }
+  .cjgrid.fx { grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
+  .cjgrid.fx .cj { display: grid; grid-template-columns: 2.6em 1fr 1fr; align-items: center; gap: .8rem; }
+  .cjgrid code { font-size: .8rem; padding: .05em .3em; }
+  /* keyboard */
+  .kb { display: grid; gap: 5px; margin: .4rem 0 1.4rem; max-width: 820px; overflow-x: auto; padding-bottom: 4px; }
+  .kb-row { display: grid; grid-template-columns: repeat(13, minmax(44px, 1fr)); gap: 5px; }
+  .kb-row.r1 { padding-left: 3%; }
+  .kb-row.r2 { padding-left: 6%; grid-template-columns: repeat(13, minmax(44px, 1fr)); }
+  .kb-row.r3 { padding-left: 9%; }
+  .cap { position: relative; border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: 6px; background: var(--bg); height: 58px; padding: 3px 5px; display: grid; grid-template-rows: 1fr 1fr; }
+  .cap.empty { opacity: .45; }
+  .cap.dead { border-color: var(--accent); }
+  .cap .lat { position: absolute; top: 2px; right: 5px; font: 600 .62rem/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); }
+  .cap .up, .cap .lo { line-height: 1.1; }
+  .cap .up .bn { font-size: .95rem; color: var(--muted); }
+  .cap .lo .bn { font-size: 1.12rem; }
+  .cap .ctl { font: 600 .55rem/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent-ink); }
+  @media (max-width: 900px) {
+    .g-main { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .g-toc .toc-in { position: static; max-height: none; border: 1px solid var(--line); padding: 1rem; }
+  }
+  @media (max-width: 600px) {
+    .g-body .two { grid-template-columns: 1fr; }
+    .cons .crow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .kb-row { grid-template-columns: repeat(13, 44px); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="bn.html"><img src="icon.png" alt="">অভ্র কিবোর্ড</a>
+    <ul><li><a href="bn.html#features">ফিচার</a></li><li><a href="bn.html#install">ইনস্টল</a></li><li><a href="bn-guide.html" aria-current=page>টাইপিং গাইড</a></li><li><a href="bn.html#docs">ডকুমেন্টেশন</a></li><li><a href="https://github.com/AminulBD/iAvro">GitHub</a></li></ul>
+    <a class="lang" href="guide.html" hreflang="en" lang="en">English</a>
+  </div>
+</nav>
+
+<header class="g-head">
+  <div class="wrap">
+    <div class="eyebrow">টাইপিং গাইড</div>
+    <h1>যেকোনো বাংলা শব্দ লিখুন।</h1>
+    <p class="lead">macOS-এ অভ্র ফোনেটিক, প্রভাত ও ইউনিজয় দিয়ে প্রতিটি বর্ণ, চিহ্ন ও যুক্তাক্ষর। এই পাতার প্রতিটি উদাহরণ অ্যাপে মিলিয়ে দেখা।</p>
+    <p class="src">উইন্ডোজের অভ্র কিবোর্ডের জন্য ওমিক্রনল্যাবের নির্দেশিকা, <a href="https://www.omicronlab.com/download/pdf/Bangla%20Typing%20with%20Avro%20Phonetic.pdf">Bangla Typing with Avro Phonetic</a> ও <a href="https://www.omicronlab.com/download/pdf/Bangla%20Typing%20with%20Fixed%20Keyboard%20Layouts.pdf">Bangla Typing with Fixed Keyboard Layouts</a> অবলম্বনে, ম্যাকের জন্য লেখা।</p>
+  </div>
+</header>
+
+<main class="wrap g-main">
+  <aside class="g-toc"><div class="toc-in"><div class="toc-h">এই পাতায়</div><ol><li><a href="#start">শুরু করা</a><ol><li><a href="#candidates">ক্যান্ডিডেট বার</a></li></ol></li><li><a href="#phonetic">অভ্র ফোনেটিক</a><ol><li><a href="#glance">এক নজরে</a></li><li><a href="#vowels">নিয়ম ১: স্বরবর্ণ</a></li><li><a href="#backtick">জোর করে মূল স্বরবর্ণ বা কার লেখা</a></li><li><a href="#consonants">নিয়ম ২: ব্যঞ্জনবর্ণ</a></li><li><a href="#signs-phonetic">নিয়ম ৩: ফলা, রেফ ও অন্যান্য চিহ্ন</a></li><li><a href="#conjuncts">নিয়ম ৪: যুক্তাক্ষর</a></li><li><a href="#apart">ব্যঞ্জনবর্ণ আলাদা রাখা</a></li><li><a href="#autocorrect">অটো-কারেক্ট</a></li><li><a href="#conjunct-table">পূর্ণ যুক্তাক্ষর তালিকা</a></li></ol></li><li><a href="#fixed">প্রভাত ও ইউনিজয়</a><ol><li><a href="#keymaps">কি-ম্যাপ</a></li><li><a href="#fixed-vowels">স্বরবর্ণ</a></li><li><a href="#vowel-signs">কার</a></li><li><a href="#old-style">পুরনো স্টাইলে টাইপিং</a></li><li><a href="#fixed-conjuncts">যুক্তাক্ষর ও হসন্ত</a></li><li><a href="#reph-phala">রেফ, র-ফলা ও য-ফলা</a></li><li><a href="#other-keys">অন্যান্য কি</a></li><li><a href="#fixed-conjunct-table">প্রভাত ও ইউনিজয়ে যুক্তাক্ষরের কি</a></li></ol></li><li><a href="#ansi">বিজয় (ANSI) আউটপুট</a></li></ol></div></aside>
+  <article class="g-body">
+<section id="start" class="g-sec l2"><h2><a href="#start">শুরু করা</a></h2><ol class="g-steps"><li>মেনু বারের ইনপুট মেনু থেকে <strong>Avro Keyboard</strong> বেছে নিন, অথবা ইনপুট সোর্স বদলানোর শর্টকাট দিয়ে চালু করুন (ডিফল্টভাবে <kbd>Control</kbd> <kbd>Space</kbd> বা <kbd>🌐</kbd>)।</li><li><strong>Preferences… › Keyboard Layout</strong>-এ একটি লেআউট বেছে নিন। অভ্র ফোনেটিক ডিফল্ট; এই অংশের বাকিটা তা নিয়ে, আর <a href="#fixed">প্রভাত ও ইউনিজয়</a> আছে পরে।</li><li>লিখতে থাকুন। কোন কি কী দেয়, তা নিচের নিয়মগুলোতে আছে।</li></ol></section><section id="candidates" class="g-sec l3"><h3><a href="#candidates">ক্যান্ডিডেট বার</a></h3><p>উইন্ডোজে অভ্র যা লিখছেন তা একটি প্রিভিউ উইন্ডোতে দেখায়। ম্যাকে শব্দটি লেখার সময়ই আপনার লেখায় আন্ডারলাইন হয়ে দেখায়, আর তার নিচে থাকে ক্যান্ডিডেটের একটি বার:</p><ol class="bar"><li><strong>আপনার নিজের রিপ্লেসমেন্ট</strong> বা <strong>বিল্ট-ইন অটো-কারেক্ট</strong> এন্ট্রি, যদি থাকে</li><li><strong>আপনি যা টাইপ করেছেন</strong>, হুবহু, ইংরেজি শব্দ রাখার জন্য</li><li>মিলে যাওয়া <strong>ডিকশনারির শব্দ</strong>, সবচেয়ে কাছের বানান আগে</li><li>এই পাতার নিয়মে তৈরি <strong>সরাসরি বর্ণান্তর</strong>, আর মিলে যাওয়া <strong>ইমোজি</strong></li></ol><p><kbd>Space</kbd> বা <kbd>Return</kbd> চাপলে বাছাই করা শব্দটি বসে। অ্যারো কি দিয়ে ক্যান্ডিডেটের মধ্যে যাওয়া যায়, আর <kbd>1</kbd>–<kbd>9</kbd> চেপে নম্বর দিয়ে বাছা যায়। <kbd>Delete</kbd> শেষ টাইপ করা অক্ষরটি মোছে।</p><p class="tip">শুধু নিয়মগুলো কীভাবে কাজ করে দেখতে চাইলে Preferences-এ <strong>Include Dictionary Suggestions</strong> বন্ধ করুন। তখন বারে শুধু বর্ণান্তর আর আপনি যা টাইপ করেছেন তা থাকে।</p></section><section id="phonetic" class="g-sec l2"><h2><a href="#phonetic">অভ্র ফোনেটিক</a></h2><p class="lead2">যেমন উচ্চারণ তেমন ইংরেজি হরফে বাংলা লিখুন। কোনো কিবোর্ড লেআউট মুখস্থ করতে হয় না, শুধু কয়েকটি নিয়ম জানলেই চলে।</p></section><section id="glance" class="g-sec l3"><h3><a href="#glance">এক নজরে</a></h3><div class="glance"><div class="g"><span class="bn">অ</span><span><code>o</code></span></div><div class="g"><span class="bn">আ</span> <span class="bn">◌া</span><span><code>a</code></span></div><div class="g"><span class="bn">ই</span> <span class="bn">◌ি</span><span><code>i</code></span></div><div class="g"><span class="bn">ঈ</span> <span class="bn">◌ী</span><span><code>I</code> <code>ee</code></span></div><div class="g"><span class="bn">উ</span> <span class="bn">◌ু</span><span><code>u</code> <code>oo</code></span></div><div class="g"><span class="bn">ঊ</span> <span class="bn">◌ূ</span><span><code>U</code></span></div><div class="g"><span class="bn">ঋ</span> <span class="bn">◌ৃ</span><span><code>rri</code></span></div><div class="g"><span class="bn">এ</span> <span class="bn">◌ে</span><span><code>e</code></span></div><div class="g"><span class="bn">ঐ</span> <span class="bn">◌ৈ</span><span><code>OI</code></span></div><div class="g"><span class="bn">ও</span> <span class="bn">◌ো</span><span><code>O</code></span></div><div class="g"><span class="bn">ঔ</span> <span class="bn">◌ৌ</span><span><code>OU</code></span></div><div class="g"><span class="bn">ক</span><span><code>k</code></span></div><div class="g"><span class="bn">খ</span><span><code>kh</code></span></div><div class="g"><span class="bn">গ</span><span><code>g</code></span></div><div class="g"><span class="bn">ঘ</span><span><code>gh</code></span></div><div class="g"><span class="bn">ঙ</span><span><code>Ng</code></span></div><div class="g"><span class="bn">চ</span><span><code>c</code></span></div><div class="g"><span class="bn">ছ</span><span><code>ch</code></span></div><div class="g"><span class="bn">জ</span><span><code>j</code></span></div><div class="g"><span class="bn">ঝ</span><span><code>jh</code></span></div><div class="g"><span class="bn">ঞ</span><span><code>NG</code></span></div><div class="g"><span class="bn">ট</span><span><code>T</code></span></div><div class="g"><span class="bn">ঠ</span><span><code>Th</code></span></div><div class="g"><span class="bn">ড</span><span><code>D</code></span></div><div class="g"><span class="bn">ঢ</span><span><code>Dh</code></span></div><div class="g"><span class="bn">ণ</span><span><code>N</code></span></div><div class="g"><span class="bn">ত</span><span><code>t</code></span></div><div class="g"><span class="bn">থ</span><span><code>th</code></span></div><div class="g"><span class="bn">দ</span><span><code>d</code></span></div><div class="g"><span class="bn">ধ</span><span><code>dh</code></span></div><div class="g"><span class="bn">ন</span><span><code>n</code></span></div><div class="g"><span class="bn">প</span><span><code>p</code></span></div><div class="g"><span class="bn">ফ</span><span><code>ph</code> <code>f</code></span></div><div class="g"><span class="bn">ব</span><span><code>b</code></span></div><div class="g"><span class="bn">ভ</span><span><code>bh</code> <code>v</code></span></div><div class="g"><span class="bn">ম</span><span><code>m</code></span></div><div class="g"><span class="bn">য</span><span><code>z</code></span></div><div class="g"><span class="bn">র</span><span><code>r</code></span></div><div class="g"><span class="bn">ল</span><span><code>l</code></span></div><div class="g"><span class="bn">শ</span><span><code>sh</code> <code>S</code></span></div><div class="g"><span class="bn">ষ</span><span><code>Sh</code></span></div><div class="g"><span class="bn">স</span><span><code>s</code></span></div><div class="g"><span class="bn">হ</span><span><code>h</code></span></div><div class="g"><span class="bn">ড়</span><span><code>R</code></span></div><div class="g"><span class="bn">ঢ়</span><span><code>Rh</code></span></div><div class="g"><span class="bn">য়</span><span><code>y</code> <code>Y</code></span></div><div class="g"><span class="bn">ৎ</span><span><code>t``</code></span></div><div class="g"><span class="bn">◌ং</span><span><code>ng</code></span></div><div class="g"><span class="bn">◌ঃ</span><span><code>:</code></span></div><div class="g"><span class="bn">◌ঁ</span><span><code>^</code></span></div><div class="g"><span class="bn">◌্য</span><span><code>y</code> <code>Z</code></span></div><div class="g"><span class="bn">◌্র</span><span><code>r</code></span></div><div class="g"><span class="bn">◌্ব</span><span><code>w</code></span></div><div class="g"><span class="bn">র্</span><span><code>rr</code></span></div><div class="g"><span class="bn">◌্</span><span><code>,,</code></span></div><div class="g"><span class="bn">।</span><span><code>.</code></span></div><div class="g"><span class="bn">৳</span><span><code>$</code></span></div></div><p class="g-note">বড় হাতের অক্ষরে দেখানো বর্ণ বড় হাতেই লিখতে হবে। বাকিগুলো ছোট বা বড় যেকোনোভাবে লেখা যায়।</p></section><section id="vowels" class="g-sec l3"><h3><a href="#vowels">নিয়ম ১: স্বরবর্ণ</a></h3><p>একই ইংরেজি বর্ণ দিয়ে মূল স্বরবর্ণ আর তার কার দুটোই লেখা হয়। কোথায় লিখছেন তা দেখে অভ্র ঠিক করে নেয়: ব্যঞ্জনবর্ণের পরে কার আসে, আর শব্দের শুরুতে বা অন্য স্বরবর্ণের পরে মূল স্বরবর্ণ।</p><div class="tbl"><table class="narrow"><thead><tr><th>স্বরবর্ণ</th><th>কার</th><th>টাইপ করুন</th></tr></thead><tbody><tr><td><span class="bn">অ</span></td><td>—</td><td><code>o</code></td></tr><tr><td><span class="bn">আ</span></td><td><span class="bn">◌া</span></td><td><code>a</code></td></tr><tr><td><span class="bn">ই</span></td><td><span class="bn">◌ি</span></td><td><code>i</code></td></tr><tr><td><span class="bn">ঈ</span></td><td><span class="bn">◌ী</span></td><td><code>I</code> <code>ee</code></td></tr><tr><td><span class="bn">উ</span></td><td><span class="bn">◌ু</span></td><td><code>u</code> <code>oo</code></td></tr><tr><td><span class="bn">ঊ</span></td><td><span class="bn">◌ূ</span></td><td><code>U</code></td></tr><tr><td><span class="bn">ঋ</span></td><td><span class="bn">◌ৃ</span></td><td><code>rri</code></td></tr><tr><td><span class="bn">এ</span></td><td><span class="bn">◌ে</span></td><td><code>e</code></td></tr><tr><td><span class="bn">ঐ</span></td><td><span class="bn">◌ৈ</span></td><td><code>OI</code></td></tr><tr><td><span class="bn">ও</span></td><td><span class="bn">◌ো</span></td><td><code>O</code></td></tr><tr><td><span class="bn">ঔ</span></td><td><span class="bn">◌ৌ</span></td><td><code>OU</code></td></tr></tbody></table></div><p class="g-note">ঈ, ঊ, ঐ, ও আর ঔ বড় হাতের অক্ষরে লিখতে হয়। মনে রাখার সহজ উপায়: ই থেকে ঈ-তে উচ্চারণে জোর বেশি, তাই এটি বড় হাতের <code>I</code>।</p><h4>উদাহরণ</h4><div class="tbl"><table class=""><thead><tr><th></th><th>মূল স্বরবর্ণ</th><th>কার</th></tr></thead><tbody><tr><td><span class="bn">অ</span></td><td><code>onek</code> → <span class="bn">অনেক</span><br><code>omor</code> → <span class="bn">অমর</span></td><td>—</td></tr><tr><td><span class="bn">আ</span></td><td><code>amar</code> → <span class="bn">আমার</span></td><td><code>amar</code> → <span class="bn">আমার</span></td></tr><tr><td><span class="bn">ই</span></td><td><code>iti</code> → <span class="bn">ইতি</span></td><td><code>iti</code> → <span class="bn">ইতি</span></td></tr><tr><td><span class="bn">ঈ</span></td><td><code>Igol</code> → <span class="bn">ঈগল</span><br><code>eegol</code> → <span class="bn">ঈগল</span></td><td><code>kI</code> → <span class="bn">কী</span><br><code>kee</code> → <span class="bn">কী</span></td></tr><tr><td><span class="bn">উ</span></td><td><code>ujan</code> → <span class="bn">উজান</span><br><code>oojan</code> → <span class="bn">উজান</span></td><td><code>bujhi</code> → <span class="bn">বুঝি</span><br><code>boojhi</code> → <span class="bn">বুঝি</span></td></tr><tr><td><span class="bn">ঊ</span></td><td><code>Unocollish</code> → <span class="bn">ঊনচল্লিশ</span></td><td><code>dUr</code> → <span class="bn">দূর</span></td></tr><tr><td><span class="bn">ঋ</span></td><td><code>rriju</code> → <span class="bn">ঋজু</span></td><td><code>grriho</code> → <span class="bn">গৃহ</span></td></tr><tr><td><span class="bn">এ</span></td><td><code>emon</code> → <span class="bn">এমন</span></td><td><code>keno</code> → <span class="bn">কেন</span></td></tr><tr><td><span class="bn">ঐ</span></td><td><code>OIrabot</code> → <span class="bn">ঐরাবত</span></td><td><code>kOI</code> → <span class="bn">কৈ</span></td></tr><tr><td><span class="bn">ও</span></td><td><code>OtoprOto</code> → <span class="bn">ওতপ্রোত</span></td><td><code>OtoprOto</code> → <span class="bn">ওতপ্রোত</span></td></tr><tr><td><span class="bn">ঔ</span></td><td><code>OUpodeshik</code> → <span class="bn">ঔপদেশিক</span></td><td><code>bOU</code> → <span class="bn">বৌ</span></td></tr></tbody></table></div><p class="g-note">অ-এর কোনো কার নেই। <code>omor</code> → <span class="bn">অমর</span> শব্দে ম-এর পরের অ উচ্চারণে আছে কিন্তু বাংলায় লেখা হয় না; ইংরেজিতে তবু তা লিখতে হবে।</p></section><section id="backtick" class="g-sec l3"><h3><a href="#backtick">জোর করে মূল স্বরবর্ণ বা কার লেখা</a></h3><p>কখনো কখনো অভ্র ভুলটি বেছে নেয়। <code>eki</code> → <span class="bn">একি</span>, কিন্তু একই-এর উচ্চারণ প্রায় একই হলেও এতে ক-এর পরে পূর্ণ ই চাই। দুটোর মাঝে ব্যাকটিক <kbd>`</kbd> দিন, যা <kbd>Tab</kbd>-এর ওপরে, <kbd>1</kbd>-এর বাঁয়ে: <code>ek`i</code> → <span class="bn">একই</span>।</p><div class="two"><div class="tbl"><table class="narrow"><thead><tr><th>স্বরবর্ণের আগে ব্যাকটিক: সব সময় মূল স্বরবর্ণ</th><th></th></tr></thead><tbody><tr><td><code>`o</code></td><td><span class="bn">অ</span></td></tr><tr><td><code>`a</code></td><td><span class="bn">আ</span></td></tr><tr><td><code>`i</code></td><td><span class="bn">ই</span></td></tr><tr><td><code>`I</code></td><td><span class="bn">ঈ</span></td></tr></tbody></table></div><div class="tbl"><table class="narrow"><thead><tr><th>স্বরবর্ণের পরে ব্যাকটিক: সব সময় কার</th><th></th></tr></thead><tbody><tr><td><code>o`</code></td><td><span class="dim">(কিছু লেখা হয় না)</span></td></tr><tr><td><code>a`</code></td><td><span class="bn">◌া</span></td></tr><tr><td><code>i`</code></td><td><span class="bn">◌ি</span></td></tr><tr><td><code>I`</code></td><td><span class="bn">◌ী</span></td></tr></tbody></table></div></div></section><section id="consonants" class="g-sec l3"><h3><a href="#consonants">নিয়ম ২: ব্যঞ্জনবর্ণ</a></h3><div class="cons"><div class="crow"><div class="c"><span class="bn">ক</span><span><code>k</code></span></div><div class="c"><span class="bn">খ</span><span><code>kh</code></span></div><div class="c"><span class="bn">গ</span><span><code>g</code></span></div><div class="c"><span class="bn">ঘ</span><span><code>gh</code></span></div><div class="c"><span class="bn">ঙ</span><span><code>Ng</code></span></div></div><div class="crow"><div class="c"><span class="bn">চ</span><span><code>c</code></span></div><div class="c"><span class="bn">ছ</span><span><code>ch</code></span></div><div class="c"><span class="bn">জ</span><span><code>j</code></span></div><div class="c"><span class="bn">ঝ</span><span><code>jh</code></span></div><div class="c"><span class="bn">ঞ</span><span><code>NG</code></span></div></div><div class="crow"><div class="c"><span class="bn">ট</span><span><code>T</code></span></div><div class="c"><span class="bn">ঠ</span><span><code>Th</code></span></div><div class="c"><span class="bn">ড</span><span><code>D</code></span></div><div class="c"><span class="bn">ঢ</span><span><code>Dh</code></span></div><div class="c"><span class="bn">ণ</span><span><code>N</code></span></div></div><div class="crow"><div class="c"><span class="bn">ত</span><span><code>t</code></span></div><div class="c"><span class="bn">থ</span><span><code>th</code></span></div><div class="c"><span class="bn">দ</span><span><code>d</code></span></div><div class="c"><span class="bn">ধ</span><span><code>dh</code></span></div><div class="c"><span class="bn">ন</span><span><code>n</code></span></div></div><div class="crow"><div class="c"><span class="bn">প</span><span><code>p</code></span></div><div class="c"><span class="bn">ফ</span><span><code>ph</code> <code>f</code></span></div><div class="c"><span class="bn">ব</span><span><code>b</code></span></div><div class="c"><span class="bn">ভ</span><span><code>bh</code> <code>v</code></span></div><div class="c"><span class="bn">ম</span><span><code>m</code></span></div></div><div class="crow"><div class="c"><span class="bn">য</span><span><code>z</code></span></div><div class="c"><span class="bn">র</span><span><code>r</code></span></div><div class="c"><span class="bn">ল</span><span><code>l</code></span></div><div class="c"><span class="bn">শ</span><span><code>sh</code> <code>S</code></span></div><div class="c"><span class="bn">ষ</span><span><code>Sh</code></span></div></div><div class="crow"><div class="c"><span class="bn">স</span><span><code>s</code></span></div><div class="c"><span class="bn">হ</span><span><code>h</code></span></div><div class="c"><span class="bn">ড়</span><span><code>R</code></span></div><div class="c"><span class="bn">ঢ়</span><span><code>Rh</code></span></div><div class="c"><span class="bn">য়</span><span><code>y</code> <code>Y</code></span></div></div><div class="crow"><div class="c"><span class="bn">ৎ</span><span><code>t``</code></span></div><div class="c"><span class="bn">◌ং</span><span><code>ng</code></span></div><div class="c"><span class="bn">◌ঃ</span><span><code>:</code></span></div><div class="c"><span class="bn">◌ঁ</span><span><code>^</code></span></div></div></div><ul class="g-list"><li>বড় হাতের অক্ষরে দেখানো বর্ণ বড় হাতেই লিখতে হবে।</li><li>প্রমিত বাংলায় য় দিয়ে শব্দ শুরু হয় না, তাই শব্দের শুরুতে <code>y</code> দিলে ইয় আসে: <code>yahoo</code> → <span class="bn">ইয়াহু</span>। যেকোনো জায়গায় য় পেতে <code>Y</code> লিখুন।</li><li>স্বরবর্ণ বা কারের পরে <code>a</code> দিলে য়া আসে: <code>samia</code> → <span class="bn">সামিয়া</span>। সেখানে পূর্ণ আ চাইলে <code>`a</code> লিখুন।</li><li>ৎ লিখতে <code>t</code>-এর পরে দুবার ব্যাকটিক দিন: <code>hoThat``</code> → <span class="bn">হঠাৎ</span>।</li></ul></section><section id="signs-phonetic" class="g-sec l3"><h3><a href="#signs-phonetic">নিয়ম ৩: ফলা, রেফ ও অন্যান্য চিহ্ন</a></h3><div class="tbl"><table class=""><thead><tr><th></th><th>টাইপ করুন</th><th>উদাহরণ</th></tr></thead><tbody><tr><td><strong><span class="bn">ব-ফলা</span></strong></td><td>ব্যঞ্জনবর্ণের পরে <code>w</code></td><td><code>bishwo</code> → <span class="bn">বিশ্ব</span>, <code>udwayI</code> → <span class="bn">উদ্বায়ী</span>। কখনো <code>b</code>-তেও হয়: <code>ambia</code> → <span class="bn">আম্বিয়া</span>, <code>balb</code> → <span class="bn">বাল্ব</span></td></tr><tr><td><strong><span class="bn">য-ফলা</span></strong></td><td>ব্যঞ্জনবর্ণের পরে <code>y</code></td><td><code>bybohar</code> → <span class="bn">ব্যবহার</span>, <code>bykti</code> → <span class="bn">ব্যক্তি</span>। একই <code>y</code> মানানসই জায়গায় য়-ও দেয়: <code>niyom</code> → <span class="bn">নিয়ম</span></td></tr><tr><td></td><td>যেকোনো জায়গায় <code>Z</code>, স্বরবর্ণের পরেও</td><td><code>aZDmin</code> → <span class="bn">অ্যাডমিন</span>, <code>aZrOmeTik</code> → <span class="bn">অ্যারোমেটিক</span></td></tr><tr><td><strong><span class="bn">র-ফলা</span></strong></td><td>ব্যঞ্জনবর্ণের পরে <code>r</code></td><td><code>prosonno</code> → <span class="bn">প্রসন্ন</span>, <code>pray</code> → <span class="bn">প্রায়</span>, <code>protidin</code> → <span class="bn">প্রতিদিন</span></td></tr><tr><td><strong><span class="bn">ম-ফলা</span></strong></td><td>ব্যঞ্জনবর্ণের পরে <code>m</code></td><td><code>podma</code> → <span class="bn">পদ্মা</span></td></tr><tr><td><strong><span class="bn">রেফ</span></strong></td><td>ব্যঞ্জনবর্ণের আগে <code>rr</code></td><td><code>orrko</code> → <span class="bn">অর্ক</span>, <code>arrtonad</code> → <span class="bn">আর্তনাদ</span>, <code>orrthohIn</code> → <span class="bn">অর্থহীন</span></td></tr><tr><td><strong><span class="bn">হসন্ত</span></strong></td><td><code>,,</code> (দুটি কমা)</td><td><code>k,,</code> → <span class="bn">ক্‌</span>: এমন হসন্ত, যা পরের বর্ণের সঙ্গে জোড়া লাগে না</td></tr><tr><td><strong><span class="bn">অনুস্বার ং</span></strong></td><td><code>ng</code></td><td><code>bangla</code> → <span class="bn">বাংলা</span></td></tr><tr><td><strong><span class="bn">বিসর্গ ঃ</span></strong></td><td><code>:</code></td><td><code>du:kho</code> → <span class="bn">দুঃখ</span></td></tr><tr><td><strong><span class="bn">চন্দ্রবিন্দু ঁ</span></strong></td><td><code>^</code></td><td><code>ca^d</code> → <span class="bn">চাঁদ</span></td></tr><tr><td><strong><span class="bn">খণ্ড-ত ৎ</span></strong></td><td><code>t``</code></td><td><code>hoThat``</code> → <span class="bn">হঠাৎ</span></td></tr><tr><td><strong><span class="bn">দাঁড়ি ।</span></strong></td><td><code>.</code></td><td><code>ami.</code> → <span class="bn">আমি।</span></td></tr><tr><td><strong><span class="bn">ডট .</span></strong></td><td><code>.`</code></td><td><code>3.`14</code> → <span class="bn">৩.১৪</span></td></tr><tr><td><strong><span class="bn">কোলন :</span></strong></td><td><code>:`</code></td><td><code>3:`30</code> → <span class="bn">৩:৩০</span></td></tr><tr><td><strong><span class="bn">টাকা ৳</span></strong></td><td><code>$</code></td><td><code>$500</code> → <span class="bn">৳৫০০</span></td></tr><tr><td><strong><span class="bn">সংখ্যা</span></strong></td><td><code>0</code>–<code>9</code></td><td><code>0123456789</code> → <span class="bn">০১২৩৪৫৬৭৮৯</span></td></tr></tbody></table></div><p class="g-note">শব্দের ঠিক পরে অঙ্ক চাপলে বার থেকে ক্যান্ডিডেট বাছাই হয়। আগে <kbd>Space</kbd> দিন, বা সংখ্যাটি আলাদা করে লিখুন।</p><p class="g-note">অন্যান্য যতিচিহ্ন, যেমন <code>; ? ! ( ) { } [ ] / \ + - * %</code>, সাধারণভাবেই লেখা যায়।</p></section><section id="conjuncts" class="g-sec l3"><h3><a href="#conjuncts">নিয়ম ৪: যুক্তাক্ষর</a></h3><p>আলাদা কিছু শিখতে হয় না। পাশাপাশি লেখা ব্যঞ্জনবর্ণ বাংলায় যুক্তাক্ষর হলে অভ্র নিজেই তা জুড়ে দেয়:</p><div class="chips"><span class="chip"><code>okkhor</code> → <span class="bn">অক্ষর</span></span><span class="chip"><code>onto</code> → <span class="bn">অন্ত</span></span><span class="chip"><code>biggo</code> → <span class="bn">বিজ্ঞ</span></span><span class="chip"><code>brahmoN</code> → <span class="bn">ব্রাহ্মণ</span></span><span class="chip"><code>lokkhmI</code> → <span class="bn">লক্ষ্মী</span></span><span class="chip"><code>sombol</code> → <span class="bn">সম্বল</span></span></div><p>নিচের <a href="#conjunct-table">পূর্ণ যুক্তাক্ষর তালিকায়</a> প্রতিটি যুক্তাক্ষর আর তা লেখার নিয়ম আছে।</p></section><section id="apart" class="g-sec l3"><h3><a href="#apart">ব্যঞ্জনবর্ণ আলাদা রাখা</a></h3><p>কখনো জোড়া লাগতে পারে এমন দুটি ব্যঞ্জনবর্ণ আলাদা রাখতে হয়। কান্তা ও কিন্তু-তে ন আর ত জোড়া লাগে, কিন্তু কিনতে-তে নয়। দুটি বর্ণের মাঝে ব্যাকটিক <kbd>`</kbd> দিলে তারা আলাদা থাকে:</p><div class="tbl"><table class=""><thead><tr><th></th><th>জোড়া লাগা দরকার</th><th>ভুল করে জোড়া লেগেছে</th><th>` দিয়ে আলাদা</th></tr></thead><tbody><tr><td><span class="bn">গ্ল</span></td><td><code>glOb</code> → <span class="bn">গ্লোব</span></td><td><code>aglanO</code> → <span class="bn">আগ্লানো</span></td><td><code>ag`lanO</code> → <span class="bn">আগলানো</span></td></tr><tr><td><span class="bn">ক্ট</span></td><td><code>okTOpas</code> → <span class="bn">অক্টোপাস</span></td><td><code>ekTa</code> → <span class="bn">এক্টা</span></td><td><code>ek`Ta</code> → <span class="bn">একটা</span></td></tr><tr><td><span class="bn">ম্র</span></td><td><code>mriyomaN</code> → <span class="bn">ম্রিয়মাণ</span></td><td><code>amra</code> → <span class="bn">আম্রা</span></td><td><code>am`ra</code> → <span class="bn">আমরা</span></td></tr></tbody></table></div><p class="g-note">এটি কমই দরকার হয়। ডিকশনারি সাজেশন চালু থাকলে ক্যান্ডিডেট বার সাধারণত ঠিক শব্দটিই দেখায়: <code>amra</code> লিখলে আমরা আগে আসে, আর <code>ekta</code> বিল্ট-ইন অটো-কারেক্ট থেকে একটা দেয়।</p><p class="g-note">অভ্র ফোনেটিকে ক্ম-এর কোনো নিয়ম নেই। ডিকশনারি থেকে এমন শব্দ বেছে নিন, যেমন <code>rukmini</code> → <span class="bn">রুক্মিণী</span>, অথবা নিজের রিপ্লেসমেন্ট হিসেবে যোগ করুন।</p></section><section id="autocorrect" class="g-sec l3"><h3><a href="#autocorrect">অটো-কারেক্ট</a></h3><p>কিছু শব্দ নিয়ম মানে না: বাংলায় লেখা ইংরেজি শব্দ, নাম, আর যেসব বানান নিয়মে ভুল আসে। অটো-কারেক্ট এগুলো সামলায়, আর এর এন্ট্রি ক্যান্ডিডেট বারে সবার আগে আসে।</p><p><strong>বিল্ট-ইন:</strong> অভ্রের সঙ্গে প্রায় ১০,০০০ এন্ট্রি আসে, যেমন <code>sir</code> → <span class="bn">স্যার</span>, <code>software</code> → <span class="bn">সফটওয়্যার</span> আর <code>brb</code> → <span class="bn">একটু পরে আসছি</span>। এগুলো <strong>Preferences… › AutoCorrect › Built-in</strong>-এ দেখা যায়, আর ডিকশনারি সাজেশন চালু থাকলে আসে।</p><p><strong>আপনার নিজের:</strong> <strong>Preferences… › AutoCorrect › Personal</strong>-এ এন্ট্রি যোগ করুন। <kbd>+</kbd> চাপুন, শর্টকাট লিখে <kbd>Return</kbd> চাপুন, তারপর লিখুন এটি কী হবে। এগুলো সবার আগে আসে, ডিকশনারি সাজেশন বন্ধ থাকলেও। কয়েকটি ব্যবহার:</p><ul class="g-list"><li><strong>নিয়মে ভুল আসা শব্দ ঠিক করা।</strong> <code>amra</code> → <span class="bn">আম্রা</span> ম আর র জুড়ে ম্র বানায়। <code>amra</code> → <span class="bn">আমরা</span> যোগ করলে সব সময় ঠিক আসবে।</li><li><strong>ইংরেজি বানানে বাংলা শব্দ।</strong> <code>zoom</code> দিয়ে জুম পান, যেমন <code>software</code> → <span class="bn">সফটওয়্যার</span> আগে থেকেই আছে।</li><li><strong>ছোট শব্দে লম্বা লেখা।</strong> <code>enam</code> দিয়ে পুরো নাম, <code>enamul hok cOUdhurI</code> → <span class="bn">এনামুল হক চৌধুরী</span>, বা <code>brb</code> দিয়ে পুরো একটি বাক্য।</li></ul><p class="g-note">বিস্তারিত আছে <a href="https://github.com/AminulBD/iAvro/blob/master/README.bn.md#নিজের-রিপ্লেসমেন্ট">নিজের রিপ্লেসমেন্ট</a> অংশে।</p></section><section id="conjunct-table" class="g-sec l3"><h3><a href="#conjunct-table">পূর্ণ যুক্তাক্ষর তালিকা</a></h3><p>প্রতিটি যুক্তাক্ষর আর অভ্র ফোনেটিকে তা লেখার নিয়ম। একাধিক নিয়ম থাকলে যেকোনোটি চলবে। যেকোনো ব্যঞ্জনবর্ণে র্ (রেফ) দিতে তার আগে <code>rr</code> লিখুন: <code>rrk</code> → <span class="bn">র্ক</span>।</p><div class="cjgrid"><div class="cj"><span class="bn">ক্ক</span><span><code>kk</code></span></div><div class="cj"><span class="bn">ক্ট</span><span><code>kT</code></span></div><div class="cj"><span class="bn">ক্ত</span><span><code>kt</code></span></div><div class="cj"><span class="bn">ক্ত্র</span><span><code>ktr</code></span></div><div class="cj"><span class="bn">ক্ব</span><span><code>kw</code></span></div><div class="cj"><span class="bn">ক্য</span><span><code>ky</code> <code>kZ</code></span></div><div class="cj"><span class="bn">ক্র</span><span><code>kr</code></span></div><div class="cj"><span class="bn">ক্ল</span><span><code>kl</code></span></div><div class="cj"><span class="bn">ক্ষ</span><span><code>kkh</code> <code>kx</code></span></div><div class="cj"><span class="bn">ক্ষ্ব</span><span><code>kkhw</code> <code>kxw</code></span></div><div class="cj"><span class="bn">ক্ষ্ণ</span><span><code>kkhN</code> <code>kxN</code></span></div><div class="cj"><span class="bn">ক্ষ্ম</span><span><code>kkhm</code> <code>kxm</code></span></div><div class="cj"><span class="bn">ক্ষ্য</span><span><code>kkhy</code> <code>kxy</code> <code>kkhZ</code> <code>kxZ</code></span></div><div class="cj"><span class="bn">ক্স</span><span><code>ks</code></span></div><div class="cj"><span class="bn">খ্য</span><span><code>khy</code> <code>khZ</code></span></div><div class="cj"><span class="bn">খ্র</span><span><code>khr</code></span></div><div class="cj"><span class="bn">গ্ণ</span><span><code>gN</code></span></div><div class="cj"><span class="bn">গ্ধ</span><span><code>gdh</code></span></div><div class="cj"><span class="bn">গ্ন</span><span><code>gn</code></span></div><div class="cj"><span class="bn">গ্ন্য</span><span><code>gny</code> <code>gnZ</code></span></div><div class="cj"><span class="bn">গ্ব</span><span><code>gw</code></span></div><div class="cj"><span class="bn">গ্ম</span><span><code>gm</code></span></div><div class="cj"><span class="bn">গ্য</span><span><code>gy</code> <code>gZ</code></span></div><div class="cj"><span class="bn">গ্র</span><span><code>gr</code></span></div><div class="cj"><span class="bn">গ্ল</span><span><code>gl</code></span></div><div class="cj"><span class="bn">ঘ্ন</span><span><code>ghn</code></span></div><div class="cj"><span class="bn">ঘ্য</span><span><code>ghy</code> <code>ghZ</code></span></div><div class="cj"><span class="bn">ঘ্র</span><span><code>ghr</code></span></div><div class="cj"><span class="bn">ঙ্ক</span><span><code>nk</code> <code>Ngk</code></span></div><div class="cj"><span class="bn">ঙ্ক্য</span><span><code>nky</code> <code>Ngky</code> <code>nkZ</code> <code>NgkZ</code></span></div><div class="cj"><span class="bn">ঙ্ক্ষ</span><span><code>Ngkkh</code> <code>Ngkx</code></span></div><div class="cj"><span class="bn">ঙ্খ</span><span><code>Ngkh</code></span></div><div class="cj"><span class="bn">ঙ্গ</span><span><code>Ngg</code></span></div><div class="cj"><span class="bn">ঙ্গ্য</span><span><code>Nggy</code> <code>NggZ</code></span></div><div class="cj"><span class="bn">ঙ্ঘ</span><span><code>Nggh</code></span></div><div class="cj"><span class="bn">ঙ্ঘ্য</span><span><code>Ngghy</code> <code>NgghZ</code></span></div><div class="cj"><span class="bn">ঙ্ঘ্র</span><span><code>Ngghr</code></span></div><div class="cj"><span class="bn">ঙ্ম</span><span><code>Ngm</code></span></div><div class="cj"><span class="bn">চ্চ</span><span><code>cc</code></span></div><div class="cj"><span class="bn">চ্ছ</span><span><code>cch</code></span></div><div class="cj"><span class="bn">চ্ছ্ব</span><span><code>cchw</code></span></div><div class="cj"><span class="bn">চ্ছ্র</span><span><code>cchr</code></span></div><div class="cj"><span class="bn">চ্ঞ</span><span><code>cNG</code></span></div><div class="cj"><span class="bn">চ্য</span><span><code>cy</code> <code>cZ</code></span></div><div class="cj"><span class="bn">জ্জ</span><span><code>jj</code></span></div><div class="cj"><span class="bn">জ্জ্ব</span><span><code>jjw</code></span></div><div class="cj"><span class="bn">জ্ঝ</span><span><code>jjh</code></span></div><div class="cj"><span class="bn">জ্ঞ</span><span><code>gg</code> <code>jNG</code></span></div><div class="cj"><span class="bn">জ্ব</span><span><code>jw</code></span></div><div class="cj"><span class="bn">জ্য</span><span><code>jy</code> <code>jZ</code></span></div><div class="cj"><span class="bn">জ্র</span><span><code>jr</code></span></div><div class="cj"><span class="bn">ঞ্চ</span><span><code>nc</code> <code>NGc</code></span></div><div class="cj"><span class="bn">ঞ্ছ</span><span><code>nch</code> <code>NGch</code></span></div><div class="cj"><span class="bn">ঞ্জ</span><span><code>nj</code> <code>NGj</code></span></div><div class="cj"><span class="bn">ঞ্ঝ</span><span><code>njh</code> <code>NGjh</code></span></div><div class="cj"><span class="bn">ট্ট</span><span><code>TT</code></span></div><div class="cj"><span class="bn">ট্ব</span><span><code>Tw</code></span></div><div class="cj"><span class="bn">ট্ম</span><span><code>Tm</code></span></div><div class="cj"><span class="bn">ট্য</span><span><code>Ty</code> <code>TZ</code></span></div><div class="cj"><span class="bn">ট্র</span><span><code>Tr</code></span></div><div class="cj"><span class="bn">ড্ড</span><span><code>DD</code></span></div><div class="cj"><span class="bn">ড্য</span><span><code>Dy</code> <code>DZ</code></span></div><div class="cj"><span class="bn">ড্র</span><span><code>Dr</code></span></div><div class="cj"><span class="bn">ঢ্য</span><span><code>Dhy</code> <code>DhZ</code></span></div><div class="cj"><span class="bn">ঢ্র</span><span><code>Dhr</code></span></div><div class="cj"><span class="bn">ণ্ট</span><span><code>NT</code></span></div><div class="cj"><span class="bn">ণ্ঠ</span><span><code>NTh</code></span></div><div class="cj"><span class="bn">ণ্ড</span><span><code>ND</code></span></div><div class="cj"><span class="bn">ণ্ড্য</span><span><code>NDy</code> <code>NDZ</code></span></div><div class="cj"><span class="bn">ণ্ড্র</span><span><code>NDr</code></span></div><div class="cj"><span class="bn">ণ্ঢ</span><span><code>NDh</code></span></div><div class="cj"><span class="bn">ণ্ণ</span><span><code>NN</code></span></div><div class="cj"><span class="bn">ণ্ব</span><span><code>Nw</code></span></div><div class="cj"><span class="bn">ণ্ম</span><span><code>Nm</code></span></div><div class="cj"><span class="bn">ণ্য</span><span><code>Ny</code> <code>NZ</code></span></div><div class="cj"><span class="bn">ত্ত</span><span><code>tt</code></span></div><div class="cj"><span class="bn">ত্ত্ব</span><span><code>ttw</code></span></div><div class="cj"><span class="bn">ত্থ</span><span><code>tth</code></span></div><div class="cj"><span class="bn">ত্ন</span><span><code>tn</code></span></div><div class="cj"><span class="bn">ত্ব</span><span><code>tw</code></span></div><div class="cj"><span class="bn">ত্ম</span><span><code>tm</code></span></div><div class="cj"><span class="bn">ত্ম্য</span><span><code>tmy</code> <code>tmZ</code></span></div><div class="cj"><span class="bn">ত্য</span><span><code>ty</code> <code>tZ</code></span></div><div class="cj"><span class="bn">ত্র</span><span><code>tr</code></span></div><div class="cj"><span class="bn">থ্ব</span><span><code>thw</code></span></div><div class="cj"><span class="bn">থ্য</span><span><code>thy</code> <code>thZ</code></span></div><div class="cj"><span class="bn">থ্র</span><span><code>thr</code></span></div><div class="cj"><span class="bn">দ্গ</span><span><code>dg</code></span></div><div class="cj"><span class="bn">দ্ঘ</span><span><code>dgh</code></span></div><div class="cj"><span class="bn">দ্দ</span><span><code>dd</code></span></div><div class="cj"><span class="bn">দ্দ্ব</span><span><code>ddw</code></span></div><div class="cj"><span class="bn">দ্ধ</span><span><code>ddh</code></span></div><div class="cj"><span class="bn">দ্ব</span><span><code>dw</code></span></div><div class="cj"><span class="bn">দ্ভ</span><span><code>dv</code> <code>dbh</code></span></div><div class="cj"><span class="bn">দ্ম</span><span><code>dm</code></span></div><div class="cj"><span class="bn">দ্য</span><span><code>dy</code> <code>dZ</code></span></div><div class="cj"><span class="bn">দ্র</span><span><code>dr</code></span></div><div class="cj"><span class="bn">ধ্ন</span><span><code>dhn</code></span></div><div class="cj"><span class="bn">ধ্ব</span><span><code>dhw</code></span></div><div class="cj"><span class="bn">ধ্ম</span><span><code>dhm</code></span></div><div class="cj"><span class="bn">ধ্য</span><span><code>dhy</code> <code>dhZ</code></span></div><div class="cj"><span class="bn">ধ্র</span><span><code>dhr</code></span></div><div class="cj"><span class="bn">ন্ট</span><span><code>nT</code></span></div><div class="cj"><span class="bn">ন্ঠ</span><span><code>nTh</code></span></div><div class="cj"><span class="bn">ন্ড</span><span><code>nD</code></span></div><div class="cj"><span class="bn">ন্ত</span><span><code>nt</code></span></div><div class="cj"><span class="bn">ন্ত্ব</span><span><code>ntw</code></span></div><div class="cj"><span class="bn">ন্ত্য</span><span><code>nty</code> <code>ntZ</code></span></div><div class="cj"><span class="bn">ন্ত্র</span><span><code>ntr</code></span></div><div class="cj"><span class="bn">ন্থ</span><span><code>nth</code></span></div><div class="cj"><span class="bn">ন্দ</span><span><code>nd</code></span></div><div class="cj"><span class="bn">ন্দ্য</span><span><code>ndy</code> <code>ndZ</code></span></div><div class="cj"><span class="bn">ন্দ্ব</span><span><code>ndw</code></span></div><div class="cj"><span class="bn">ন্দ্র</span><span><code>ndr</code></span></div><div class="cj"><span class="bn">ন্ধ</span><span><code>ndh</code></span></div><div class="cj"><span class="bn">ন্ধ্য</span><span><code>ndhy</code> <code>ndhZ</code></span></div><div class="cj"><span class="bn">ন্ধ্র</span><span><code>ndhr</code></span></div><div class="cj"><span class="bn">ন্ন</span><span><code>nn</code></span></div><div class="cj"><span class="bn">ন্ব</span><span><code>nw</code></span></div><div class="cj"><span class="bn">ন্ম</span><span><code>nm</code></span></div><div class="cj"><span class="bn">ন্য</span><span><code>ny</code> <code>nZ</code></span></div><div class="cj"><span class="bn">ন্স</span><span><code>ns</code></span></div><div class="cj"><span class="bn">প্ট</span><span><code>pT</code></span></div><div class="cj"><span class="bn">প্ত</span><span><code>pt</code></span></div><div class="cj"><span class="bn">প্ন</span><span><code>pn</code></span></div><div class="cj"><span class="bn">প্প</span><span><code>pp</code></span></div><div class="cj"><span class="bn">প্য</span><span><code>py</code> <code>pZ</code></span></div><div class="cj"><span class="bn">প্র</span><span><code>pr</code></span></div><div class="cj"><span class="bn">প্ল</span><span><code>pl</code></span></div><div class="cj"><span class="bn">প্স</span><span><code>ps</code></span></div><div class="cj"><span class="bn">ফ্র</span><span><code>fr</code> <code>phr</code></span></div><div class="cj"><span class="bn">ফ্ল</span><span><code>fl</code> <code>phl</code></span></div><div class="cj"><span class="bn">ব্জ</span><span><code>bj</code></span></div><div class="cj"><span class="bn">ব্দ</span><span><code>bd</code></span></div><div class="cj"><span class="bn">ব্ধ</span><span><code>bdh</code></span></div><div class="cj"><span class="bn">ব্ব</span><span><code>bb</code></span></div><div class="cj"><span class="bn">ব্য</span><span><code>by</code> <code>bZ</code></span></div><div class="cj"><span class="bn">ব্র</span><span><code>br</code></span></div><div class="cj"><span class="bn">ব্ল</span><span><code>bl</code></span></div><div class="cj"><span class="bn">ভ্য</span><span><code>vy</code> <code>vZ</code> <code>bhy</code> <code>bhZ</code></span></div><div class="cj"><span class="bn">ভ্র</span><span><code>vr</code> <code>bhr</code></span></div><div class="cj"><span class="bn">ভ্ল</span><span><code>vl</code> <code>bhl</code></span></div><div class="cj"><span class="bn">ম্থ</span><span><code>mth</code></span></div><div class="cj"><span class="bn">ম্ন</span><span><code>mn</code></span></div><div class="cj"><span class="bn">ম্প</span><span><code>mp</code></span></div><div class="cj"><span class="bn">ম্প্র</span><span><code>mpr</code></span></div><div class="cj"><span class="bn">ম্ফ</span><span><code>mf</code> <code>mph</code></span></div><div class="cj"><span class="bn">ম্ব</span><span><code>mb</code> <code>mw</code></span></div><div class="cj"><span class="bn">ম্ভ</span><span><code>mv</code> <code>mbh</code></span></div><div class="cj"><span class="bn">ম্ভ্র</span><span><code>mvr</code> <code>mbhr</code></span></div><div class="cj"><span class="bn">ম্ম</span><span><code>mm</code></span></div><div class="cj"><span class="bn">ম্য</span><span><code>my</code> <code>mZ</code></span></div><div class="cj"><span class="bn">ম্র</span><span><code>mr</code></span></div><div class="cj"><span class="bn">ম্ল</span><span><code>ml</code></span></div><div class="cj"><span class="bn">য্য</span><span><code>zy</code> <code>zZ</code></span></div><div class="cj"><span class="bn">র্ক</span><span><code>rrk</code></span></div><div class="cj"><span class="bn">র্খ</span><span><code>rrkh</code></span></div><div class="cj"><span class="bn">র্গ</span><span><code>rrg</code></span></div><div class="cj"><span class="bn">র্ক্য</span><span><code>rrky</code> <code>rrkZ</code></span></div><div class="cj"><span class="bn">র্খ্য</span><span><code>rrkhy</code> <code>rrkhZ</code></span></div><div class="cj"><span class="bn">ল্ক</span><span><code>lk</code></span></div><div class="cj"><span class="bn">ল্গ</span><span><code>lg</code></span></div><div class="cj"><span class="bn">ল্ট</span><span><code>lT</code></span></div><div class="cj"><span class="bn">ল্ড</span><span><code>lD</code></span></div><div class="cj"><span class="bn">ল্ধ</span><span><code>ldh</code></span></div><div class="cj"><span class="bn">ল্প</span><span><code>lp</code></span></div><div class="cj"><span class="bn">ল্ব</span><span><code>lb</code> <code>lw</code></span></div><div class="cj"><span class="bn">ল্ভ</span><span><code>lv</code> <code>lbh</code></span></div><div class="cj"><span class="bn">ল্ম</span><span><code>lm</code></span></div><div class="cj"><span class="bn">ল্য</span><span><code>ly</code> <code>lZ</code></span></div><div class="cj"><span class="bn">ল্ল</span><span><code>ll</code></span></div><div class="cj"><span class="bn">শ্চ</span><span><code>shc</code> <code>Sc</code></span></div><div class="cj"><span class="bn">শ্ছ</span><span><code>shch</code> <code>Sch</code></span></div><div class="cj"><span class="bn">শ্ত</span><span><code>sht</code> <code>St</code></span></div><div class="cj"><span class="bn">শ্ন</span><span><code>shn</code> <code>Sn</code></span></div><div class="cj"><span class="bn">শ্ব</span><span><code>shw</code> <code>Sw</code></span></div><div class="cj"><span class="bn">শ্ম</span><span><code>shm</code> <code>Sm</code></span></div><div class="cj"><span class="bn">শ্য</span><span><code>shy</code> <code>shZ</code> <code>Sy</code> <code>SZ</code></span></div><div class="cj"><span class="bn">শ্র</span><span><code>shr</code> <code>Sr</code></span></div><div class="cj"><span class="bn">শ্ল</span><span><code>shl</code> <code>Sl</code></span></div><div class="cj"><span class="bn">ষ্ক</span><span><code>Shk</code></span></div><div class="cj"><span class="bn">ষ্ক্র</span><span><code>Shkr</code></span></div><div class="cj"><span class="bn">ষ্ট</span><span><code>ShT</code></span></div><div class="cj"><span class="bn">ষ্ট্য</span><span><code>ShTy</code> <code>ShTZ</code></span></div><div class="cj"><span class="bn">ষ্ট্র</span><span><code>ShTr</code></span></div><div class="cj"><span class="bn">ষ্ঠ</span><span><code>ShTh</code></span></div><div class="cj"><span class="bn">ষ্ঠ্য</span><span><code>ShThy</code> <code>ShThZ</code></span></div><div class="cj"><span class="bn">ষ্ণ</span><span><code>ShN</code></span></div><div class="cj"><span class="bn">ষ্প</span><span><code>Shp</code></span></div><div class="cj"><span class="bn">ষ্প্র</span><span><code>Shpr</code></span></div><div class="cj"><span class="bn">ষ্ফ</span><span><code>Shph</code> <code>Shf</code></span></div><div class="cj"><span class="bn">ষ্ব</span><span><code>Shw</code></span></div><div class="cj"><span class="bn">ষ্ম</span><span><code>Shm</code></span></div><div class="cj"><span class="bn">স্ক</span><span><code>sk</code></span></div><div class="cj"><span class="bn">স্ক্র</span><span><code>skr</code></span></div><div class="cj"><span class="bn">স্ক্ল</span><span><code>skl</code></span></div><div class="cj"><span class="bn">স্খ</span><span><code>skh</code></span></div><div class="cj"><span class="bn">স্ট</span><span><code>sT</code></span></div><div class="cj"><span class="bn">স্ট্র</span><span><code>sTr</code></span></div><div class="cj"><span class="bn">স্ত</span><span><code>st</code></span></div><div class="cj"><span class="bn">স্ত্ব</span><span><code>stw</code></span></div><div class="cj"><span class="bn">স্ত্য</span><span><code>sty</code> <code>stZ</code></span></div><div class="cj"><span class="bn">স্থ</span><span><code>sth</code></span></div><div class="cj"><span class="bn">স্থ্য</span><span><code>sthy</code> <code>sthZ</code></span></div><div class="cj"><span class="bn">স্ন</span><span><code>sn</code></span></div><div class="cj"><span class="bn">স্প</span><span><code>sp</code></span></div><div class="cj"><span class="bn">স্ফ</span><span><code>sf</code> <code>sph</code></span></div><div class="cj"><span class="bn">স্ব</span><span><code>sw</code></span></div><div class="cj"><span class="bn">স্ম</span><span><code>sm</code></span></div><div class="cj"><span class="bn">স্য</span><span><code>sy</code> <code>sZ</code></span></div><div class="cj"><span class="bn">স্র</span><span><code>sr</code></span></div><div class="cj"><span class="bn">স্ল</span><span><code>sl</code></span></div><div class="cj"><span class="bn">হ্ণ</span><span><code>hN</code></span></div><div class="cj"><span class="bn">হ্ন</span><span><code>hn</code></span></div><div class="cj"><span class="bn">হ্ব</span><span><code>hw</code></span></div><div class="cj"><span class="bn">হ্ম</span><span><code>hm</code></span></div><div class="cj"><span class="bn">হ্য</span><span><code>hy</code> <code>hZ</code></span></div><div class="cj"><span class="bn">হ্র</span><span><code>hr</code></span></div><div class="cj"><span class="bn">হ্ল</span><span><code>hl</code></span></div><div class="cj"><span class="bn">হৃ</span><span><code>hrri</code></span></div></div></section><section id="fixed" class="g-sec l2"><h2><a href="#fixed">প্রভাত ও ইউনিজয়</a></h2><p class="lead2">ফিক্সড লেআউটে প্রতিটি কি একটি বাংলা বর্ণ বা চিহ্ন লেখে, তাই যা দেখছেন তা-ই টাইপ করবেন। <strong>Preferences… › Keyboard Layout</strong>-এ একটি বেছে নিন।</p><ul class="g-list"><li>কিগুলো US কিবোর্ডের মতো পড়া হয়, তাই অন্য ইনপুট সোর্স হিসেবে <strong>ABC</strong> বা <strong>U.S.</strong> রাখুন।</li><li>ক্যান্ডিডেট বার নেই: যা টাইপ করেন তা সরাসরি লেখায় বসে।</li><li>উইন্ডোজ লেআউটের Option (AltGr) স্তর এখনো যোগ হয়নি।</li></ul></section><section id="keymaps" class="g-sec l3"><h3><a href="#keymaps">কি-ম্যাপ</a></h3><p>নিচের বর্ণটি শুধু কি চাপলে আসে, ওপরেরটি <kbd>Shift</kbd> সহ। খালি কিগুলো তাদের সাধারণ অক্ষর লেখে।</p><h4>প্রভাত</h4><div class="kb" role="img" aria-label="Probhat">
+<div class="kb-row r0">
+<div class="cap"><span class="lat">`</span><span class="up"><span class="bn">~</span></span><span class="lo"><span class="ctl">ZWJ</span></span></div>
+<div class="cap"><span class="lat">1</span><span class="up"></span><span class="lo"><span class="bn">১</span></span></div>
+<div class="cap"><span class="lat">2</span><span class="up"></span><span class="lo"><span class="bn">২</span></span></div>
+<div class="cap"><span class="lat">3</span><span class="up"></span><span class="lo"><span class="bn">৩</span></span></div>
+<div class="cap"><span class="lat">4</span><span class="up"><span class="bn">৳</span></span><span class="lo"><span class="bn">৪</span></span></div>
+<div class="cap"><span class="lat">5</span><span class="up"></span><span class="lo"><span class="bn">৫</span></span></div>
+<div class="cap"><span class="lat">6</span><span class="up"></span><span class="lo"><span class="bn">৬</span></span></div>
+<div class="cap"><span class="lat">7</span><span class="up"><span class="bn">ঞ</span></span><span class="lo"><span class="bn">৭</span></span></div>
+<div class="cap"><span class="lat">8</span><span class="up"><span class="bn">ৎ</span></span><span class="lo"><span class="bn">৮</span></span></div>
+<div class="cap"><span class="lat">9</span><span class="up"></span><span class="lo"><span class="bn">৯</span></span></div>
+<div class="cap"><span class="lat">0</span><span class="up"></span><span class="lo"><span class="bn">০</span></span></div>
+<div class="cap empty"><span class="lat">-</span><span class="up"></span><span class="lo"></span></div>
+<div class="cap empty"><span class="lat">=</span><span class="up"></span><span class="lo"></span></div>
+</div>
+<div class="kb-row r1">
+<div class="cap"><span class="lat">Q</span><span class="up"><span class="bn">ধ</span></span><span class="lo"><span class="bn">দ</span></span></div>
+<div class="cap"><span class="lat">W</span><span class="up"><span class="bn">ঊ</span></span><span class="lo"><span class="bn">◌ূ</span></span></div>
+<div class="cap"><span class="lat">E</span><span class="up"><span class="bn">ঈ</span></span><span class="lo"><span class="bn">◌ী</span></span></div>
+<div class="cap"><span class="lat">R</span><span class="up"><span class="bn">ড়</span></span><span class="lo"><span class="bn">র</span></span></div>
+<div class="cap"><span class="lat">T</span><span class="up"><span class="bn">ঠ</span></span><span class="lo"><span class="bn">ট</span></span></div>
+<div class="cap"><span class="lat">Y</span><span class="up"><span class="bn">ঐ</span></span><span class="lo"><span class="bn">এ</span></span></div>
+<div class="cap"><span class="lat">U</span><span class="up"><span class="bn">উ</span></span><span class="lo"><span class="bn">◌ু</span></span></div>
+<div class="cap"><span class="lat">I</span><span class="up"><span class="bn">ই</span></span><span class="lo"><span class="bn">◌ি</span></span></div>
+<div class="cap"><span class="lat">O</span><span class="up"><span class="bn">ঔ</span></span><span class="lo"><span class="bn">ও</span></span></div>
+<div class="cap"><span class="lat">P</span><span class="up"><span class="bn">ফ</span></span><span class="lo"><span class="bn">প</span></span></div>
+<div class="cap"><span class="lat">[</span><span class="up"><span class="bn">◌ৈ</span></span><span class="lo"><span class="bn">◌ে</span></span></div>
+<div class="cap"><span class="lat">]</span><span class="up"><span class="bn">◌ৌ</span></span><span class="lo"><span class="bn">◌ো</span></span></div>
+<div class="cap"><span class="lat">\</span><span class="up"><span class="bn">॥</span></span><span class="lo"><span class="ctl">ZWNJ</span></span></div>
+</div>
+<div class="kb-row r2">
+<div class="cap"><span class="lat">A</span><span class="up"><span class="bn">অ</span></span><span class="lo"><span class="bn">◌া</span></span></div>
+<div class="cap"><span class="lat">S</span><span class="up"><span class="bn">ষ</span></span><span class="lo"><span class="bn">স</span></span></div>
+<div class="cap"><span class="lat">D</span><span class="up"><span class="bn">ঢ</span></span><span class="lo"><span class="bn">ড</span></span></div>
+<div class="cap"><span class="lat">F</span><span class="up"><span class="bn">থ</span></span><span class="lo"><span class="bn">ত</span></span></div>
+<div class="cap"><span class="lat">G</span><span class="up"><span class="bn">ঘ</span></span><span class="lo"><span class="bn">গ</span></span></div>
+<div class="cap"><span class="lat">H</span><span class="up"><span class="bn">◌ঃ</span></span><span class="lo"><span class="bn">হ</span></span></div>
+<div class="cap"><span class="lat">J</span><span class="up"><span class="bn">ঝ</span></span><span class="lo"><span class="bn">জ</span></span></div>
+<div class="cap"><span class="lat">K</span><span class="up"><span class="bn">খ</span></span><span class="lo"><span class="bn">ক</span></span></div>
+<div class="cap"><span class="lat">L</span><span class="up"><span class="bn">◌ং</span></span><span class="lo"><span class="bn">ল</span></span></div>
+<div class="cap empty"><span class="lat">;</span><span class="up"></span><span class="lo"></span></div>
+<div class="cap empty"><span class="lat">&#x27;</span><span class="up"></span><span class="lo"></span></div>
+</div>
+<div class="kb-row r3">
+<div class="cap"><span class="lat">Z</span><span class="up"><span class="bn">য</span></span><span class="lo"><span class="bn">য়</span></span></div>
+<div class="cap"><span class="lat">X</span><span class="up"><span class="bn">ঢ়</span></span><span class="lo"><span class="bn">শ</span></span></div>
+<div class="cap"><span class="lat">C</span><span class="up"><span class="bn">ছ</span></span><span class="lo"><span class="bn">চ</span></span></div>
+<div class="cap"><span class="lat">V</span><span class="up"><span class="bn">ঋ</span></span><span class="lo"><span class="bn">আ</span></span></div>
+<div class="cap"><span class="lat">B</span><span class="up"><span class="bn">ভ</span></span><span class="lo"><span class="bn">ব</span></span></div>
+<div class="cap"><span class="lat">N</span><span class="up"><span class="bn">ণ</span></span><span class="lo"><span class="bn">ন</span></span></div>
+<div class="cap"><span class="lat">M</span><span class="up"><span class="bn">ঙ</span></span><span class="lo"><span class="bn">ম</span></span></div>
+<div class="cap"><span class="lat">,</span><span class="up"><span class="bn">◌ৃ</span></span><span class="lo"></span></div>
+<div class="cap"><span class="lat">.</span><span class="up"><span class="bn">◌ঁ</span></span><span class="lo"><span class="bn">।</span></span></div>
+<div class="cap"><span class="lat">/</span><span class="up"></span><span class="lo"><span class="bn">◌্</span></span></div>
+</div>
+</div><h4>ইউনিজয়</h4><div class="kb" role="img" aria-label="Unijoy">
+<div class="kb-row r0">
+<div class="cap"><span class="lat">`</span><span class="up"><span class="bn">“</span></span><span class="lo"><span class="bn">‘</span></span></div>
+<div class="cap"><span class="lat">1</span><span class="up"></span><span class="lo"><span class="bn">১</span></span></div>
+<div class="cap"><span class="lat">2</span><span class="up"></span><span class="lo"><span class="bn">২</span></span></div>
+<div class="cap"><span class="lat">3</span><span class="up"></span><span class="lo"><span class="bn">৩</span></span></div>
+<div class="cap"><span class="lat">4</span><span class="up"><span class="bn">৳</span></span><span class="lo"><span class="bn">৪</span></span></div>
+<div class="cap"><span class="lat">5</span><span class="up"></span><span class="lo"><span class="bn">৫</span></span></div>
+<div class="cap"><span class="lat">6</span><span class="up"></span><span class="lo"><span class="bn">৬</span></span></div>
+<div class="cap"><span class="lat">7</span><span class="up"><span class="bn">◌ঁ</span></span><span class="lo"><span class="bn">৭</span></span></div>
+<div class="cap"><span class="lat">8</span><span class="up"></span><span class="lo"><span class="bn">৮</span></span></div>
+<div class="cap"><span class="lat">9</span><span class="up"></span><span class="lo"><span class="bn">৯</span></span></div>
+<div class="cap"><span class="lat">0</span><span class="up"></span><span class="lo"><span class="bn">০</span></span></div>
+<div class="cap"><span class="lat">-</span><span class="up"><span class="bn">—</span></span><span class="lo"></span></div>
+<div class="cap empty"><span class="lat">=</span><span class="up"></span><span class="lo"></span></div>
+</div>
+<div class="kb-row r1">
+<div class="cap"><span class="lat">Q</span><span class="up"><span class="bn">◌ং</span></span><span class="lo"><span class="bn">ঙ</span></span></div>
+<div class="cap"><span class="lat">W</span><span class="up"><span class="bn">য়</span></span><span class="lo"><span class="bn">য</span></span></div>
+<div class="cap"><span class="lat">E</span><span class="up"><span class="bn">ঢ</span></span><span class="lo"><span class="bn">ড</span></span></div>
+<div class="cap"><span class="lat">R</span><span class="up"><span class="bn">ফ</span></span><span class="lo"><span class="bn">প</span></span></div>
+<div class="cap"><span class="lat">T</span><span class="up"><span class="bn">ঠ</span></span><span class="lo"><span class="bn">ট</span></span></div>
+<div class="cap"><span class="lat">Y</span><span class="up"><span class="bn">ছ</span></span><span class="lo"><span class="bn">চ</span></span></div>
+<div class="cap"><span class="lat">U</span><span class="up"><span class="bn">ঝ</span></span><span class="lo"><span class="bn">জ</span></span></div>
+<div class="cap"><span class="lat">I</span><span class="up"><span class="bn">ঞ</span></span><span class="lo"><span class="bn">হ</span></span></div>
+<div class="cap"><span class="lat">O</span><span class="up"><span class="bn">ঘ</span></span><span class="lo"><span class="bn">গ</span></span></div>
+<div class="cap"><span class="lat">P</span><span class="up"><span class="bn">ঢ়</span></span><span class="lo"><span class="bn">ড়</span></span></div>
+<div class="cap empty"><span class="lat">[</span><span class="up"></span><span class="lo"></span></div>
+<div class="cap empty"><span class="lat">]</span><span class="up"></span><span class="lo"></span></div>
+<div class="cap"><span class="lat">\</span><span class="up"><span class="bn">◌ঃ</span></span><span class="lo"><span class="bn">ৎ</span></span></div>
+</div>
+<div class="kb-row r2">
+<div class="cap"><span class="lat">A</span><span class="up"><span class="bn">র্</span></span><span class="lo"><span class="bn">◌ৃ</span></span></div>
+<div class="cap"><span class="lat">S</span><span class="up"><span class="bn">◌ূ</span></span><span class="lo"><span class="bn">◌ু</span></span></div>
+<div class="cap"><span class="lat">D</span><span class="up"><span class="bn">◌ী</span></span><span class="lo"><span class="bn">◌ি</span></span></div>
+<div class="cap"><span class="lat">F</span><span class="up"><span class="bn">অ</span></span><span class="lo"><span class="bn">◌া</span></span></div>
+<div class="cap dead"><span class="lat">G</span><span class="up"><span class="bn">।</span></span><span class="lo"><span class="bn">◌্</span></span></div>
+<div class="cap"><span class="lat">H</span><span class="up"><span class="bn">ভ</span></span><span class="lo"><span class="bn">ব</span></span></div>
+<div class="cap"><span class="lat">J</span><span class="up"><span class="bn">খ</span></span><span class="lo"><span class="bn">ক</span></span></div>
+<div class="cap"><span class="lat">K</span><span class="up"><span class="bn">থ</span></span><span class="lo"><span class="bn">ত</span></span></div>
+<div class="cap"><span class="lat">L</span><span class="up"><span class="bn">ধ</span></span><span class="lo"><span class="bn">দ</span></span></div>
+<div class="cap empty"><span class="lat">;</span><span class="up"></span><span class="lo"></span></div>
+<div class="cap"><span class="lat">&#x27;</span><span class="up"><span class="bn">”</span></span><span class="lo"><span class="bn">’</span></span></div>
+</div>
+<div class="kb-row r3">
+<div class="cap"><span class="lat">Z</span><span class="up"><span class="bn">◌্য</span></span><span class="lo"><span class="bn">◌্র</span></span></div>
+<div class="cap"><span class="lat">X</span><span class="up"><span class="bn">◌ৌ</span></span><span class="lo"><span class="bn">◌ো</span></span></div>
+<div class="cap"><span class="lat">C</span><span class="up"><span class="bn">◌ৈ</span></span><span class="lo"><span class="bn">◌ে</span></span></div>
+<div class="cap"><span class="lat">V</span><span class="up"><span class="bn">ল</span></span><span class="lo"><span class="bn">র</span></span></div>
+<div class="cap"><span class="lat">B</span><span class="up"><span class="bn">ণ</span></span><span class="lo"><span class="bn">ন</span></span></div>
+<div class="cap"><span class="lat">N</span><span class="up"><span class="bn">ষ</span></span><span class="lo"><span class="bn">স</span></span></div>
+<div class="cap"><span class="lat">M</span><span class="up"><span class="bn">শ</span></span><span class="lo"><span class="bn">ম</span></span></div>
+<div class="cap empty"><span class="lat">,</span><span class="up"></span><span class="lo"></span></div>
+<div class="cap empty"><span class="lat">.</span><span class="up"></span><span class="lo"></span></div>
+<div class="cap empty"><span class="lat">/</span><span class="up"></span><span class="lo"></span></div>
+</div>
+</div><p class="g-note"><kbd>g</kbd> হলো হসন্ত। এটি পরের কির জন্য অপেক্ষা করে: কারের কির আগে দিলে মূল স্বরবর্ণ হয়।</p></section><section id="fixed-vowels" class="g-sec l3"><h3><a href="#fixed-vowels">স্বরবর্ণ</a></h3><p>প্রভাতে প্রতিটি স্বরবর্ণের আলাদা কি আছে। ইউনিজয়ে <kbd>g</kbd> (হসন্ত) চেপে তারপর সেই স্বরবর্ণের কারের কি চাপুন; অ-এর নিজস্ব কি আছে।</p><div class="tbl"><table class="narrow"><thead><tr><th>স্বরবর্ণ</th><th>প্রভাত</th><th>ইউনিজয়</th></tr></thead><tbody><tr><td><span class="bn">অ</span></td><td><span class="keys"><kbd>A</kbd></span></td><td><span class="keys"><kbd>F</kbd></span></td></tr><tr><td><span class="bn">আ</span></td><td><span class="keys"><kbd>v</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>f</kbd></span></td></tr><tr><td><span class="bn">ই</span></td><td><span class="keys"><kbd>I</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>d</kbd></span></td></tr><tr><td><span class="bn">ঈ</span></td><td><span class="keys"><kbd>E</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>D</kbd></span></td></tr><tr><td><span class="bn">উ</span></td><td><span class="keys"><kbd>U</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>s</kbd></span></td></tr><tr><td><span class="bn">ঊ</span></td><td><span class="keys"><kbd>W</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>S</kbd></span></td></tr><tr><td><span class="bn">ঋ</span></td><td><span class="keys"><kbd>V</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>a</kbd></span></td></tr><tr><td><span class="bn">এ</span></td><td><span class="keys"><kbd>y</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>c</kbd></span></td></tr><tr><td><span class="bn">ঐ</span></td><td><span class="keys"><kbd>Y</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>C</kbd></span></td></tr><tr><td><span class="bn">ও</span></td><td><span class="keys"><kbd>o</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>x</kbd></span></td></tr><tr><td><span class="bn">ঔ</span></td><td><span class="keys"><kbd>O</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>X</kbd></span></td></tr></tbody></table></div><p class="g-note"><a href="#old-style">পুরনো স্টাইলে টাইপিং</a>-এ বহন করার মতো ব্যঞ্জনবর্ণ না থাকলে কার নিজেই মূল স্বরবর্ণ হয়ে যায়, তাই সেখানে <kbd>g</kbd> লাগে না।</p></section><section id="vowel-signs" class="g-sec l3"><h3><a href="#vowel-signs">কার</a></h3><p>কার লিখুন তার ব্যঞ্জনবর্ণের <strong>পরে</strong>, উচ্চারণের ক্রমে, কার আগে আঁকা হলেও: মেডিকেল হলো ম, ে, ড, ি, ক, ে, ল। এটি ইউনিকোড ক্রম, উইন্ডোজের অভ্রে যাকে মডার্ন টাইপিং বলে।</p><div class="tbl"><table class="narrow"><thead><tr><th></th><th>প্রভাত</th><th>ইউনিজয়</th></tr></thead><tbody><tr><td><span class="bn">কা</span></td><td><span class="keys"><kbd>k</kbd><kbd>a</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>f</kbd></span></td></tr><tr><td><span class="bn">কি</span></td><td><span class="keys"><kbd>k</kbd><kbd>i</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>d</kbd></span></td></tr><tr><td><span class="bn">কী</span></td><td><span class="keys"><kbd>k</kbd><kbd>e</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>D</kbd></span></td></tr><tr><td><span class="bn">কু</span></td><td><span class="keys"><kbd>k</kbd><kbd>u</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>s</kbd></span></td></tr><tr><td><span class="bn">কূ</span></td><td><span class="keys"><kbd>k</kbd><kbd>w</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>S</kbd></span></td></tr><tr><td><span class="bn">কৃ</span></td><td><span class="keys"><kbd>k</kbd><kbd>&lt;</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>a</kbd></span></td></tr><tr><td><span class="bn">কে</span></td><td><span class="keys"><kbd>k</kbd><kbd>[</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>c</kbd></span></td></tr><tr><td><span class="bn">কৈ</span></td><td><span class="keys"><kbd>k</kbd><kbd>{</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>C</kbd></span></td></tr><tr><td><span class="bn">কো</span></td><td><span class="keys"><kbd>k</kbd><kbd>]</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>x</kbd></span></td></tr><tr><td><span class="bn">কৌ</span></td><td><span class="keys"><kbd>k</kbd><kbd>}</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>X</kbd></span></td></tr><tr><td><span class="bn">মেডিকেল</span></td><td><span class="keys"><kbd>m</kbd><kbd>[</kbd><kbd>d</kbd><kbd>i</kbd><kbd>k</kbd><kbd>[</kbd><kbd>l</kbd></span></td><td><span class="keys"><kbd>m</kbd><kbd>c</kbd><kbd>e</kbd><kbd>d</kbd><kbd>j</kbd><kbd>c</kbd><kbd>V</kbd></span></td></tr></tbody></table></div><p class="g-note">যুক্তাক্ষরে কার দিন পুরো যুক্তাক্ষরের পরে: ক্তা হলো ক, হসন্ত, ত, া।</p></section><section id="old-style" class="g-sec l3"><h3><a href="#old-style">পুরনো স্টাইলে টাইপিং</a></h3><p><strong>Preferences… › Use Full Old Style Typing</strong> চালু করলে বর্ণ যেভাবে আঁকা হয় সেভাবে লেখা যায়, টাইপরাইটার বা বিজয়ের মতো: ি, ে ও ৈ ব্যঞ্জনবর্ণের <strong>আগে</strong>। অভ্র তবু লেখাটি ঠিক ইউনিকোড ক্রমেই লেখে।</p><div class="tbl"><table class="narrow"><thead><tr><th></th><th>প্রভাত</th><th>ইউনিজয়</th></tr></thead><tbody><tr><td><span class="bn">কি</span></td><td><span class="keys"><kbd>i</kbd><kbd>k</kbd></span></td><td><span class="keys"><kbd>d</kbd><kbd>j</kbd></span></td></tr><tr><td><span class="bn">কে</span></td><td><span class="keys"><kbd>[</kbd><kbd>k</kbd></span></td><td><span class="keys"><kbd>c</kbd><kbd>j</kbd></span></td></tr><tr><td><span class="bn">কৈ</span></td><td><span class="keys"><kbd>{</kbd><kbd>k</kbd></span></td><td><span class="keys"><kbd>C</kbd><kbd>j</kbd></span></td></tr><tr><td><span class="bn">কো</span></td><td><span class="keys"><kbd>[</kbd><kbd>k</kbd><kbd>a</kbd></span></td><td><span class="keys"><kbd>c</kbd><kbd>j</kbd><kbd>f</kbd></span></td></tr><tr><td><span class="bn">কৌ</span></td><td><span class="keys"><kbd>[</kbd><kbd>k</kbd><kbd>}</kbd></span></td><td><span class="keys"><kbd>c</kbd><kbd>j</kbd><kbd>X</kbd></span></td></tr><tr><td><span class="bn">ক্তি</span></td><td><span class="keys"><kbd>i</kbd><kbd>k</kbd><kbd>/</kbd><kbd>f</kbd></span></td><td><span class="keys"><kbd>d</kbd><kbd>j</kbd><kbd>g</kbd><kbd>k</kbd></span></td></tr><tr><td><span class="bn">ক্ষি</span></td><td><span class="keys"><kbd>i</kbd><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd></span></td><td><span class="keys"><kbd>d</kbd><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd></span></td></tr><tr><td><span class="bn">কর্ম</span></td><td><span class="keys"><kbd>k</kbd><kbd>r</kbd><kbd>/</kbd><kbd>m</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>m</kbd><kbd>A</kbd></span></td></tr><tr><td><span class="bn">মেডিকেল</span></td><td><span class="keys"><kbd>[</kbd><kbd>m</kbd><kbd>i</kbd><kbd>d</kbd><kbd>[</kbd><kbd>k</kbd><kbd>l</kbd></span></td><td><span class="keys"><kbd>c</kbd><kbd>m</kbd><kbd>d</kbd><kbd>e</kbd><kbd>c</kbd><kbd>j</kbd><kbd>V</kbd></span></td></tr><tr><td><span class="bn">কোথায়</span></td><td><span class="keys"><kbd>[</kbd><kbd>k</kbd><kbd>a</kbd><kbd>F</kbd><kbd>a</kbd><kbd>z</kbd></span></td><td><span class="keys"><kbd>c</kbd><kbd>j</kbd><kbd>f</kbd><kbd>K</kbd><kbd>f</kbd><kbd>W</kbd></span></td></tr></tbody></table></div><ul class="g-list"><li>ো হলো ে, ব্যঞ্জনবর্ণ, তারপর া। ৌ হলো ে, ব্যঞ্জনবর্ণ, তারপর ৌ।</li><li>যুক্তাক্ষরে কার দিন পুরো যুক্তাক্ষরের আগে: ক্তি হলো ি, ক, হসন্ত, ত।</li><li>ইউনিজয়ে রেফ দিন ব্যঞ্জনবর্ণের পরে: কর্ম হলো ক, ম, র্। প্রভাতে রেফের কি নেই, তাই সেখানে রেফ আগেই দিতে হয়, র আর হসন্ত হিসেবে।</li><li><kbd>Space</kbd>, <kbd>Return</kbd> বা লেআউটের বাইরের কোনো কি না চাপা পর্যন্ত শব্দটি আন্ডারলাইন থাকে, কারণ পরের কি তখনো কার সরাতে পারে। <kbd>Delete</kbd> শেষ কিটি মোছে।</li></ul></section><section id="fixed-conjuncts" class="g-sec l3"><h3><a href="#fixed-conjuncts">যুক্তাক্ষর ও হসন্ত</a></h3><p>ব্যঞ্জনবর্ণ জুড়তে মাঝে হসন্ত দিন: প্রভাতে <kbd>/</kbd>, ইউনিজয়ে <kbd>g</kbd>।</p><div class="tbl"><table class="narrow"><thead><tr><th></th><th>প্রভাত</th><th>ইউনিজয়</th></tr></thead><tbody><tr><td><span class="bn">ক্ক</span></td><td><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>k</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>j</kbd></span></td></tr><tr><td><span class="bn">ক্ষ</span></td><td><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd></span></td></tr><tr><td><span class="bn">ক্ত</span></td><td><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>f</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>k</kbd></span></td></tr><tr><td><span class="bn">ক্তা</span></td><td><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>f</kbd><kbd>a</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>k</kbd><kbd>f</kbd></span></td></tr><tr><td><span class="bn">ঙ্গ</span></td><td><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>g</kbd></span></td><td><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>o</kbd></span></td></tr><tr><td><span class="bn">জ্ঞ</span></td><td><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>&amp;</kbd></span></td><td><span class="keys"><kbd>u</kbd><kbd>g</kbd><kbd>I</kbd></span></td></tr><tr><td><span class="bn">ঞ্জ</span></td><td><span class="keys"><kbd>&amp;</kbd><kbd>/</kbd><kbd>j</kbd></span></td><td><span class="keys"><kbd>I</kbd><kbd>g</kbd><kbd>u</kbd></span></td></tr><tr><td><span class="bn">ক্‌ষ</span></td><td><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>\</kbd><kbd>S</kbd></span></td><td><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>g</kbd><kbd>N</kbd></span></td></tr></tbody></table></div><p class="g-note"><strong>আলাদা রাখা:</strong> জোড়া না লাগিয়ে হসন্ত দেখাতে ইউনিজয়ে হসন্ত দুবার দিন (<kbd>g</kbd> <kbd>g</kbd>), আর প্রভাতে হসন্তের পরে <kbd>\</kbd> (ZWNJ)। দুটোতেই ক্ষ-এর বদলে ক্‌ষ আসে।</p></section><section id="reph-phala" class="g-sec l3"><h3><a href="#reph-phala">রেফ, র-ফলা ও য-ফলা</a></h3><div class="tbl"><table class=""><thead><tr><th></th><th>প্রভাত</th><th>ইউনিজয়</th><th>উদাহরণ</th></tr></thead><tbody><tr><td><strong><span class="bn">রেফ</span></strong> <span class="bn">র্</span></td><td>র, হসন্ত, ব্যঞ্জনবর্ণের আগে</td><td>ব্যঞ্জনবর্ণের আগে <kbd>A</kbd> (পুরনো স্টাইলে পরে)</td><td><span class="bn">কর্ম</span><div class="kx"><span>প্রভাত</span><span class="keys"><kbd>k</kbd><kbd>r</kbd><kbd>/</kbd><kbd>m</kbd></span></div><div class="kx"><span>ইউনিজয়</span><span class="keys"><kbd>j</kbd><kbd>A</kbd><kbd>m</kbd></span></div></td></tr><tr><td><strong><span class="bn">র-ফলা</span></strong> <span class="bn">◌্র</span></td><td>হসন্ত, র</td><td><kbd>z</kbd></td><td><span class="bn">প্র</span><div class="kx"><span>প্রভাত</span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>r</kbd></span></div><div class="kx"><span>ইউনিজয়</span><span class="keys"><kbd>r</kbd><kbd>z</kbd></span></div></td></tr><tr><td><strong><span class="bn">য-ফলা</span></strong> <span class="bn">◌্য</span></td><td>হসন্ত, য</td><td><kbd>Z</kbd></td><td><span class="bn">ক্য</span><div class="kx"><span>প্রভাত</span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>Z</kbd></span></div><div class="kx"><span>ইউনিজয়</span><span class="keys"><kbd>j</kbd><kbd>Z</kbd></span></div></td></tr><tr><td><strong><span class="bn">র‍্য</span></strong></td><td>র, <kbd>`</kbd> (ZWJ), হসন্ত, য</td><td>র তারপর <kbd>Z</kbd></td><td><span class="bn">র‍্যাব</span><div class="kx"><span>প্রভাত</span><span class="keys"><kbd>r</kbd><kbd>`</kbd><kbd>/</kbd><kbd>Z</kbd><kbd>a</kbd><kbd>b</kbd></span></div><div class="kx"><span>ইউনিজয়</span><span class="keys"><kbd>v</kbd><kbd>Z</kbd><kbd>f</kbd><kbd>h</kbd></span></div></td></tr></tbody></table></div></section><section id="other-keys" class="g-sec l3"><h3><a href="#other-keys">অন্যান্য কি</a></h3><div class="tbl"><table class="narrow"><thead><tr><th></th><th>প্রভাত</th><th>ইউনিজয়</th></tr></thead><tbody><tr><td><span class="bn">দাঁড়ি ।</span></td><td><span class="keys"><kbd>.</kbd></span></td><td><span class="keys"><kbd>G</kbd></span></td></tr><tr><td><span class="bn">দুই দাঁড়ি ॥</span></td><td><span class="keys"><kbd>|</kbd></span></td><td><span class="keys"><kbd>g</kbd><kbd>G</kbd></span></td></tr><tr><td><span class="bn">টাকা ৳</span></td><td><span class="keys"><kbd>$</kbd></span></td><td><span class="keys"><kbd>$</kbd></span></td></tr><tr><td><span class="bn">খণ্ড-ত ৎ</span></td><td><span class="keys"><kbd>*</kbd></span></td><td><span class="keys"><kbd>\</kbd></span></td></tr><tr><td><span class="bn">চন্দ্রবিন্দু ঁ</span></td><td><span class="keys"><kbd>&gt;</kbd></span></td><td><span class="keys"><kbd>&amp;</kbd></span></td></tr><tr><td><span class="bn">অনুস্বার ং</span></td><td><span class="keys"><kbd>L</kbd></span></td><td><span class="keys"><kbd>Q</kbd></span></td></tr><tr><td><span class="bn">বিসর্গ ঃ</span></td><td><span class="keys"><kbd>H</kbd></span></td><td><span class="keys"><kbd>|</kbd></span></td></tr><tr><td><span class="bn">০–৯</span></td><td><code>0–9</code></td><td><code>0–9</code></td></tr><tr><td>ZWJ</td><td><span class="keys"><kbd>`</kbd></span></td><td>—</td></tr><tr><td>ZWNJ</td><td><span class="keys"><kbd>\</kbd></span></td><td>—</td></tr><tr><td><span class="bn">‘ ’</span></td><td>—</td><td><span class="keys"><kbd>`</kbd><kbd>&#x27;</kbd></span></td></tr><tr><td><span class="bn">“ ”</span></td><td>—</td><td><span class="keys"><kbd>~</kbd><kbd>&quot;</kbd></span></td></tr><tr><td><span class="bn">—</span></td><td>—</td><td><span class="keys"><kbd>_</kbd></span></td></tr></tbody></table></div></section><section id="fixed-conjunct-table" class="g-sec l3"><h3><a href="#fixed-conjunct-table">প্রভাত ও ইউনিজয়ে যুক্তাক্ষরের কি</a></h3><p>ওপরের তালিকার প্রতিটি যুক্তাক্ষরের কি: আগে প্রভাত, তারপর ইউনিজয়। প্রতিটি অ্যাপের নিজস্ব লেআউটে টাইপ করে মিলিয়ে দেখা।</p><div class="cjgrid fx"><div class="cj fx"><span class="bn">ক্ক</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>k</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>j</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ট</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ত</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>f</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>k</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ত্র</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>f</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>k</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ব</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ম</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ক্য</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ক্র</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ল</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ষ</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ষ্ব</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ষ্ণ</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd><kbd>/</kbd><kbd>N</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd><kbd>g</kbd><kbd>B</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ষ্ম</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ক্ষ্য</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ক্স</span><span><span class="keys"><kbd>k</kbd><kbd>/</kbd><kbd>s</kbd></span></span><span><span class="keys"><kbd>j</kbd><kbd>g</kbd><kbd>n</kbd></span></span></div><div class="cj fx"><span class="bn">খ্য</span><span><span class="keys"><kbd>K</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>J</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">খ্র</span><span><span class="keys"><kbd>K</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>J</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">গ্ণ</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>N</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>g</kbd><kbd>B</kbd></span></span></div><div class="cj fx"><span class="bn">গ্ধ</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>Q</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>g</kbd><kbd>L</kbd></span></span></div><div class="cj fx"><span class="bn">গ্ন</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">গ্ন্য</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>n</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>g</kbd><kbd>b</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">গ্ব</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">গ্ম</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">গ্য</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">গ্র</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">গ্ল</span><span><span class="keys"><kbd>g</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>o</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">ঘ্ন</span><span><span class="keys"><kbd>G</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>O</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">ঘ্য</span><span><span class="keys"><kbd>G</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>O</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ঘ্র</span><span><span class="keys"><kbd>G</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>O</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্ক</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>k</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>j</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্ক্য</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>k</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>j</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্ক্ষ</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>k</kbd><kbd>/</kbd><kbd>S</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>j</kbd><kbd>g</kbd><kbd>N</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্খ</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>K</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>J</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্গ</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>g</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>o</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্গ্য</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>g</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>o</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্ঘ</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>G</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>O</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্ঘ্য</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>G</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>O</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্ঘ্র</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>G</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>O</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ঙ্ম</span><span><span class="keys"><kbd>M</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>q</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">চ্চ</span><span><span class="keys"><kbd>c</kbd><kbd>/</kbd><kbd>c</kbd></span></span><span><span class="keys"><kbd>y</kbd><kbd>g</kbd><kbd>y</kbd></span></span></div><div class="cj fx"><span class="bn">চ্ছ</span><span><span class="keys"><kbd>c</kbd><kbd>/</kbd><kbd>C</kbd></span></span><span><span class="keys"><kbd>y</kbd><kbd>g</kbd><kbd>Y</kbd></span></span></div><div class="cj fx"><span class="bn">চ্ছ্ব</span><span><span class="keys"><kbd>c</kbd><kbd>/</kbd><kbd>C</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>y</kbd><kbd>g</kbd><kbd>Y</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">চ্ছ্র</span><span><span class="keys"><kbd>c</kbd><kbd>/</kbd><kbd>C</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>y</kbd><kbd>g</kbd><kbd>Y</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">চ্ঞ</span><span><span class="keys"><kbd>c</kbd><kbd>/</kbd><kbd>&amp;</kbd></span></span><span><span class="keys"><kbd>y</kbd><kbd>g</kbd><kbd>I</kbd></span></span></div><div class="cj fx"><span class="bn">চ্য</span><span><span class="keys"><kbd>c</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>y</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">জ্জ</span><span><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>j</kbd></span></span><span><span class="keys"><kbd>u</kbd><kbd>g</kbd><kbd>u</kbd></span></span></div><div class="cj fx"><span class="bn">জ্জ্ব</span><span><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>j</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>u</kbd><kbd>g</kbd><kbd>u</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">জ্ঝ</span><span><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>J</kbd></span></span><span><span class="keys"><kbd>u</kbd><kbd>g</kbd><kbd>U</kbd></span></span></div><div class="cj fx"><span class="bn">জ্ঞ</span><span><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>&amp;</kbd></span></span><span><span class="keys"><kbd>u</kbd><kbd>g</kbd><kbd>I</kbd></span></span></div><div class="cj fx"><span class="bn">জ্ব</span><span><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>u</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">জ্য</span><span><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>u</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">জ্র</span><span><span class="keys"><kbd>j</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>u</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ঞ্চ</span><span><span class="keys"><kbd>&amp;</kbd><kbd>/</kbd><kbd>c</kbd></span></span><span><span class="keys"><kbd>I</kbd><kbd>g</kbd><kbd>y</kbd></span></span></div><div class="cj fx"><span class="bn">ঞ্ছ</span><span><span class="keys"><kbd>&amp;</kbd><kbd>/</kbd><kbd>C</kbd></span></span><span><span class="keys"><kbd>I</kbd><kbd>g</kbd><kbd>Y</kbd></span></span></div><div class="cj fx"><span class="bn">ঞ্জ</span><span><span class="keys"><kbd>&amp;</kbd><kbd>/</kbd><kbd>j</kbd></span></span><span><span class="keys"><kbd>I</kbd><kbd>g</kbd><kbd>u</kbd></span></span></div><div class="cj fx"><span class="bn">ঞ্ঝ</span><span><span class="keys"><kbd>&amp;</kbd><kbd>/</kbd><kbd>J</kbd></span></span><span><span class="keys"><kbd>I</kbd><kbd>g</kbd><kbd>U</kbd></span></span></div><div class="cj fx"><span class="bn">ট্ট</span><span><span class="keys"><kbd>t</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>t</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">ট্ব</span><span><span class="keys"><kbd>t</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>t</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ট্ম</span><span><span class="keys"><kbd>t</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>t</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ট্য</span><span><span class="keys"><kbd>t</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>t</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ট্র</span><span><span class="keys"><kbd>t</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>t</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ড্ড</span><span><span class="keys"><kbd>d</kbd><kbd>/</kbd><kbd>d</kbd></span></span><span><span class="keys"><kbd>e</kbd><kbd>g</kbd><kbd>e</kbd></span></span></div><div class="cj fx"><span class="bn">ড্য</span><span><span class="keys"><kbd>d</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>e</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ড্র</span><span><span class="keys"><kbd>d</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>e</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ঢ্য</span><span><span class="keys"><kbd>D</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>E</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ঢ্র</span><span><span class="keys"><kbd>D</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>E</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ট</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ঠ</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>T</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>T</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ড</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>d</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>e</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ড্য</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>d</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>e</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ড্র</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>d</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>e</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ঢ</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>D</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>E</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ণ</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>N</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>B</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ব</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্ম</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ণ্য</span><span><span class="keys"><kbd>N</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>B</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ত্ত</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>f</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>g</kbd><kbd>k</kbd></span></span></div><div class="cj fx"><span class="bn">ত্ত্ব</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>f</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>g</kbd><kbd>k</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ত্থ</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>F</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>g</kbd><kbd>K</kbd></span></span></div><div class="cj fx"><span class="bn">ত্ন</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">ত্ব</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ত্ম</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ত্ম্য</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>m</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>g</kbd><kbd>m</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ত্য</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ত্র</span><span><span class="keys"><kbd>f</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>k</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">থ্ব</span><span><span class="keys"><kbd>F</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>K</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">থ্য</span><span><span class="keys"><kbd>F</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>K</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">থ্র</span><span><span class="keys"><kbd>F</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>K</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">দ্গ</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>g</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>o</kbd></span></span></div><div class="cj fx"><span class="bn">দ্ঘ</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>G</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>O</kbd></span></span></div><div class="cj fx"><span class="bn">দ্দ</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>q</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>l</kbd></span></span></div><div class="cj fx"><span class="bn">দ্দ্ব</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>q</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>l</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">দ্ধ</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>Q</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>L</kbd></span></span></div><div class="cj fx"><span class="bn">দ্ব</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">দ্ভ</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>B</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>H</kbd></span></span></div><div class="cj fx"><span class="bn">দ্ম</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">দ্য</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">দ্র</span><span><span class="keys"><kbd>q</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>l</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ধ্ন</span><span><span class="keys"><kbd>Q</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>L</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">ধ্ব</span><span><span class="keys"><kbd>Q</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>L</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ধ্ম</span><span><span class="keys"><kbd>Q</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>L</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ধ্য</span><span><span class="keys"><kbd>Q</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>L</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ধ্র</span><span><span class="keys"><kbd>Q</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>L</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ট</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ঠ</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>T</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>T</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ড</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>d</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>e</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ত</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>f</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>k</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ত্ব</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>f</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>k</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ত্য</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>f</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>k</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ত্র</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>f</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>k</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্থ</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>F</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>K</kbd></span></span></div><div class="cj fx"><span class="bn">ন্দ</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>q</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>l</kbd></span></span></div><div class="cj fx"><span class="bn">ন্দ্য</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>q</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>l</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্দ্ব</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>q</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>l</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ন্দ্র</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>q</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>l</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ধ</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>Q</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>L</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ধ্য</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>Q</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>L</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ধ্র</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>Q</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>L</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ন</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ব</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ন্ম</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ন্য</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ন্স</span><span><span class="keys"><kbd>n</kbd><kbd>/</kbd><kbd>s</kbd></span></span><span><span class="keys"><kbd>b</kbd><kbd>g</kbd><kbd>n</kbd></span></span></div><div class="cj fx"><span class="bn">প্ট</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">প্ত</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>f</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>g</kbd><kbd>k</kbd></span></span></div><div class="cj fx"><span class="bn">প্ন</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">প্প</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>p</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>g</kbd><kbd>r</kbd></span></span></div><div class="cj fx"><span class="bn">প্য</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">প্র</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">প্ল</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">প্স</span><span><span class="keys"><kbd>p</kbd><kbd>/</kbd><kbd>s</kbd></span></span><span><span class="keys"><kbd>r</kbd><kbd>g</kbd><kbd>n</kbd></span></span></div><div class="cj fx"><span class="bn">ফ্র</span><span><span class="keys"><kbd>P</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>R</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ফ্ল</span><span><span class="keys"><kbd>P</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>R</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">ব্জ</span><span><span class="keys"><kbd>b</kbd><kbd>/</kbd><kbd>j</kbd></span></span><span><span class="keys"><kbd>h</kbd><kbd>g</kbd><kbd>u</kbd></span></span></div><div class="cj fx"><span class="bn">ব্দ</span><span><span class="keys"><kbd>b</kbd><kbd>/</kbd><kbd>q</kbd></span></span><span><span class="keys"><kbd>h</kbd><kbd>g</kbd><kbd>l</kbd></span></span></div><div class="cj fx"><span class="bn">ব্ধ</span><span><span class="keys"><kbd>b</kbd><kbd>/</kbd><kbd>Q</kbd></span></span><span><span class="keys"><kbd>h</kbd><kbd>g</kbd><kbd>L</kbd></span></span></div><div class="cj fx"><span class="bn">ব্ব</span><span><span class="keys"><kbd>b</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>h</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ব্য</span><span><span class="keys"><kbd>b</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>h</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ব্র</span><span><span class="keys"><kbd>b</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>h</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ব্ল</span><span><span class="keys"><kbd>b</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>h</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">ভ্য</span><span><span class="keys"><kbd>B</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>H</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ভ্র</span><span><span class="keys"><kbd>B</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>H</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ভ্ল</span><span><span class="keys"><kbd>B</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>H</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">ম্থ</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>F</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>K</kbd></span></span></div><div class="cj fx"><span class="bn">ম্ন</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">ম্প</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>p</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>r</kbd></span></span></div><div class="cj fx"><span class="bn">ম্প্র</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>p</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>r</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ম্ফ</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>P</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>R</kbd></span></span></div><div class="cj fx"><span class="bn">ম্ব</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ম্ভ</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>B</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>H</kbd></span></span></div><div class="cj fx"><span class="bn">ম্ভ্র</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>B</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>H</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ম্ম</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ম্য</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ম্র</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ম্ল</span><span><span class="keys"><kbd>m</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>m</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">য্য</span><span><span class="keys"><kbd>Z</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>w</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">র্ক</span><span><span class="keys"><kbd>r</kbd><kbd>/</kbd><kbd>k</kbd></span></span><span><span class="keys"><kbd>A</kbd><kbd>j</kbd></span></span></div><div class="cj fx"><span class="bn">র্খ</span><span><span class="keys"><kbd>r</kbd><kbd>/</kbd><kbd>K</kbd></span></span><span><span class="keys"><kbd>A</kbd><kbd>J</kbd></span></span></div><div class="cj fx"><span class="bn">র্গ</span><span><span class="keys"><kbd>r</kbd><kbd>/</kbd><kbd>g</kbd></span></span><span><span class="keys"><kbd>A</kbd><kbd>o</kbd></span></span></div><div class="cj fx"><span class="bn">র্ক্য</span><span><span class="keys"><kbd>r</kbd><kbd>/</kbd><kbd>k</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>A</kbd><kbd>j</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">র্খ্য</span><span><span class="keys"><kbd>r</kbd><kbd>/</kbd><kbd>K</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>A</kbd><kbd>J</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ক</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>k</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>j</kbd></span></span></div><div class="cj fx"><span class="bn">ল্গ</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>g</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>o</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ট</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ড</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>d</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>e</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ধ</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>Q</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>L</kbd></span></span></div><div class="cj fx"><span class="bn">ল্প</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>p</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>r</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ব</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ভ</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>B</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>H</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ম</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">ল্য</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ল্ল</span><span><span class="keys"><kbd>l</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>V</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">শ্চ</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>c</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>g</kbd><kbd>y</kbd></span></span></div><div class="cj fx"><span class="bn">শ্ছ</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>C</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>g</kbd><kbd>Y</kbd></span></span></div><div class="cj fx"><span class="bn">শ্ত</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>f</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>g</kbd><kbd>k</kbd></span></span></div><div class="cj fx"><span class="bn">শ্ন</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">শ্ব</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">শ্ম</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">শ্য</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">শ্র</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">শ্ল</span><span><span class="keys"><kbd>x</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>M</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ক</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>k</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>j</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ক্র</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>k</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>j</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ট</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ট্য</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>t</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>t</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ট্র</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>t</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>t</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ঠ</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>T</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>T</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ঠ্য</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>T</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>T</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ণ</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>N</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>B</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্প</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>p</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>r</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্প্র</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>p</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>r</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ফ</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>P</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>R</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ব</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">ষ্ম</span><span><span class="keys"><kbd>S</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>N</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">স্ক</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>k</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>j</kbd></span></span></div><div class="cj fx"><span class="bn">স্ক্র</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>k</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>j</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">স্ক্ল</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>k</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>j</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">স্খ</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>K</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>J</kbd></span></span></div><div class="cj fx"><span class="bn">স্ট</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>t</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>t</kbd></span></span></div><div class="cj fx"><span class="bn">স্ট্র</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>t</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>t</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">স্ত</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>f</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>k</kbd></span></span></div><div class="cj fx"><span class="bn">স্ত্ব</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>f</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>k</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">স্ত্য</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>f</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>k</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">স্থ</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>F</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>K</kbd></span></span></div><div class="cj fx"><span class="bn">স্থ্য</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>F</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>K</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">স্ন</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">স্প</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>p</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>r</kbd></span></span></div><div class="cj fx"><span class="bn">স্ফ</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>P</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>R</kbd></span></span></div><div class="cj fx"><span class="bn">স্ব</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">স্ম</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">স্য</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">স্র</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">স্ল</span><span><span class="keys"><kbd>s</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>n</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">হ্ণ</span><span><span class="keys"><kbd>h</kbd><kbd>/</kbd><kbd>N</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>g</kbd><kbd>B</kbd></span></span></div><div class="cj fx"><span class="bn">হ্ন</span><span><span class="keys"><kbd>h</kbd><kbd>/</kbd><kbd>n</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>g</kbd><kbd>b</kbd></span></span></div><div class="cj fx"><span class="bn">হ্ব</span><span><span class="keys"><kbd>h</kbd><kbd>/</kbd><kbd>b</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>g</kbd><kbd>h</kbd></span></span></div><div class="cj fx"><span class="bn">হ্ম</span><span><span class="keys"><kbd>h</kbd><kbd>/</kbd><kbd>m</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>g</kbd><kbd>m</kbd></span></span></div><div class="cj fx"><span class="bn">হ্য</span><span><span class="keys"><kbd>h</kbd><kbd>/</kbd><kbd>Z</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>Z</kbd></span></span></div><div class="cj fx"><span class="bn">হ্র</span><span><span class="keys"><kbd>h</kbd><kbd>/</kbd><kbd>r</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>z</kbd></span></span></div><div class="cj fx"><span class="bn">হ্ল</span><span><span class="keys"><kbd>h</kbd><kbd>/</kbd><kbd>l</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>g</kbd><kbd>V</kbd></span></span></div><div class="cj fx"><span class="bn">হৃ</span><span><span class="keys"><kbd>h</kbd><kbd>&lt;</kbd></span></span><span><span class="keys"><kbd>i</kbd><kbd>a</kbd></span></span></div></div></section><section id="ansi" class="g-sec l2"><h2><a href="#ansi">বিজয় (ANSI) আউটপুট</a></h2><p><strong>Preferences… › Output as ANSI (Bijoy fonts)</strong> চালু থাকলেও এই পাতার সবকিছু একইভাবে কাজ করে: সাধারণভাবে টাইপ করুন, লেখাটি SutonnyMJ সহ অন্যান্য বিজয় ফন্টের বিজয় এনকোডিংয়ে লেখা হবে।</p><p class="g-note">যা খুঁজছেন তা পাননি? <a href="https://github.com/AminulBD/iAvro/issues">GitHub-এ জিজ্ঞেস করুন</a>।</p></section>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><a href="https://github.com/torifat/iAvro">torifat/iAvro</a>-এর একটি ফর্ক। অভ্র ফোনেটিক ইঞ্জিন © OmicronLab।</span>
+    <span class="r">
+      <a href="https://github.com/AminulBD/iAvro">সোর্স</a>
+      <a href="https://github.com/AminulBD/iAvro/releases">রিলিজ</a>
+      <a href="https://github.com/AminulBD/iAvro/issues">ইস্যু</a>
+    </span>
+    <p class="credit">Avro Keyboard নাম ও লোগোর স্বত্ব © <a href="https://www.omicronlab.com">OmicronLab</a>, সর্বস্বত্ব সংরক্ষিত। এটি একটি স্বাধীন, কমিউনিটি-পরিচালিত ফর্ক। মেহদী হাসান খান ও OmicronLab টিমের প্রতি আন্তরিক কৃতজ্ঞতা, যাঁদের কাজ লক্ষ লক্ষ মানুষের জন্য বাংলা লেখা বিনামূল্যে ও সহজলভ্য করেছে।</p>
+  </div>
+</footer>
+</body>
+</html>

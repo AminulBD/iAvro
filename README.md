@@ -12,6 +12,7 @@
 <p align="center">
   <a href="https://github.com/AminulBD/iAvro/releases/latest"><strong>Download</strong></a> ·
   <a href="https://avro.aminul.dev/">Website</a> ·
+  <a href="https://avro.aminul.dev/guide.html">Typing guide</a> ·
   <a href="https://github.com/AminulBD/iAvro/issues">Report an issue</a>
 </p>
 
@@ -154,7 +155,9 @@ space first.
 ## Keyboard layouts
 
 Three layouts are available. Pick one under **Preferences… › Keyboard Layout**;
-the switch applies from the next key you press.
+the switch applies from the next key you press. The
+[typing guide](https://avro.aminul.dev/guide.html) shows how to type every
+letter, sign and conjunct with each of them.
 
 | Layout | How it works |
 | --- | --- |

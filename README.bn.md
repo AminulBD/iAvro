@@ -12,6 +12,7 @@
 <p align="center">
   <a href="https://github.com/AminulBD/iAvro/releases/latest"><strong>ডাউনলোড</strong></a> ·
   <a href="https://avro.aminul.dev/bn.html">ওয়েবসাইট</a> ·
+  <a href="https://avro.aminul.dev/bn-guide.html">টাইপিং গাইড</a> ·
   <a href="https://github.com/AminulBD/iAvro/issues">সমস্যা জানান</a>
 </p>
 
@@ -144,7 +145,8 @@
 ## কিবোর্ড লেআউট
 
 তিনটি লেআউট আছে। **Preferences… › Keyboard Layout** থেকে একটি বেছে নিন;
-পরের কি চাপা থেকেই নতুন লেআউট কাজ করবে।
+পরের কি চাপা থেকেই নতুন লেআউট কাজ করবে। প্রতিটিতে কীভাবে প্রতিটি বর্ণ, চিহ্ন ও
+যুক্তাক্ষর লিখতে হয়, তা আছে [টাইপিং গাইডে](https://avro.aminul.dev/bn-guide.html)।
 
 | লেআউট | কীভাবে কাজ করে |
 | --- | --- |
