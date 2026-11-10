@@ -41,6 +41,7 @@
 - [Keyboard layouts](#keyboard-layouts)
 - [ANSI (Bijoy) output](#ansi-bijoy-output)
 - [Full old style typing](#full-old-style-typing)
+- [Your own replacements](#your-own-replacements)
 - [Supported macOS versions](#supported-macos-versions)
 - [Installation](#installation)
   - [Removing the old version](#removing-the-old-version)
@@ -150,6 +151,33 @@ With Unijoy:
 - The word you are typing stays underlined until you press space, Return or
   another key outside the layout, because a later key can still move a vowel
   sign or reph. <kbd>Delete</kbd> removes the last key you typed.
+
+## Your own replacements
+
+Add your own shortcuts under **Preferences… › AutoCorrect › Personal**, like
+text replacements in macOS. Click <kbd>+</kbd>, type a shortcut, press
+<kbd>Return</kbd>, then type what it should become. Typing the shortcut with
+Avro Phonetic then offers your text first in the candidate bar.
+
+| Replace | With |
+| --- | --- |
+| `addr` | House 12, Road 5, Dhanmondi, Dhaka |
+| `sig` | শুভেচ্ছান্তে, আমিনুল |
+| `@@` | me@example.com |
+
+- Your replacements come before the built-in ones, so a shortcut like `chai`
+  can be made to give চা খাবো instead of চাই.
+- They work even with **Include Dictionary Suggestions** turned off.
+- A shortcut can't contain spaces, or a digit 1–9 right after a letter, since
+  that number picks a candidate. `Addr` and `addr` are the same shortcut; case
+  matters only for letters that mean something different in Avro Phonetic, like
+  `T` (ট) and `t` (ত).
+- Double-click a row to change it, and select rows and press <kbd>−</kbd> or
+  <kbd>Delete</kbd> to remove them. The **Built-in** list shows the entries that
+  ship with Avro.
+- They are saved in
+  `~/Library/Application Support/app.aminul.inputmethod.AvroKeyboard/replacements.plist`,
+  in the same format as a `Text Substitutions.plist` exported from macOS.
 
 ## Supported macOS versions
 
