@@ -352,6 +352,14 @@
   .layouts-note { border: 1px solid var(--line); border-top: 0; padding: 1.15rem 1.4rem; font-size: .93rem; color: var(--muted); }
   .layouts-note strong { color: var(--text); font-weight: 650; }
 
+  /* full feature list */
+  .flist .feat ul { list-style: none; margin: .9rem 0 0; padding: 0; color: var(--muted); font-size: .9rem; }
+  .flist .feat li { padding: .45rem 0 .45rem 1.05rem; position: relative; border-top: 1px solid var(--line); }
+  .flist .feat li:first-child { border-top: 0; padding-top: 0; }
+  .flist .feat li::before { content: ""; position: absolute; left: 0; top: .95em; width: 5px; height: 5px; background: var(--accent); }
+  .flist .feat li:first-child::before { top: .5em; }
+  .flist strong { color: var(--text); font-weight: 650; }
+
   /* ANSI highlight */
   .ansi { scroll-margin-top: 80px; margin-top: 3.5rem; border: 1px solid var(--accent); display: grid; grid-template-columns: 1.1fr .9fr; }
   .ansi > * { padding: 2.1rem 1.9rem; }
@@ -647,6 +655,67 @@
       <figure class="shot">
         <a class="frame" href="assets/screenshots/output-as-ansi.png"><img src="assets/screenshots/output-as-ansi.png" width="810" height="536" loading="lazy" alt="Preferences উইন্ডোতে Keyboard Layout-এর নিচে Output as ANSI (Bijoy fonts) চেকবক্স"></a>
       </figure>
+    </div>
+
+    <div class="layouts-head" id="all-features">
+      <h3>সব ফিচার এক জায়গায়</h3>
+      <p>বর্তমান রিলিজের প্রতিটি ফিচার, এক জায়গায়।</p>
+    </div>
+    <div class="cells c3 flist">
+      <div class="feat"><span class="idx">৯টি ফিচার</span><h3>টাইপিং</h3>
+        <ul>
+          <li>অভ্র ফোনেটিক, উইন্ডোজের অভ্র কিবোর্ডের একই নিয়মে: <code>ami</code> → <span class="bn">আমি</span></li>
+          <li>লাইভ প্রিভিউ: লেখার সময় বাছাই করা বানান আপনার লেখায় আন্ডারলাইন হয়ে দেখায়</li>
+          <li>ক্যান্ডিডেট বার, আড়াআড়ি বা খাড়া</li>
+          <li>অ্যারো কি বা <kbd>1</kbd>–<kbd>9</kbd> (নম্বরের সারি বা কিপ্যাড) দিয়ে বাছাই; <kbd>Space</kbd> চাপলে বসে</li>
+          <li>আপনি যা টাইপ করেছেন তা সব সময় দ্বিতীয় ক্যান্ডিডেট, ইংরেজি শব্দ রাখার জন্য</li>
+          <li>যতিচিহ্ন থাকে: <code>(ami)</code> → (<span class="bn">আমি</span>), <code>ami.</code> → <span class="bn">আমি।</span></li>
+          <li>আপনার বাছাই করা বানান মনে রাখে, পরের বার আগে দেখায়</li>
+          <li><kbd>Return</kbd> শব্দ বসায়, চাইলে নতুন লাইনসহ; <kbd>Tab</kbd> শব্দ বসিয়ে ট্যাব দেয়</li>
+          <li>সব অ্যাপে চলে, আর ক্যান্ডিডেট বার Spotlight-এর ওপরে থাকে</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">৪টি ফিচার</span><h3>সাজেশন</h3>
+        <ul>
+          <li>প্রায় ১,৫৯,০০০ বাংলা শব্দের ডিকশনারি, সবচেয়ে কাছের বানান আগে</li>
+          <li>প্রায় ৭৫০টি প্রত্যয় ডিকশনারির শব্দের সঙ্গে জোড়া লাগে: <code>bhalobashar</code> → <span class="bn">ভালোবাসার</span></li>
+          <li>ইংরেজি ও বাংলা নাম দিয়ে প্রায় ১,৯০০টি ইমোজি: <code>happy</code> বা <code>hasi</code> → 😀</li>
+          <li>Preferences থেকে ডিকশনারি সাজেশন বন্ধ করা যায়</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">৬টি ফিচার</span><h3>অটো-কারেক্ট</h3>
+        <ul>
+          <li>প্রায় ১০,০০০ বিল্ট-ইন এন্ট্রি, সাধারণ শব্দের ঠিক বানানসহ</li>
+          <li>বাংলা হরফে প্রায় ৭,৩০০ ইংরেজি শব্দ: <code>exciting</code> → <span class="bn">এক্সাইটিং</span></li>
+          <li>বাংলিশ ও চ্যাটের বানান: <code>tmi</code> → <span class="bn">তুমি</span>, <code>korsi</code> → <span class="bn">করছি</span></li>
+          <li>সব জেলা, পরিচিত শহর, আর ঢাকা ও চট্টগ্রামের এলাকা</li>
+          <li><code>1st</code> → <span class="bn">১ম</span>-এর মতো ক্রমবাচক সংখ্যা, আর ইমোটিকন</li>
+          <li><strong>নিজের রিপ্লেসমেন্ট</strong>, macOS-এর টেক্সট রিপ্লেসমেন্টের মতো: <code>addr</code> → আপনার ঠিকানা। এগুলো সবার আগে আসে, ডিকশনারি সাজেশন বন্ধ থাকলেও</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">৩টি ফিচার</span><h3>লেআউট ও আউটপুট</h3>
+        <ul>
+          <li>অভ্র ফোনেটিক, প্রভাত ও ইউনিজয়, পরের কি থেকেই বদলায়</li>
+          <li>SutonnyMJ সহ বিজয় ফন্টের জন্য ANSI (বিজয়) আউটপুট, সব লেআউটে</li>
+          <li>প্রভাত ও ইউনিজয়ে পুরনো স্টাইলে টাইপিং: টাইপরাইটারের মতো <span class="bn">ি</span>, <span class="bn">ে</span> ও <span class="bn">ৈ</span> ব্যঞ্জনের আগে</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">২টি ফিচার</span><h3>Preferences</h3>
+        <ul>
+          <li><strong>General:</strong> লেআউট, ANSI আউটপুট, পুরনো স্টাইলে টাইপিং, ক্যান্ডিডেট বারের দিক, ডিকশনারি সাজেশন, Return কি</li>
+          <li><strong>AutoCorrect:</strong> নিজের রিপ্লেসমেন্ট যোগ, বদল ও মোছা, আর বিল্ট-ইন তালিকায় খোঁজা</li>
+        </ul>
+      </div>
+      <div class="feat"><span class="idx">৬টি ফিচার</span><h3>ইনস্টল ও সিস্টেম</h3>
+        <ul>
+          <li>DMG থেকে ডাবল-ক্লিকে ইনস্টল; লগ-আউট ছাড়াই নিজেকে যোগ করে চালু করে, আর পুরনো সংস্করণ আপডেট করার প্রস্তাব দেয়</li>
+          <li>Homebrew: <code>brew install --cask aminulbd/tap/avro</code></li>
+          <li>macOS 12 Monterey ও পরের সংস্করণ, Apple Silicon ও Intel-এ, একটি ইউনিভার্সাল বিল্ডে</li>
+          <li>সাইন ও নোটারাইজ করা রিলিজ, SHA-256 চেকসামসহ</li>
+          <li>Input Method Kit-এ নেটিভ Swift, কোনো থার্ড-পার্টি নির্ভরতা নেই</li>
+          <li>MPL 1.1-এর অধীনে ফ্রি ও ওপেন সোর্স</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
