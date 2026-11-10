@@ -876,6 +876,8 @@
 	<string>আফ্রিকা</string>
 	<key>african</key>
 	<string>আফ্রিকান</string>
+	<key>aftabnagar</key>
+	<string>আফতাবনগর</string>
 	<key>after</key>
 	<string>আফটার</string>
 	<key>afternoon</key>
@@ -886,6 +888,8 @@
 	<string>এগেইন</string>
 	<key>against</key>
 	<string>এগেইনস্ট</string>
+	<key>agargaon</key>
+	<string>আগারগাঁও</string>
 	<key>aged</key>
 	<string>এইজড</string>
 	<key>agencies</key>
@@ -988,6 +992,8 @@
 	<string>আইতেছি</string>
 	<key>akbar</key>
 	<string>আকবর</string>
+	<key>akbarshah</key>
+	<string>আকবরশাহ</string>
 	<key>akhane</key>
 	<string>এখানে</string>
 	<key>akhoni</key>
@@ -1230,6 +1236,8 @@
 	<string>এনসিয়েন্ট</string>
 	<key>and</key>
 	<string>অ্যান্ড</string>
+	<key>anderkilla</key>
+	<string>আন্দরকিল্লা</string>
 	<key>anderson</key>
 	<string>অ্যান্ডারসন</string>
 	<key>andhra</key>
@@ -1330,6 +1338,8 @@
 	<string>অ্যান্টিভাইরাস</string>
 	<key>anurima</key>
 	<string>অণুরিমা</string>
+	<key>anwara</key>
+	<string>আনোয়ারা</string>
 	<key>anxiety</key>
 	<string>অ্যাংজাইটি</string>
 	<key>any</key>
@@ -1470,6 +1480,8 @@
 	<string>আরব</string>
 	<key>arabic</key>
 	<string>অ্যারাবিক</string>
+	<key>arambagh</key>
+	<string>আরামবাগ</string>
 	<key>arbitrary</key>
 	<string>আরবিট্রারি</string>
 	<key>arbitration</key>
@@ -1924,12 +1936,18 @@
 	<string>বাগদাদ</string>
 	<key>bags</key>
 	<string>ব্যাগস</string>
+	<key>bahaddarhat</key>
+	<string>বহদ্দারহাট</string>
 	<key>bahamas</key>
 	<string>বাহামা</string>
+	<key>bakalia</key>
+	<string>বাকলিয়া</string>
 	<key>baker</key>
 	<string>বেকার</string>
 	<key>baking</key>
 	<string>বেকিং</string>
+	<key>bakshibazar</key>
+	<string>বকশীবাজার</string>
 	<key>baksongzom</key>
 	<string>বাকসংযম</string>
 	<key>baksongzomI</key>
@@ -1958,7 +1976,11 @@
 	<string>বামপাশ</string>
 	<key>banana</key>
 	<string>বানানা</string>
+	<key>banani</key>
+	<string>বনানী</string>
 	<key>banasree</key>
+	<string>বনশ্রী</string>
+	<key>banasri</key>
 	<string>বনশ্রী</string>
 	<key>bandarban</key>
 	<string>বান্দরবান</string>
@@ -1966,6 +1988,10 @@
 	<string>ব্যান্ডউইথ</string>
 	<key>banerjee</key>
 	<string>ব্যানার্জি</string>
+	<key>banglamotor</key>
+	<string>বাংলামোটর</string>
+	<key>bangshal</key>
+	<string>বংশাল</string>
 	<key>bank</key>
 	<string>ব্যাংক</string>
 	<key>bankruptcy</key>
@@ -2024,6 +2050,8 @@
 	<string>বেসেস</string>
 	<key>bashay</key>
 	<string>বাসায়</string>
+	<key>bashundhara</key>
+	<string>বসুন্ধরা</string>
 	<key>basic</key>
 	<string>বেসিক</string>
 	<key>basically</key>
@@ -2062,6 +2090,8 @@
 	<string>ব্যাটল</string>
 	<key>battlefield</key>
 	<string>ব্যাটলফিল্ড</string>
+	<key>bayezid</key>
+	<string>বায়েজিদ</string>
 	<key>bba</key>
 	<string>বিবিএ</string>
 	<key>bbaria</key>
@@ -2246,6 +2276,8 @@
 	<string>ভাল্লাগছে</string>
 	<key>bharat</key>
 	<string>ভারত</string>
+	<key>bhatara</key>
+	<string>ভাটারা</string>
 	<key>bhattacharya</key>
 	<string>ভট্টাচার্য</string>
 	<key>bhlo</key>
@@ -2428,6 +2460,8 @@
 	<string>ব্লুটুথ</string>
 	<key>bmw</key>
 	<string>বিএমডব্লিউ</string>
+	<key>boalkhali</key>
+	<string>বোয়ালখালী</string>
 	<key>board</key>
 	<string>বোর্ড</string>
 	<key>boards</key>
@@ -3036,6 +3070,8 @@
 	<string>ক্যানন</string>
 	<key>canteen</key>
 	<string>ক্যান্টিন</string>
+	<key>cantonment</key>
+	<string>ক্যান্টনমেন্ট</string>
 	<key>canvas</key>
 	<string>ক্যানভাস</string>
 	<key>canyon</key>
@@ -3368,6 +3404,8 @@
 	<string>চাঁদ</string>
 	<key>chandan</key>
 	<string>চন্দন</string>
+	<key>chandgaon</key>
+	<string>চান্দগাঁও</string>
 	<key>change</key>
 	<string>চেঞ্জ</string>
 	<key>changed</key>
@@ -3454,6 +3492,8 @@
 	<string>চ্যাটার্জি</string>
 	<key>chattogram</key>
 	<string>চট্টগ্রাম</string>
+	<key>chawkbazar</key>
+	<string>চকবাজার</string>
 	<key>cheap</key>
 	<string>চিপ</string>
 	<key>cheaper</key>
@@ -4922,6 +4962,8 @@
 	<string>ডেয়ারি</string>
 	<key>daisy</key>
 	<string>ডেইজি</string>
+	<key>dakshinkhan</key>
+	<string>দক্ষিণখান</string>
 	<key>damage</key>
 	<string>ড্যামেজ</string>
 	<key>damaged</key>
@@ -5364,18 +5406,26 @@
 	<string>ডেভন</string>
 	<key>devoted</key>
 	<string>ডেভোটেড</string>
+	<key>dewanhat</key>
+	<string>দেওয়ানহাট</string>
 	<key>dhUmpan</key>
 	<string>ধূমপান</string>
 	<key>dhUmpayI</key>
 	<string>ধূমপায়ী</string>
 	<key>dhaka</key>
 	<string>ঢাকা</string>
+	<key>dhanmandi</key>
+	<string>ধানমন্ডি</string>
+	<key>dhanmondi</key>
+	<string>ধানমন্ডি</string>
 	<key>dhorse</key>
 	<string>ধরছে</string>
 	<key>dhorsi</key>
 	<string>ধরছি</string>
 	<key>dhukse</key>
 	<string>ঢুকছে</string>
+	<key>diabari</key>
+	<string>দিয়াবাড়ী</string>
 	<key>diabetes</key>
 	<string>ডায়াবেটিস</string>
 	<key>diabetic</key>
@@ -5452,6 +5502,8 @@
 	<string>ডিজিট</string>
 	<key>digital</key>
 	<string>ডিজিটাল</string>
+	<key>dilkusha</key>
+	<string>দিলকুশা</string>
 	<key>dimension</key>
 	<string>ডাইমেনশন</string>
 	<key>dimensional</key>
@@ -5752,6 +5804,8 @@
 	<string>দশমবার</string>
 	<key>double</key>
 	<string>ডাবল</string>
+	<key>doublemooring</key>
+	<string>ডবলমুরিং</string>
 	<key>doubt</key>
 	<string>ডাউট</string>
 	<key>douglas</key>
@@ -6544,6 +6598,8 @@
 	<string>এস্কেপ</string>
 	<key>esim</key>
 	<string>ইসিম</string>
+	<key>eskaton</key>
+	<string>ইস্কাটন</string>
 	<key>especially</key>
 	<string>এসপেশিয়ালি</string>
 	<key>espn</key>
@@ -6960,6 +7016,8 @@
 	<string>ফেয়ারি</string>
 	<key>faith</key>
 	<string>ফেইথ</string>
+	<key>fakirapool</key>
+	<string>ফকিরাপুল</string>
 	<key>fallen</key>
 	<string>ফলেন</string>
 	<key>falling</key>
@@ -7000,6 +7058,8 @@
 	<string>ফার্মার</string>
 	<key>farmers</key>
 	<string>ফার্মার্স</string>
+	<key>farmgate</key>
+	<string>ফার্মগেট</string>
 	<key>farming</key>
 	<string>ফার্মিং</string>
 	<key>farms</key>
@@ -7018,6 +7078,8 @@
 	<string>ফাদার</string>
 	<key>fathers</key>
 	<string>ফাদারস</string>
+	<key>fatikchhari</key>
+	<string>ফটিকছড়ি</string>
 	<key>fatna</key>
 	<string>ফাতনা</string>
 	<key>fatty</key>
@@ -7244,6 +7306,8 @@
 	<string>ফায়ারওয়াল</string>
 	<key>firewire</key>
 	<string>ফায়ারওয়ার</string>
+	<key>firingeebazar</key>
+	<string>ফিরিঙ্গিবাজার</string>
 	<key>firm</key>
 	<string>ফার্ম</string>
 	<key>firms</key>
@@ -7684,6 +7748,8 @@
 	<string>গোলমরিচ</string>
 	<key>gOlpata</key>
 	<string>গোলপাতা</string>
+	<key>gabtoli</key>
+	<string>গাবতলী</string>
 	<key>gadget</key>
 	<string>গ্যাজেট</string>
 	<key>gadgets</key>
@@ -7780,6 +7846,8 @@
 	<string>জেমিনি</string>
 	<key>gen</key>
 	<string>জেন</string>
+	<key>gendaria</key>
+	<string>গেন্ডারিয়া</string>
 	<key>gender</key>
 	<string>জেন্ডার</string>
 	<key>genealogy</key>
@@ -8252,6 +8320,8 @@
 	<string>হাফসেঞ্চুরি</string>
 	<key>halifax</key>
 	<string>হ্যালিফ্যাক্স</string>
+	<key>halishahar</key>
+	<string>হালিশহর</string>
 	<key>hall</key>
 	<string>হল</string>
 	<key>halloween</key>
@@ -8358,6 +8428,10 @@
 	<string>হ্যাশট্যাগ</string>
 	<key>haso</key>
 	<string>হাসো</string>
+	<key>hathazari</key>
+	<string>হাটহাজারী</string>
+	<key>hatirjheel</key>
+	<string>হাতিরঝিল</string>
 	<key>hats</key>
 	<string>হ্যাটস</string>
 	<key>hattrick</key>
@@ -8384,6 +8458,8 @@
 	<string>হ্যাজার্ডাস</string>
 	<key>hazards</key>
 	<string>হ্যাজার্ডস</string>
+	<key>hazaribagh</key>
+	<string>হাজারীবাগ</string>
 	<key>hdtv</key>
 	<string>এইচডিটিভি</string>
 	<key>hea</key>
@@ -9610,24 +9686,44 @@
 	<string>জেভিসি</string>
 	<key>kacha</key>
 	<string>কাঁচা</string>
+	<key>kadamtali</key>
+	<string>কদমতলী</string>
+	<key>kalabagan</key>
+	<string>কলাবাগান</string>
+	<key>kalshi</key>
+	<string>কালশী</string>
+	<key>kamalapur</key>
+	<string>কমলাপুর</string>
+	<key>kamrangirchar</key>
+	<string>কামরাঙ্গীরচর</string>
 	<key>kandi</key>
 	<string>কাঁদি</string>
 	<key>kando</key>
 	<string>কাঁদো</string>
 	<key>karma</key>
 	<string>কর্মা</string>
+	<key>karnaphuli</key>
+	<string>কর্ণফুলী</string>
 	<key>karone</key>
 	<string>কারণে</string>
+	<key>karwanbazar</key>
+	<string>কারওয়ান বাজার</string>
+	<key>katalganj</key>
+	<string>কাতালগঞ্জ</string>
 	<key>kathy</key>
 	<string>ক্যাথি</string>
 	<key>katie</key>
 	<string>কেটি</string>
+	<key>kawranbazar</key>
+	<string>কারওয়ান বাজার</string>
 	<key>kaz</key>
 	<string>কাজ</string>
 	<key>kazakhstan</key>
 	<string>কাজাখস্তান</string>
 	<key>kazer</key>
 	<string>কাজের</string>
+	<key>kazipara</key>
+	<string>কাজীপাড়া</string>
 	<key>kcu</key>
 	<string>কিছু</string>
 	<key>kde</key>
@@ -9718,10 +9814,16 @@
 	<string>খেয়েছি</string>
 	<key>kheyeso</key>
 	<string>খেয়েছো</string>
+	<key>khilgaon</key>
+	<string>খিলগাঁও</string>
+	<key>khilkhet</key>
+	<string>খিলক্ষেত</string>
 	<key>khujsi</key>
 	<string>খুঁজছি</string>
 	<key>khujtesi</key>
 	<string>খুঁজতেছি</string>
+	<key>khulshi</key>
+	<string>খুলশী</string>
 	<key>kidney</key>
 	<string>কিডনি</string>
 	<key>kii</key>
@@ -9860,6 +9962,8 @@
 	<string>কোথাও</string>
 	<key>koti</key>
 	<string>কোটি</string>
+	<key>kotwali</key>
+	<string>কোতোয়ালি</string>
 	<key>koyekta</key>
 	<string>কয়েকটা</string>
 	<key>kre</key>
@@ -9872,6 +9976,8 @@
 	<string>কিছু</string>
 	<key>kthay</key>
 	<string>কোথায়</string>
+	<key>kuril</key>
+	<string>কুড়িল</string>
 	<key>kurt</key>
 	<string>কার্ট</string>
 	<key>kushi</key>
@@ -9916,6 +10022,10 @@
 	<string>লেকস</string>
 	<key>lakshmipur</key>
 	<string>লক্ষ্মীপুর</string>
+	<key>lalbagh</key>
+	<string>লালবাগ</string>
+	<key>lalkhanbazar</key>
+	<string>লালখানবাজার</string>
 	<key>lamborghini</key>
 	<string>ল্যাম্বরগিনি</string>
 	<key>lamps</key>
@@ -10478,6 +10588,8 @@
 	<string>মালদ্বীপ</string>
 	<key>males</key>
 	<string>মেইলস</string>
+	<key>malibagh</key>
+	<string>মালিবাগ</string>
 	<key>malpractice</key>
 	<string>ম্যালপ্র্যাকটিস</string>
 	<key>malware</key>
@@ -10492,6 +10604,8 @@
 	<string>ম্যানেজার্স</string>
 	<key>manchester</key>
 	<string>ম্যানচেস্টার</string>
+	<key>manda</key>
+	<string>মান্ডা</string>
 	<key>mandate</key>
 	<string>ম্যান্ডেট</string>
 	<key>mandatory</key>
@@ -10690,6 +10804,8 @@
 	<string>মিটিংস</string>
 	<key>meetup</key>
 	<string>মিটআপ</string>
+	<key>mehedibag</key>
+	<string>মেহেদীবাগ</string>
 	<key>melbourne</key>
 	<string>মেলবোর্ন</string>
 	<key>melissa</key>
@@ -10870,6 +10986,8 @@
 	<string>মিরর</string>
 	<key>mirrors</key>
 	<string>মিররস</string>
+	<key>mirsarai</key>
+	<string>মীরসরাই</string>
 	<key>miscellaneous</key>
 	<string>মিসেলেনিয়াস</string>
 	<key>mishti</key>
@@ -10932,6 +11050,10 @@
 	<string>মডিউল</string>
 	<key>modules</key>
 	<string>মডিউলস</string>
+	<key>moghbazar</key>
+	<string>মগবাজার</string>
+	<key>mohammadpur</key>
+	<string>মোহাম্মদপুর</string>
 	<key>moisture</key>
 	<string>মইশ্চার</string>
 	<key>mold</key>
@@ -11284,6 +11406,10 @@
 	<string>নিউফাউন্ডল্যান্ড</string>
 	<key>newly</key>
 	<string>নিউলি</string>
+	<key>newmarket</key>
+	<string>নিউমার্কেট</string>
+	<key>newmooring</key>
+	<string>নিউমুরিং</string>
 	<key>newport</key>
 	<string>নিউপোর্ট</string>
 	<key>newsletter</key>
@@ -11322,8 +11448,12 @@
 	<string>নাইটস</string>
 	<key>nike</key>
 	<string>নাইকি</string>
+	<key>niketan</key>
+	<string>নিকেতন</string>
 	<key>nikon</key>
 	<string>নিকন</string>
+	<key>nikunja</key>
+	<string>নিকুঞ্জ</string>
 	<key>nimu</key>
 	<string>নিমু</string>
 	<key>nine</key>
@@ -11844,6 +11974,8 @@
 	<string>প্যাডস</string>
 	<key>pages</key>
 	<string>পেজেস</string>
+	<key>pahartali</key>
+	<string>পাহাড়তলী</string>
 	<key>paid</key>
 	<string>পেইড</string>
 	<key>painful</key>
@@ -11866,12 +11998,18 @@
 	<string>পাইছো</string>
 	<key>palace</key>
 	<string>প্যালেস</string>
+	<key>palashi</key>
+	<string>পলাশী</string>
 	<key>palestine</key>
 	<string>প্যালেস্টাইন</string>
+	<key>pallabi</key>
+	<string>পল্লবী</string>
 	<key>palm</key>
 	<string>পাম</string>
 	<key>palmer</key>
 	<string>পামার</string>
+	<key>paltan</key>
+	<string>পল্টন</string>
 	<key>panasonic</key>
 	<string>প্যানাসনিক</string>
 	<key>panch</key>
@@ -11880,12 +12018,16 @@
 	<string>পঞ্চগড়</string>
 	<key>panchagarh</key>
 	<string>পঞ্চগড়</string>
+	<key>panchlaish</key>
+	<string>পাঁচলাইশ</string>
 	<key>pandemic</key>
 	<string>প্যানডেমিক</string>
 	<key>panels</key>
 	<string>প্যানেলস</string>
 	<key>panic</key>
 	<string>প্যানিক</string>
+	<key>panthapath</key>
+	<string>পান্থপথ</string>
 	<key>pants</key>
 	<string>প্যান্টস</string>
 	<key>paper</key>
@@ -12002,6 +12144,8 @@
 	<string>প্যাচ</string>
 	<key>patches</key>
 	<string>প্যাচেস</string>
+	<key>patenga</key>
+	<string>পতেঙ্গা</string>
 	<key>patents</key>
 	<string>প্যাটেন্টস</string>
 	<key>pathaise</key>
@@ -12022,6 +12166,8 @@
 	<string>পেশেন্টস</string>
 	<key>patio</key>
 	<string>প্যাটিও</string>
+	<key>patiya</key>
+	<string>পটিয়া</string>
 	<key>patricia</key>
 	<string>প্যাট্রিশিয়া</string>
 	<key>patrick</key>
@@ -12750,6 +12896,8 @@
 	<string>প্রবাবিলিটি</string>
 	<key>probably</key>
 	<string>প্রবাবলি</string>
+	<key>probartak</key>
+	<string>প্রবর্তক</string>
 	<key>problems</key>
 	<string>প্রবলেমস</string>
 	<key>procedure</key>
@@ -12990,6 +13138,8 @@
 	<string>পিউপিলস</string>
 	<key>puppy</key>
 	<string>পাপি</string>
+	<key>purbachal</key>
+	<string>পূর্বাচল</string>
 	<key>purchase</key>
 	<string>পারচেজ</string>
 	<key>purchased</key>
@@ -13132,6 +13282,8 @@
 	<string>রেইজেস</string>
 	<key>raising</key>
 	<string>রেইজিং</string>
+	<key>rajarbagh</key>
+	<string>রাজারবাগ</string>
 	<key>rajbari</key>
 	<string>রাজবাড়ী</string>
 	<key>rakhse</key>
@@ -13146,6 +13298,8 @@
 	<string>র‍্যাল্ফ</string>
 	<key>ramjan</key>
 	<string>রমজান</string>
+	<key>ramna</key>
+	<string>রমনা</string>
 	<key>ranch</key>
 	<string>র‍্যাঞ্চ</string>
 	<key>random</key>
@@ -13174,6 +13328,8 @@
 	<string>র‍্যাংকিংস</string>
 	<key>ranks</key>
 	<string>র‍্যাংকস</string>
+	<key>raozan</key>
+	<string>রাউজান</string>
 	<key>rap</key>
 	<string>র‍্যাপ</string>
 	<key>rapid</key>
@@ -14030,6 +14186,8 @@
 	<string>রানস</string>
 	<key>runtime</key>
 	<string>রানটাইম</string>
+	<key>rupnagar</key>
+	<string>রূপনগর</string>
 	<key>russell</key>
 	<string>রাসেল</string>
 	<key>russian</key>
@@ -14040,12 +14198,16 @@
 	<string>রুয়ান্ডা</string>
 	<key>ryan</key>
 	<string>রায়ান</string>
+	<key>sabujbagh</key>
+	<string>সবুজবাগ</string>
 	<key>sacramento</key>
 	<string>স্যাক্রামেন্টো</string>
 	<key>sacred</key>
 	<string>সেক্রেড</string>
 	<key>sacrifice</key>
 	<string>স্যাক্রিফাইস</string>
+	<key>sadarghat</key>
+	<string>সদরঘাট</string>
 	<key>safe</key>
 	<string>সেফ</string>
 	<key>safely</key>
@@ -14056,6 +14218,8 @@
 	<string>সেফটি</string>
 	<key>sagol</key>
 	<string>ছাগল</string>
+	<key>saidabad</key>
+	<string>সায়েদাবাদ</string>
 	<key>saidpur</key>
 	<string>সৈয়দপুর</string>
 	<key>sailing</key>
@@ -14460,8 +14624,12 @@
 	<string>শ্যাডোজ</string>
 	<key>shaft</key>
 	<string>শ্যাফট</string>
+	<key>shahbagh</key>
+	<string>শাহবাগ</string>
 	<key>shakespeare</key>
 	<string>শেক্সপিয়ার</string>
+	<key>shantinagar</key>
+	<string>শান্তিনগর</string>
 	<key>shape</key>
 	<string>শেপ</string>
 	<key>shaped</key>
@@ -14498,6 +14666,8 @@
 	<string>শেষ</string>
 	<key>sheshe</key>
 	<string>শেষে</string>
+	<key>shewrapara</key>
+	<string>শেওড়াপাড়া</string>
 	<key>shield</key>
 	<string>শিল্ড</string>
 	<key>shine</key>
@@ -14516,6 +14686,8 @@
 	<string>সব</string>
 	<key>shoes</key>
 	<string>শুজ</string>
+	<key>sholashahar</key>
+	<string>ষোলশহর</string>
 	<key>shomoi</key>
 	<string>সময়</string>
 	<key>shondhay</key>
@@ -14564,6 +14736,8 @@
 	<string>শুনছো</string>
 	<key>shuttle</key>
 	<string>শাটল</string>
+	<key>shyampur</key>
+	<string>শ্যামপুর</string>
 	<key>side</key>
 	<string>সাইড</string>
 	<key>sides</key>
@@ -15688,6 +15862,8 @@
 	<string>টিনস</string>
 	<key>teeth</key>
 	<string>টিথ</string>
+	<key>tejgaon</key>
+	<string>তেজগাঁও</string>
 	<key>telecom</key>
 	<string>টেলিকম</string>
 	<key>telecommunications</key>
@@ -15940,6 +16116,8 @@
 	<string>টিফানি</string>
 	<key>tiger</key>
 	<string>টাইগার</string>
+	<key>tigerpass</key>
+	<string>টাইগারপাস</string>
 	<key>tigers</key>
 	<string>টাইগার্স</string>
 	<key>tight</key>
@@ -16604,6 +16782,10 @@
 	<string>ইউটিলাইজ</string>
 	<key>utor</key>
 	<string>উত্তর</string>
+	<key>uttara</key>
+	<string>উত্তরা</string>
+	<key>uttarkhan</key>
+	<string>উত্তরখান</string>
 	<key>uv</key>
 	<string>ইউভি</string>
 	<key>vabsi</key>
@@ -16674,6 +16856,8 @@
 	<string>ভেরিইং</string>
 	<key>vast</key>
 	<string>ভাস্ট</string>
+	<key>vatara</key>
+	<string>ভাটারা</string>
 	<key>vatican</key>
 	<string>ভ্যাটিকান</string>
 	<key>vault</key>
